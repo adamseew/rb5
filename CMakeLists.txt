@@ -23,16 +23,24 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
-add_executable(chw_ctl_comm src/chw_ctl_comm.cpp)
+add_executable(chw_ctl_comm src/chw_ctl_comm.cpp src/utility.cpp)
+add_executable(chw_bs_comm src/chw_bs_comm.cpp src/utility.cpp)
 target_include_directories(chw_ctl_comm PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_include_directories(chw_bs_comm PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
 # targe dependencies filled manually
 ament_target_dependencies(chw_ctl_comm rclcpp std_msgs)
+ament_target_dependencies(chw_bs_comm rclcpp std_msgs)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})
+install(TARGETS chw_bs_comm
+  DESTINATION lib/${PROJECT_NAME})
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
