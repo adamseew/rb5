@@ -2,8 +2,8 @@
 #include <string>
 #include <vector>
 
-#ifndef YTCG_UTILITY_H
-#define YTCG_UTILITY_H
+#ifndef YTCG_UTILITY_HPP
+#define YTCG_UTILITY_HPP
 
 namespace ytcg {
     
@@ -13,3 +13,5 @@ namespace ytcg {
 }
 
 #endif
+
+

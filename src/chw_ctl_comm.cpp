@@ -11,14 +11,13 @@
 #include <string>
 
 using namespace ytcg;
-using namespace std::chrono_literals;
 
 
 CtlCommPublisher::CtlCommPublisher() : 
     Node(NODE_CHW_CTL_COMM), count_(0) {
     publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(COMM_TO_CTL_TOPIC, 10);
     timer_ = this->create_wall_timer(
-        500ms, std::bind(&CtlCommPublisher::timer_callback, this)
+        std::chrono::milliseconds(CHW_CTL_COMM_RATE), std::bind(&CtlCommPublisher::timer_callback, this)
     );
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;

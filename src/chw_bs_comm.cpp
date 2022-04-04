@@ -7,20 +7,21 @@
 #include <fstream>
 #include <chrono>
 #include <cstdio>
+#include <limits>
 #include <memory>
 #include <string>
+#include <cmath>
 
 using namespace ytcg;
-using namespace std::chrono_literals;
 
 using std::string;
 
 
 BsCommPublisher::BsCommPublisher() : 
-    Node(NODE_CHW_BS_COMM), count_(0) {
+    Node(NODE_CHW_BS_COMM), count_(0), first_get(0) {
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
     timer_ = this->create_wall_timer(
-        500ms, std::bind(&BsCommPublisher::timer_callback, this)
+        std::chrono::milliseconds(CHW_BS_COMM_RATE), std::bind(&BsCommPublisher::timer_callback, this)
     );
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;
@@ -29,15 +30,42 @@ BsCommPublisher::BsCommPublisher() :
 }
 
 void BsCommPublisher::timer_callback() {
+
     int x_, y_;
+    string output;
+    string addr = string(PROTOCOL)    + "://" +
+                  getenv(ENV_BS_ADDR) + ":"   +
+                  getenv(ENV_BS_PORT) + string(DIR_ON_BS);
     msg_.data.clear();
-    
-    string addr = "http://172.28.143.122/ground-based_master/tele2_data";
-    string output = utility_exec(("curl -s " + addr).c_str());
+
+    if (!first_get) {
+        output = utility_exec(("curl -Is " + addr + " | head -n 1").c_str());
+	// is is only able to check the connection if the protocol is http
+        if (string(PROTOCOL) == "http" && output.find("200 OK") == std::string::npos) {
+            RCLCPP_ERROR(this->get_logger(), "No connection to the base station %s", addr.c_str());
+            return;
+        }
+	first_get = 1;
+	RCLCPP_INFO(this->get_logger(), "Established connection with the base station");
+    }
+
+    try {
+        output = utility_exec(("curl -s " + addr).c_str());
+    } catch (...) {
+        RCLCPP_ERROR(this->get_logger(), "Error opening popen while retrieving data from base station");
+	return;
+    }
     auto from_bs = utility_split(output, ' ');
-    RCLCPP_INFO(this->get_logger(), "Data from base station are %s", output.c_str());
-    x_ = std::__cxx11::stoi(utility_split(from_bs.at(0), ':').at(1));
-    y_ = std::__cxx11::stoi(utility_split(from_bs.at(1), ':').at(1));
+    RCLCPP_INFO(this->get_logger(), "Raw data from base station %s are %s", addr.c_str(), output.c_str());
+    try {
+        x_ = std::__cxx11::stoi(utility_split(from_bs.at(0), ':').at(1));
+        y_ = std::__cxx11::stoi(utility_split(from_bs.at(1), ':').at(1));
+    } catch (...) {
+        x_ = std::numeric_limits<int>::max();
+    } if (std::abs(x_) > 100 || std::abs(y_) > 100) {
+        RCLCPP_ERROR(this->get_logger(), "But they seem corrupted");
+        return;
+    }
     msg_.data.push_back(x_);
     msg_.data.push_back(y_);
 

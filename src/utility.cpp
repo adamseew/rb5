@@ -1,10 +1,10 @@
 
 #include "../include/utility.hpp"
 
+#include <sys/stat.h>
 #include <signal.h>
 #include <stdlib.h>
 
-#include <sys/stat.h>
 #include <algorithm>
 #include <stdexcept>
 #include <iostream>
@@ -62,7 +62,7 @@ const string ytcg::utility_trim(const string& source) {
 const string ytcg::utility_exec(const char* cmd) {
     
     std::array<char, 128> buffer;
-    std::string result;
+    string result;
     std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
 
     if (!pipe)

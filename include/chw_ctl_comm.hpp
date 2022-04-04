@@ -4,7 +4,11 @@
 #include "std_msgs/msg/multi_array_layout.hpp"
 #include "rclcpp/rclcpp.hpp"
 
+#ifndef YTCG_CHW_CTL_COMM_HPP
+#define YTCG_CHW_CTL_COMM_HPP
+
 #define NODE_CHW_CTL_COMM     "chw_ctl_node"
+#define CHW_CTL_COMM_RATE     500
 #define COMM_TO_CTL_TOPIC     "ground_based/joints"
 #define COMM_TO_CTL_TOPIC_LBL "linear_velocities"
 #define ENV_CHW_CTL_DIR       "CHW_CTL_DIR"
@@ -23,5 +27,7 @@ namespace ytcg {
         size_t count_;
     };
 }
+
+#endif
 
 
