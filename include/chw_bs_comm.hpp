@@ -1,7 +1,7 @@
 
 #include "std_msgs/msg/multi_array_dimension.hpp"
-#include "std_msgs/msg/int8_multi_array.hpp"
 #include "std_msgs/msg/multi_array_layout.hpp"
+#include "std_msgs/msg/int8_multi_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 #ifndef YTCG_CHW_BS_COMM_HPP

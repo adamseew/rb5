@@ -2,6 +2,7 @@
 #include "std_msgs/msg/multi_array_dimension.hpp"
 #include "std_msgs/msg/float32_multi_array.hpp"
 #include "std_msgs/msg/multi_array_layout.hpp"
+#include "std_msgs/msg/int8_multi_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 #ifndef YTCG_CHW_CTL_COMM_HPP
@@ -20,10 +21,10 @@ namespace ytcg {
         CtlCommPublisher(void);
 
     private:
-        void timer_callback(void);
+        void topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg);
         std_msgs::msg::Float32MultiArray msg_;
-        rclcpp::TimerBase::SharedPtr timer_;
         rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
+        rclcpp::Subscription<std_msgs::msg::Int8MultiArray>::SharedPtr subscription_;
         size_t count_;
     };
 }

@@ -19,6 +19,7 @@ using std::string;
 
 BsCommPublisher::BsCommPublisher() : 
     Node(NODE_CHW_BS_COMM), count_(0), first_get(0) {
+
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(CHW_BS_COMM_RATE), std::bind(&BsCommPublisher::timer_callback, this)
