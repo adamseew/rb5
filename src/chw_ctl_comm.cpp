@@ -20,10 +20,11 @@ CtlCommPublisher::CtlCommPublisher() :
     Node(NODE_CHW_CTL_COMM), count_(0) {
 
     publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(COMM_TO_CTL_TOPIC, 10);
-    subscription_ = this->create_subscription<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10, std::bind(&CtlCommPublisher::topic_callback, this, _1));
                                              // subscribes to the topic communicating the data
-					     // from the base station. Each time there are any
-					     // data, in sends them to the controller
+                                             // from the base station. Each time there are any
+                                             // data, in sends them to the controller
+    subscription_ = this->create_subscription<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10, std::bind(&CtlCommPublisher::topic_callback, this, _1));
+    //
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;
     msg_.layout.dim[0].stride = 1;

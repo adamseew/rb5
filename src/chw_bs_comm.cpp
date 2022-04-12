@@ -21,9 +21,14 @@ BsCommPublisher::BsCommPublisher() :
     Node(NODE_CHW_BS_COMM), count_(0), first_get(0) {
 
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
+    // publishes the data from the base station
+    // use CHW_BS_COMM_RATE to personalize frequency in milliseconds
     timer_ = this->create_wall_timer(
         std::chrono::milliseconds(CHW_BS_COMM_RATE), std::bind(&BsCommPublisher::timer_callback, this)
     );
+    // the node publishes a message containing the two commands from
+    // base station: offset on x and on y, from -100 to 100. Default
+    // value is 0, 0 for x, y
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;
     msg_.layout.dim[0].stride = 1;
@@ -34,6 +39,10 @@ void BsCommPublisher::timer_callback() {
 
     int x_, y_;
     string output;
+    // build the address for the base station. Use environment variables
+    // BS_ADDR for the address and BS_PORT for the port. When setting up
+    // the address was 172.28.143.122 and the port was 80. Be aware, 
+    // it might change
     string addr = string(PROTOCOL)    + "://" +
                   getenv(ENV_BS_ADDR) + ":"   +
                   getenv(ENV_BS_PORT) + string(DIR_ON_BS);
@@ -64,6 +73,9 @@ void BsCommPublisher::timer_callback() {
     } catch (...) {
         x_ = std::numeric_limits<int>::max();
     } if (std::abs(x_) > 100 || std::abs(y_) > 100) {
+        
+        // something is wrong with the value; probably an error on the
+	// base station side
         RCLCPP_ERROR(this->get_logger(), "But they seem corrupted");
         return;
     }
