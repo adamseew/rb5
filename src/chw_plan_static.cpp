@@ -5,6 +5,7 @@
 #include "../include/utility.hpp"
 
 #include <boost/numeric/ublas/operation_blocked.hpp>
+#include <boost/math/constants/constants.hpp>
 #include <boost/numeric/ublas/operation.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/assign/std/vector.hpp>
@@ -13,11 +14,14 @@
 #include <functional>
 #include <cstdlib>
 #include <fstream>
+#include <sstream>
 #include <chrono>
 #include <cstdio>
 #include <memory>
 #include <string>
 #include <vector>
+#include <cmath>
+
 
 using namespace ytcg;
 using namespace boost::numeric::ublas;
@@ -44,22 +48,25 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
     
     Function* line_ = new Line(1, 0);
     float ke = 0.05;
+    float dir; 
     matrix<double> E(2, 2, 0);
     E(0, 1) = 1.0;
     E(1, 0) = -1.0;
+
     vector<double> point(2), gradient, vf;
     point(0) = static_cast<double>(msg->data[0]);
     point(1) = static_cast<double>(msg->data[1]);
     gradient =  line_->get_gradient(point);
     vf       =  prod(E, gradient)-ke*line_->get_value(point)*gradient;
-    
+    dir = atan(vf(1)/vf(0));
+
     msg_.data.clear();
-    msg_.data.push_back(vf(0));
-    msg_.data.push_back(vf(1));
-    
+    msg_.data.push_back(sin(dir));
+    msg_.data.push_back(cos(dir));
     publisher_->publish(msg_);
-    
-    RCLCPP_INFO(this->get_logger(), "Publishing the vector field is %f, %f", vf(0), vf(1));
+
+    RCLCPP_INFO(this->get_logger(), "The direction is %f degrees", dir*180/boost::math::constants::pi<double>());
+    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %f, y: %f", sin(dir), cos(dir));
 
     delete line_;
 }

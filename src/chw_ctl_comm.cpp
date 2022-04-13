@@ -46,7 +46,7 @@ void CtlCommPublisher::topic_callback(const std_msgs::msg::Int8MultiArray::Share
     ofs << msg->data[1]/100.0;
     ofs.close();
 
-    RCLCPP_INFO(this->get_logger(), "Publishing joints linear velocities, x: %f, y: %f", msg->data[0]/100.0, msg->data[1]/100.0);
+    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %f, y: %f", msg->data[0]/100.0, msg->data[1]/100.0);
     publisher_->publish(msg_);
 }
         
