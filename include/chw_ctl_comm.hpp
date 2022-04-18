@@ -16,11 +16,19 @@
 #define COMM_FROM_CTL_LBL     "absolute_position"
 #define ENV_CHW_CTL_DIR       "CHW_CTL_DIR"
 
+#define COMM_ETHERNET         100
+#define COMM_SERIAL           200
 
 namespace ytcg {
+    enum struct CommType { 
+        Ethernet = COMM_ETHERNET, 
+        Serial =   COMM_SERIAL
+    };
+
     class CtlCommPublisher : public rclcpp::Node {
     public:
         CtlCommPublisher(void);
+	CtlCommPublisher(CommType commtype_);
 
     private:
         void topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg);
@@ -28,6 +36,7 @@ namespace ytcg {
         rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
         rclcpp::Subscription<std_msgs::msg::Int8MultiArray>::SharedPtr subscription_;
         size_t count_;
+	CommType commtype__;
     };
 }
 
