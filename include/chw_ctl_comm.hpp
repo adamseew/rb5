@@ -12,9 +12,7 @@
 
 #define NODE_CHW_CTL_COMM     "chw_ctl_node"
 #define CHW_CTL_COMM_RATE     500
-#define COMM_TO_CTL_TOPIC     "ground_based/joints"
 #define COMM_FROM_CTL_TOPIC   "ground_based/position"
-#define COMM_TO_CTL_TOPIC_LBL "linear_velocities"
 #define COMM_FROM_CTL_LBL     "absolute_position"
 #define ENV_CHW_CTL_DIR       "CHW_CTL_DIR"
 
@@ -27,17 +25,14 @@ namespace ytcg {
         Serial =   COMM_SERIAL
     };
 
-    class CtlCommPublisher : public rclcpp::Node {
+    class CtlComm : public rclcpp::Node {
     public:
-        CtlCommPublisher(void);
-	CtlCommPublisher(CommType commtype_);
+        CtlComm(void);
+	CtlComm(CommType commtype_);
 
     private:
         void topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg);
-        std_msgs::msg::Float32MultiArray msg_;
-        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
         rclcpp::Subscription<std_msgs::msg::Int8MultiArray>::SharedPtr subscription_;
-        size_t count_;
 	CommType commtype__;
 	std::stringstream data_;
     };

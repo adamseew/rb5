@@ -76,7 +76,7 @@ Line::Line(int m_, int c_) {
     c = c_;
 }
 
-Line::~Line(void) { };
+Line::~Line(void) { }
 
 double Line::get_value(vector<double> point) {
     return point(1)-m*point(0)-c;
