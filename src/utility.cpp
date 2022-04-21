@@ -2,14 +2,12 @@
 #include "../include/utility.hpp"
 
 #include <sys/stat.h>
-#include <termios.h>
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h> 
-
 
 #include <algorithm>
 #include <stdexcept>
@@ -31,7 +29,7 @@ void ytcg::utility_set_interface_attribs(int fd, int speed, int parity) {
     struct termios tty;
     memset(&tty, 0, sizeof tty);
     if (tcgetattr(fd, &tty) != 0) 
-        std::runtime_error("Error while calling tcgetattr");
+        throw std::runtime_error("Error while calling tcgetattr");
     cfsetospeed(&tty, speed);
     cfsetispeed(&tty, speed);
     tty.c_cflag = (tty.c_cflag & ~CSIZE) | CS8;
@@ -56,7 +54,7 @@ void ytcg::utility_set_interface_attribs(int fd, int speed, int parity) {
     tty.c_cflag &= ~CRTSCTS;
 
     if (tcsetattr (fd, TCSANOW, &tty) != 0) 
-        std::runtime_error("Error while calling tcsetattr");
+        throw std::runtime_error("Error while calling tcsetattr");
 }
 
 void ytcg::utility_set_blocking(int fd, int should_block) {
@@ -64,26 +62,33 @@ void ytcg::utility_set_blocking(int fd, int should_block) {
     struct termios tty;
     memset (&tty, 0, sizeof tty);
     if (tcgetattr (fd, &tty) != 0)
-        std::runtime_error("Error while calling tggetattr");
+        throw std::runtime_error("Error while calling tggetattr");
 
     tty.c_cc[VMIN]  = should_block ? 1 : 0;
     tty.c_cc[VTIME] = 5;            // 0.5 seconds read timeout
 
     if (tcsetattr (fd, TCSANOW, &tty) != 0)
-        std::runtime_error("Error while setting term attributes");
+        throw std::runtime_error("Error while setting term attributes");
 }
 
-void ytcg::utility_serial_write(const string& data, const string& portname) {
-    // portname is e.g., /dev/ttyS0
+void ytcg::utility_serial_write(const string& data, const string& portname, speed_t bitrate) {
+    
+    int fd;
 
-    int fd = open(portname.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
-    if (fd < 0) 
-        std::runtime_error("Error opening the device");
+    fd = open(portname.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
+                                    // portname is, e.g., /dev/ttyS0 (J17 on TX2)
+    if (fd < 0) {
+        throw std::runtime_error("Error opening the device");
+    }
 
-    utility_set_interface_attribs(fd, B9600, 0);
-                                    // set speed to 9600 bps, 8n1 (no par.)
+    utility_set_interface_attribs(fd, bitrate, 0);
+                                    // set speed to given bps, 8n1 (no par.)
     utility_set_blocking(fd, 0);    // set no blocking
     write(fd, data.c_str(), data.size());
+
+    if (close(fd) < 0) {
+        throw std::runtime_error("Error closing the device");
+    }
 }
 
 vector<string> ytcg::utility_split(const string& source, char token) {

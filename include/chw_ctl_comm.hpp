@@ -5,6 +5,8 @@
 #include "std_msgs/msg/int8_multi_array.hpp"
 #include "rclcpp/rclcpp.hpp"
 
+#include <sstream>
+
 #ifndef YTCG_CHW_CTL_COMM_HPP
 #define YTCG_CHW_CTL_COMM_HPP
 
@@ -37,6 +39,7 @@ namespace ytcg {
         rclcpp::Subscription<std_msgs::msg::Int8MultiArray>::SharedPtr subscription_;
         size_t count_;
 	CommType commtype__;
+	std::stringstream data_;
     };
 }
 

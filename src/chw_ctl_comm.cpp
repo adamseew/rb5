@@ -3,10 +3,11 @@
 #include "../include/chw_bs_comm.hpp"
 #include "../include/utility.hpp"
 
+#include <termios.h>
+
 #include <functional>
 #include <cstdlib>
 #include <fstream>
-#include <sstream>
 #include <chrono>
 #include <cstdio>
 #include <memory>
@@ -41,22 +42,22 @@ void CtlCommPublisher::topic_callback(const std_msgs::msg::Int8MultiArray::Share
                                              // it will have to contain the real values
                                              // later on
     msg_.data.push_back(msg->data[1]/100.0);
-    std::stringstream data;
-    data << msg->data[0] << ":";
-    data << msg->data[1];
+    std::stringstream().swap(data_);
+    data_ << msg->data[0]/100.0 << ":";
+    data_ << msg->data[1]/100.0 << " ";
     
     if (commtype__ == CommType::Ethernet) {
         RCLCPP_INFO(this->get_logger(), "Transmitting data over ethernet to the controller");
         std::ofstream ofs(getenv(ENV_CHW_CTL_DIR), std::ofstream::trunc);
-        ofs << data.str();                   // writing the content to the file where it can
-                                             // accessed by CHW_CTL communication (nginx)
+        ofs << data_.str();                   // writing the content to the file where it can
+                                              // accessed by CHW_CTL communication (nginx)
         ofs.close();
     } else {
 	RCLCPP_INFO(this->get_logger(), "Establishing serial connection with the controller");
-        utility_serial_write(data.str(), "/dev/ttyTHS2"); 
+        utility_serial_write(data_.str(), "/dev/ttyTHS2", B9600); 
     }
 
-    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %f, y: %f", msg->data[0]/100.0, msg->data[1]/100.0);
+    RCLCPP_INFO(this->get_logger(), "Transmitted %susing %s connection", data_.str().c_str(), commtype__ == CommType::Ethernet ? "ethernet" : "serial");
     publisher_->publish(msg_);
 }
         

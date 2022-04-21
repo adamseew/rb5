@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 
+#include <termios.h>
+
 #ifndef YTCG_UTILITY_HPP
 #define YTCG_UTILITY_HPP
 
@@ -13,7 +15,7 @@ namespace ytcg {
 
     void utility_set_interface_attribs(int fd, int speed, int parity);
     void utility_set_blocking(int fd, int should_block);
-    void utility_serial_write(const std::string& data, const std::string& portname);
+    void utility_serial_write(const std::string& data, const std::string& portname, speed_t bitrate);
 }
 
 #endif
