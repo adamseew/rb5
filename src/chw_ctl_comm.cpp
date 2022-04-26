@@ -18,7 +18,7 @@ using namespace ytcg;
 using std::placeholders::_1;
 
 CtlComm::CtlComm() : CtlComm::CtlComm(CommType::Ethernet) { }
-                                            // default communication channel set to ethernet
+                                              // default communication channel set to ethernet
 
 CtlComm::CtlComm(CommType commtype_) : 
     Node(NODE_CHW_CTL_COMM) {
@@ -40,9 +40,9 @@ void CtlComm::topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg)
                                               // accessed by CHW_CTL communication (nginx)
         ofs.close();
     } else {
-	RCLCPP_INFO(this->get_logger(), "Establishing serial connection with the controller");
+        RCLCPP_INFO(this->get_logger(), "Establishing serial connection with the controller");
         utility_serial_write(data_.str(), "/dev/ttyTHS2", B9600);
-	                                      // bitrate for the setial commmunication
+                                              // bitrate for the setial commmunication
     }
 
     RCLCPP_INFO(this->get_logger(), "Transmitted %susing %s connection", data_.str().c_str(), commtype__ == CommType::Ethernet ? "ethernet" : "serial");
