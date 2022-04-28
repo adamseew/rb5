@@ -33,6 +33,7 @@ find_package(cv_bridge REQUIRED)
 add_executable(chw_ctl_comm src/chw_ctl_comm.cpp src/utility.cpp)
 add_executable(chw_bs_comm src/chw_bs_comm.cpp src/utility.cpp)
 add_executable(chw_plan_static src/chw_plan_static.cpp src/utility.cpp)
+add_executable(pos_estimator src/pos_estimator.cpp src/utility.cpp)
 target_include_directories(chw_ctl_comm PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
@@ -40,6 +41,9 @@ target_include_directories(chw_bs_comm PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 target_include_directories(chw_plan_static PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_include_directories(pos_estimator PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
@@ -51,12 +55,15 @@ target_link_libraries(chw_bs_comm ${Boost_LIBRARIES})
 ament_target_dependencies(chw_ctl_comm rclcpp std_msgs)
 ament_target_dependencies(chw_bs_comm rclcpp std_msgs sensor_msgs cv_bridge)
 ament_target_dependencies(chw_plan_static rclcpp std_msgs)
+ament_target_dependencies(pos_estimator rclcpp std_msgs)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})
 install(TARGETS chw_bs_comm
   DESTINATION lib/${PROJECT_NAME})
 install(TARGETS chw_plan_static
+  DESTINATION lib/${PROJECT_NAME})
+install(TARGETS pos_estimator
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
