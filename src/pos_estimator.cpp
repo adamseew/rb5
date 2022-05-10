@@ -16,7 +16,9 @@ using std::placeholders::_1;
 
 
 PosEstimator::PosEstimator() : 
-    Node(NODE_POS_ESTIMATOR), cmd(2, std::numeric_limits<short int>::min()), pos(2, 0), orientation(90.0) {
+    Node(NODE_POS_ESTIMATOR), 
+    cmd(2, std::numeric_limits<short int>::min()), 
+    pos(2, 0.0), orientation(90.0) {
 
     publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(POS_TOPIC, 10);
     publisher__ = this->create_publisher<std_msgs::msg::Float32>(ORI_TOPIC, 10);
@@ -29,6 +31,16 @@ PosEstimator::PosEstimator() :
     msg_.layout.dim[0].size = 2;
     msg_.layout.dim[0].stride = 1;
     msg_.layout.dim[0].label = POS_TOPIC_LBL;
+
+#ifdef DEBUG
+    log_fd.open("debug.log");
+#endif
+}
+
+PosEstimator::~PosEstimator(void) {
+#ifdef DEBUG
+    log_fd.close();
+#endif
 }
 
 void PosEstimator::topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg) {
@@ -40,29 +52,39 @@ void PosEstimator::topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr
 }
 
 void PosEstimator::timer_callback(void) {
-    msg_.data.clear();
-    
-    if (pos.at(0) >= 0 && pos.at(1) >= 0) {
-	orientation = orientation+cmd.at(1)*MAX_ANG_VEL*POS_ESTIMATION_RATE/1000.0;
-	msg__.data = orientation;
 
-	pos.at(0) = pos.at(0)+cos(M_PI*orientation/180.0)*cmd.at(0)*MAX_VEL*POS_ESTIMATION_RATE/1000.0;
-	pos.at(1) = pos.at(1)+sin(M_PI*orientation/180.0)*cmd.at(0)*MAX_VEL*POS_ESTIMATION_RATE/1000.0;
-        msg_.data.push_back(pos.at(0));
-        msg_.data.push_back(pos.at(1));
+    msg_.data.clear();
+    RCLCPP_INFO(this->get_logger(), "Command is x: %d, y: %d", cmd.at(0), cmd.at(1)); 
+
+    if (cmd.at(0) != std::numeric_limits<short int>::min()) {
+        orientation = orientation+cmd.at(0)*MAX_ANG_VEL*POS_ESTIMATION_RATE/100000.0*(
+            pos.at(0) > 0 ? 1 : -1
+        );
+
+        pos.at(0) = pos.at(0)+cos(M_PI*orientation/180.0)*cmd.at(1)*MAX_VEL*POS_ESTIMATION_RATE/100000.0;
+        pos.at(1) = pos.at(1)+sin(M_PI*orientation/180.0)*cmd.at(1)*MAX_VEL*POS_ESTIMATION_RATE/100000.0;
     }
 
-    RCLCPP_INFO(this->get_logger(), "Estimated position is x: %d, y: %d, and orientation is %f", pos.at(0), pos.at(1), orientation);
+    msg__.data = orientation;
+    msg_.data.push_back(pos.at(0));
+    msg_.data.push_back(pos.at(1));
+
+#ifdef DEBUG
+    log_fd << pos.at(0) << "," << pos.at(1) << "," << orientation << std::endl;
+#endif
+
+    RCLCPP_INFO(this->get_logger(), "Estimated position and orientation are x: %f, y: %f, alpha: %f", pos.at(0), pos.at(1), orientation);
 
     publisher_->publish(msg_);
     publisher__->publish(msg__);
 }
 
 int main(int argc, char ** argv) {
-    
+
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<PosEstimator>());
     rclcpp::shutdown();
+
     return 0;
 }
 

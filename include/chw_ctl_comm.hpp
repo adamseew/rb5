@@ -12,8 +12,6 @@
 
 #define NODE_CHW_CTL_COMM     "chw_ctl_node"
 #define CHW_CTL_COMM_RATE     500
-#define COMM_FROM_CTL_TOPIC   "ground_based/position"
-#define COMM_FROM_CTL_LBL     "absolute_position"
 #define ENV_CHW_CTL_DIR       "CHW_CTL_DIR"
 
 #define COMM_ETHERNET         100

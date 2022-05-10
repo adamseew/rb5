@@ -1,5 +1,6 @@
 
 #include "../include/chw_plan_static.hpp"
+#include "../include/pos_estimator.hpp"
 #include "../include/chw_ctl_comm.hpp"
 #include "../include/chw_bs_comm.hpp"
 #include "../include/utility.hpp"
@@ -34,7 +35,7 @@ StaticPlan::StaticPlan() :
     Node(NODE_CHW_PLAN_STATIC), count_(0) {
 
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
-    subscription_ = this->create_subscription<std_msgs::msg::Float32MultiArray>(COMM_FROM_CTL_TOPIC, 10, std::bind(&StaticPlan::topic_callback, this, _1));
+    subscription_ = this->create_subscription<std_msgs::msg::Float32MultiArray>(POS_TOPIC, 10, std::bind(&StaticPlan::topic_callback, this, _1));
     
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;
@@ -46,9 +47,10 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
     
     RCLCPP_INFO(this->get_logger(), "StaticPlan topic callback called");
     
-    Function* line_ = new Line(1, 0);
+    Function* line_ = new Line(1, 5);
     float ke = 0.05;
     float dir; 
+    int x_, y_;
     matrix<double> E(2, 2, 0);
     E(0, 1) = 1.0;
     E(1, 0) = -1.0;
@@ -61,12 +63,12 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
     dir = atan(vf(1)/vf(0));
 
     msg_.data.clear();
-    msg_.data.push_back(sin(dir));
-    msg_.data.push_back(cos(dir));
+    msg_.data.push_back(x_ = sin(dir)*100);
+    msg_.data.push_back(y_ = cos(dir-boost::math::constants::pi<double>()/2)*100);
     publisher_->publish(msg_);
 
     RCLCPP_INFO(this->get_logger(), "The direction is %f degrees", dir*180/boost::math::constants::pi<double>());
-    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %f, y: %f", sin(dir), cos(dir));
+    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %d, y: %d", x_, y_);
 
     delete line_;
 }

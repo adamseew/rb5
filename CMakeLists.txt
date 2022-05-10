@@ -29,6 +29,8 @@ find_package(Boost 1.67 REQUIRED COMPONENTS
 )
 find_package(sensor_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 add_executable(chw_ctl_comm src/chw_ctl_comm.cpp src/utility.cpp)
 add_executable(chw_bs_comm src/chw_bs_comm.cpp src/utility.cpp)
@@ -55,7 +57,7 @@ target_link_libraries(chw_bs_comm ${Boost_LIBRARIES})
 ament_target_dependencies(chw_ctl_comm rclcpp std_msgs)
 ament_target_dependencies(chw_bs_comm rclcpp std_msgs sensor_msgs cv_bridge)
 ament_target_dependencies(chw_plan_static rclcpp std_msgs)
-ament_target_dependencies(pos_estimator rclcpp std_msgs)
+ament_target_dependencies(pos_estimator rclcpp std_msgs nav_msgs geometry_msgs)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})
