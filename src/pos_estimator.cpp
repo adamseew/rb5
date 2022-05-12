@@ -65,6 +65,9 @@ void PosEstimator::timer_callback(void) {
         pos.at(1) = pos.at(1)+sin(M_PI*orientation/180.0)*cmd.at(1)*MAX_VEL*POS_ESTIMATION_RATE/100000.0;
     }
 
+    orientation = fmod(orientation+180, 360); // normalize orientation [-pi,pi)
+    orientation += orientation < 0 ? 180 : -180;
+
     msg__.data = orientation;
     msg_.data.push_back(pos.at(0));
     msg_.data.push_back(pos.at(1));
