@@ -57,9 +57,7 @@ void PosEstimator::timer_callback(void) {
     RCLCPP_INFO(this->get_logger(), "Command is x: %d, y: %d", cmd.at(0), cmd.at(1)); 
 
     if (cmd.at(0) != std::numeric_limits<short int>::min()) {
-        orientation = orientation+cmd.at(0)*MAX_ANG_VEL*POS_ESTIMATION_RATE/100000.0*(
-            pos.at(0) > 0 ? 1 : -1
-        );
+        orientation = orientation+cmd.at(0)*MAX_ANG_VEL*POS_ESTIMATION_RATE/100000.0;
 
         pos.at(0) = pos.at(0)+cos(M_PI*orientation/180.0)*cmd.at(1)*MAX_VEL*POS_ESTIMATION_RATE/100000.0;
         pos.at(1) = pos.at(1)+sin(M_PI*orientation/180.0)*cmd.at(1)*MAX_VEL*POS_ESTIMATION_RATE/100000.0;
@@ -76,7 +74,7 @@ void PosEstimator::timer_callback(void) {
     log_fd << pos.at(0) << "," << pos.at(1) << "," << orientation << std::endl;
 #endif
 
-    RCLCPP_INFO(this->get_logger(), "Estimated position and orientation are x: %f, y: %f, alpha: %f", pos.at(0), pos.at(1), orientation);
+    RCLCPP_INFO(this->get_logger(), "Estimated position and orientation are x: %f, y: %f, orientation: %f", pos.at(0), pos.at(1), orientation);
 
     publisher_->publish(msg_);
     publisher__->publish(msg__);

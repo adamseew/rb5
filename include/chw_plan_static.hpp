@@ -12,8 +12,9 @@
 #define YTCG_CHW_PLAN_STATIC_HPP
 
 #define NODE_CHW_PLAN_STATIC "chw_plan_static_node"
-#define EPSILON  5
-#define EPSILON2 20
+#define EPSILON  2
+#define EPSILON2 10
+#define KE       0.2
 
 
 
@@ -34,22 +35,34 @@ namespace ytcg {
 	float orientation_;
     };
 
-    class Function {
+    class Function {                          // generic function handler, override
+                                              // to implement a path function
     public:
         virtual ~Function(void) { }
         virtual double get_value(boost::numeric::ublas::vector<double> point) = 0;
 	virtual boost::numeric::ublas::vector<double> get_gradient(boost::numeric::ublas::vector<double> point) = 0;
     };
 
-    class Line : public Function {
+    class Line : public Function {            // y = mx+c, with m,c passed via constructor
     public:
-        Line(int m_, int c_);
+        Line(double m_, double c_);
         ~Line(void);
         virtual double get_value(boost::numeric::ublas::vector<double> point);
         virtual boost::numeric::ublas::vector<double> get_gradient(boost::numeric::ublas::vector<double> point);
 
     private:
-        int m, c;
+        double m, c;
+    };
+
+    class Circle : public Function {          // (x-xc)^2+(y-yc)^2-r^2, with xc,yc,r passed via constructor
+    public:
+        Circle(double xc_, double yc_, double r_);
+	~Circle(void);
+	virtual double get_value(boost::numeric::ublas::vector<double> point);
+	virtual boost::numeric::ublas::vector<double> get_gradient(boost::numeric::ublas::vector<double> point);
+    
+    private:
+        double xc, yc, r;
     };
 
 }

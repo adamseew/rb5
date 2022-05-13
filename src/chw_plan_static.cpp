@@ -58,8 +58,10 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
 	return;
     }
 
-    Function* line_ = new Line(1, 5);
-    float ke = 0.05;
+    // Function* f_ = new Line(1.0, 5.0);     // y = x+5
+    Function* f_ = new Circle(10.0, 10.0, 5);
+                                              // (x-10)^2+(y-10)^2-2.5^2
+    float ke = KE;                            // gain determined empirically
     float dir, diff; 
     int x_, y_;
     matrix<double> E(2, 2, 0);
@@ -69,13 +71,18 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
     vector<double> point(2), gradient, vf;
     point(0) = static_cast<double>(msg->data[0]);
     point(1) = static_cast<double>(msg->data[1]);
-    gradient = line_->get_gradient(point);
-    vf       = prod(E, gradient)-ke*line_->get_value(point)*gradient;
+    gradient = f_->get_gradient(point);
+    vf       = prod(E, gradient)-ke*f_->get_value(point)*gradient;
     dir = atan(vf(1)/vf(0));
-
+    dir = dir*180/boost::math::constants::pi<double>();
+                                              // transfor to dregrees to compare w/
+                                              // orientation
     dir = fmod(dir+180, 360);                 // normalize dir [-pi,pi)
     dir += dir < 0 ? 180 : -180;
-    diff = std::norm(dir-orientation_);
+    
+    RCLCPP_INFO(this->get_logger(), "dir: %f, orietnation: %f", dir, orientation_);
+
+    diff = sqrt(pow(dir-orientation_, 2));
 
     if (diff < EPSILON) {
         x_ = 0;
@@ -98,21 +105,32 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
     msg_.data.push_back(y_);
     publisher_->publish(msg_);
 
-    RCLCPP_INFO(this->get_logger(), "The direction is %f degrees", dir*180/boost::math::constants::pi<double>());
-    RCLCPP_INFO(this->get_logger(), "Publishing the control direction, x: %d, y: %d", x_, y_);
+    RCLCPP_INFO(this->get_logger(), "Publishing the control, x: %d, y: %d; direction: %f", x_, y_, dir);
 
-    delete line_;
+    delete f_;
 }
 
-Line::Line(int m_, int c_) {
+Line::Line(double m_, double c_) {
     m = m_;
     c = c_;
 }
 
+Circle::Circle(double xc_, double yc_, double r_) {
+    xc = xc_;
+    yc = yc_;
+    r = r_;
+}
+
 Line::~Line(void) { }
+
+Circle::~Circle(void) { }
 
 double Line::get_value(vector<double> point) {
     return point(1)-m*point(0)-c;
+}
+
+double Circle::get_value(vector<double> point) {
+    return pow(point(0)-xc, 2)+pow(point(1)-yc, 2)-pow(r, 2);
 }
 
 vector<double> Line::get_gradient(vector<double> point) {
@@ -122,8 +140,15 @@ vector<double> Line::get_gradient(vector<double> point) {
     return gradient;
 }
 
+vector<double> Circle::get_gradient(vector<double> point) {
+    vector<double> gradient(2);
+    gradient(0) = 2*point(0)-2;
+    gradient(1) = 2*point(1)-2;
+    return gradient;
+}
+
 int main(int argc, char ** argv) {
-    
+   	
     rclcpp::init(argc, argv);
     rclcpp::spin(std::make_shared<StaticPlan>());
     rclcpp::shutdown();
