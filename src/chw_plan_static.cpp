@@ -58,15 +58,15 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
 	return;
     }
 
-    // Function* f_ = new Line(1.0, 5.0);     // y = x+5
-    Function* f_ = new Circle(10.0, 10.0, 5);
+    Function* f_ = new Line(1.0, 5.0);        // y = x+5
+    // Function* f_ = new Circle(10.0, 10.0, 5);
                                               // (x-10)^2+(y-10)^2-2.5^2
     float ke = KE;                            // gain determined empirically
     float dir, diff; 
     int x_, y_;
     matrix<double> E(2, 2, 0);
-    E(0, 1) = -1.0;
-    E(1, 0) = 1.0;
+    E(0, 1) = 1.0;
+    E(1, 0) = -1.0;
 
     vector<double> point(2), gradient, vf;
     point(0) = static_cast<double>(msg->data[0]);
