@@ -36,6 +36,7 @@ add_executable(chw_ctl_comm src/chw_ctl_comm.cpp src/utility.cpp)
 add_executable(chw_bs_comm src/chw_bs_comm.cpp src/utility.cpp)
 add_executable(chw_plan_static src/chw_plan_static.cpp src/utility.cpp)
 add_executable(pos_estimator src/pos_estimator.cpp src/utility.cpp)
+add_executable(camera_wrapper src/camera_wrapper.cpp src/utility.cpp)
 target_include_directories(chw_ctl_comm PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
@@ -48,6 +49,9 @@ target_include_directories(chw_plan_static PUBLIC
 target_include_directories(pos_estimator PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
+target_include_directories(camera_wrapper PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
 
 # addidng boost library to chw_static_plan
 target_link_libraries(chw_plan_static ${Boost_LIBRARIES})
@@ -58,6 +62,7 @@ ament_target_dependencies(chw_ctl_comm rclcpp std_msgs)
 ament_target_dependencies(chw_bs_comm rclcpp std_msgs sensor_msgs cv_bridge)
 ament_target_dependencies(chw_plan_static rclcpp std_msgs)
 ament_target_dependencies(pos_estimator rclcpp std_msgs nav_msgs geometry_msgs)
+ament_target_dependencies(camera_wrapper rclcpp)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})
@@ -67,6 +72,9 @@ install(TARGETS chw_plan_static
   DESTINATION lib/${PROJECT_NAME})
 install(TARGETS pos_estimator
   DESTINATION lib/${PROJECT_NAME})
+install(TARGETS camera_wrapper
+  DESTINATION lib/${PROJECT_NAME})
+
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
