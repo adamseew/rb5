@@ -6,7 +6,6 @@
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/imgcodecs.hpp>
 #include <boost/filesystem.hpp>
-#include <sys/time.h>
 
 #include <functional>
 #include <cstdlib>
@@ -20,6 +19,7 @@
 #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
 
 using namespace ytcg;
+using namespace std::chrono;
 
 using std::placeholders::_1;
 using std::string;
@@ -63,7 +63,9 @@ BsCommPublisher::BsCommPublisher() :
 void BsCommPublisher::camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg) {
     	
     cv_bridge::CvImagePtr cv_ptr;
-    struct timeval tv;
+    milliseconds ms = duration_cast<milliseconds>(
+        system_clock::now().time_since_epoch()
+    );
     string stored_path;
 
     try {
@@ -73,7 +75,7 @@ void BsCommPublisher::camnavrgb_callback(const sensor_msgs::msg::CompressedImage
         return;
     }
 
-    cv::imwrite(stored_path = "image_" + std::to_string(count_++) + "-" + std::to_string(tv.tv_sec * 1000 + tv.tv_usec / 1000) + ".jpg", cv_ptr->image);
+    cv::imwrite(stored_path = "image_" + std::to_string(count_++) + "-" + std::to_string(ms.count()) + ".jpg", cv_ptr->image);
 
     RCLCPP_INFO(this->get_logger(), "image stored as %s", stored_path.c_str());
 }

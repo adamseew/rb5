@@ -11,7 +11,7 @@
 #define YTCG_CAM_WRAPPER_HPP
 
 #define NODE_CAM_WRAPPER "camera_wrapper_node"
-#define CAM_WRAPPER_RATE 500
+#define CAM_WRAPPER_RATE 2000
 
 
 namespace ytcg {
@@ -23,6 +23,7 @@ namespace ytcg {
     private:
 	void timer_callback(void);
         rclcpp::TimerBase::SharedPtr timer_;
+	size_t count_;
     };
 }
 
