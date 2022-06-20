@@ -20,14 +20,26 @@
 #define ENV_BS_PORT            "BS_PORT"
 #define ENV_QUEUE_PATH         "QUEUE_PATH"
 #define PROTOCOL               "http"
+                               // refers to the application layer protocol; do not confuse
+                               // with the CommProtocol bellow (which refers to the physical
+                               // layer protocol as well as, i.e., the device being used)
 #define DIR_ON_BS              "/ground-based_master"
 #define CAMNAVRGB_TOPIC        "image_raw/compressed"
+#define COMM_80211             1000
+#define COMM_LORA              2000
 
 
 namespace ytcg {
+    enum struct CommProtocol { 
+        _80211 = COMM_80211,   // communication happens via std. wifi protocols (e.g., 802.11g or
+                               // the wide range 802.11ah comm. protocol)
+        LoRa =   COMM_LORA     // communication relies on LoRa physical layer protocol
+    };
+
     class BsCommPublisher : public rclcpp::Node {
     public:
         BsCommPublisher(void);
+        BsCommPublisher(CommProtocol);
 
     private:
         void timer_callback(void);
@@ -39,8 +51,10 @@ namespace ytcg {
         rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
 	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
         size_t count_;
+        size_t count__;
 	size_t first_get;
 	std::string addr;
+        CommProtocol commprotocol__;
     };
 }
 

@@ -26,13 +26,13 @@ namespace ytcg {
     class CtlComm : public rclcpp::Node {
     public:
         CtlComm(void);
-	CtlComm(CommType commtype_);
+	    CtlComm(CommType commtype_);
 
     private:
         void topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg);
         rclcpp::Subscription<std_msgs::msg::Int8MultiArray>::SharedPtr subscription_;
-	CommType commtype__;
-	std::stringstream data_;
+    	CommType commtype__;
+    	std::stringstream data_;
     };
 }
 
