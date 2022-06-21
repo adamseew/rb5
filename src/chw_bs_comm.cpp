@@ -8,8 +8,10 @@
 #include <boost/filesystem.hpp>
 
 #include <functional>
+#include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <sstream>
 #include <chrono>
 #include <cstdio>
 #include <limits>
@@ -183,14 +185,14 @@ void BsCommPublisher::timer_callback(void) {
 
         if (output.find("radio_rx") != std::string::npos) {
             utility_serial_write(fd_, "sys set pindig GPIO10 1", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-
-            
         } else {
-            
             RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
             return;
         }
-        utility_serial_write(fd_, "sys set pindig GPIO10 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+
+        utility_serial_write(fd_, "sys set pindig GPIO10 0", DEF_PORT_READ, DEF_BITRATE_57600);
+        output = std::to_string((int)std::stoul(output.substr(9,2),  nullptr, 16) - 100) + " " + 
+                 std::to_string((int)std::stoul(output.substr(11,2), nullptr, 16) - 100);
     }
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
@@ -229,5 +231,4 @@ int main(int argc, char ** argv) {
     rclcpp::shutdown();
     return 0;
 }
-
 
