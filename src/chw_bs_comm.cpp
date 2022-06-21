@@ -30,7 +30,7 @@ namespace ba = boost::adaptors;
 BsCommPublisher::BsCommPublisher() : BsCommPublisher::BsCommPublisher(CommProtocol::_80211) { }
 
 BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) : 
-    Node(NODE_CHW_BS_COMM), count_(0), count__(0), first_get(0) {
+    Node(NODE_CHW_BS_COMM), count_(0), count__(0), first_get(0), fd_(-1) {
 
     string commprotocol_str = "802.11";
 
@@ -69,7 +69,9 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
     msg_.layout.dim.push_back(std_msgs::msg::MultiArrayDimension());
     msg_.layout.dim[0].size = 2;
     msg_.layout.dim[0].stride = 1;
-    msg_.layout.dim[0].label = COMM_FROM_BS_TOPIC_LBL;    
+    msg_.layout.dim[0].label = COMM_FROM_BS_TOPIC_LBL;
+
+    rclcpp::on_shutdown(std::bind(&BsCommPublisher::shutdown_callback, this));
 }
 
 void BsCommPublisher::camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg) {
@@ -157,10 +159,38 @@ void BsCommPublisher::timer_callback(void) {
 	        return;
         }
     } else { // communication channel between chw---bs uses LoRa
-        if (count__ == 0) { // testing if all is okay the first time with LoRa as well
+        if (count__ == 0) { // LoRa needs to be initialized... Also testing if all is
+                            // okay the first time with LoRa (similarly as with 802.11)
+            fd_ = utility_serial_open(DEF_PORT_READ);
+            utility_serial_write(fd_, "sys get ver", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "mac pause", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            output = utility_serial_read(fd_, "radio set pwr 10", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            RCLCPP_INFO(this->get_logger(), "%s", output.c_str());
+            output = utility_serial_read(fd_, "radio tx 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
             
-            
+            if (output == "radio_err") {
+                RCLCPP_FATAL(this->get_logger(), "No connection to the base-station utilizing LoRa");
+                return;
+            } else if (output == "ok") {
+               RCLCPP_INFO(this->get_logger(), "Established connection with the base-station via LoRa (boundle output: %s)", output.c_str());
+            } else {
+                RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
+                return;
+            }
         }
+
+        output = utility_serial_read(fd_, "radio rx 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+
+        if (output.find("radio_rx") != std::string::npos) {
+            utility_serial_write(fd_, "sys set pindig GPIO10 1", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+
+            
+        } else {
+            
+            RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
+            return;
+        }
+        utility_serial_write(fd_, "sys set pindig GPIO10 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
     }
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
@@ -185,6 +215,11 @@ void BsCommPublisher::timer_callback(void) {
     publisher_->publish(msg_);
 
     ++count__;
+}
+
+void BsCommPublisher::shutdown_callback(void) {
+    if (fd_ >= 0)
+        utility_serial_close(fd_);
 }
         
 int main(int argc, char ** argv) {

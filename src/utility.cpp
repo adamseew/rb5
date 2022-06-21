@@ -13,8 +13,10 @@
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
+#include <chrono>
 #include <memory>
 #include <string>
+#include <thread>
 #include <vector>
 #include <array>
 
@@ -71,14 +73,25 @@ void ytcg::utility_set_blocking(int fd, int should_block) {
         throw std::runtime_error("Error while setting term attributes");
 }
 
-void ytcg::utility_serial_write(const string& data, const string& portname, speed_t bitrate) {
-    
-    int fd;
+void ytcg::utility_serial_write(const string& data) {
+    utility_serial_write(data, DEF_PORT_WRITE, DEF_BITRATE_9600);
+}
 
-    fd = open(portname.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
-                                    // portname is, e.g., /dev/ttyS0 (J17 on TX2)
+void ytcg::utility_serial_write(const string& data, const string& portname, speed_t bitrate) {
+    utility_serial_write(-1, data, portname, bitrate);
+}
+
+void ytcg::utility_serial_write(int fd_, const string& data, const string& portname, speed_t bitrate) {
+    utility_serial_write(fd_, data, portname, bitrate, 0);
+}
+
+void ytcg::utility_serial_write(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_) {
+    
+    int fd = fd_;
+    bool keep_open = true;
     if (fd < 0) {
-        throw std::runtime_error("Error opening the device");
+        fd = utility_serial_open(portname);
+        bool keep_open = false;
     }
 
     utility_set_interface_attribs(fd, bitrate, 0);
@@ -86,9 +99,62 @@ void ytcg::utility_serial_write(const string& data, const string& portname, spee
     utility_set_blocking(fd, 0);    // set no blocking
     write(fd, data.c_str(), data.size());
 
-    if (close(fd) < 0) {
-        throw std::runtime_error("Error closing the device");
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleep_));
+
+    if (!keep_open) 
+        utility_serial_close(fd);
+}
+
+string ytcg::utility_serial_read(const string& data, const string& portname, speed_t bitrate) {
+    
+    return utility_serial_read(data, portname, bitrate);
+}
+
+string ytcg::utility_serial_read(const string& data) {
+    
+    return utility_serial_read(-1, data, DEF_PORT_READ, DEF_BITRATE_57600);
+}
+
+string ytcg::utility_serial_read(int fd_, const string& data, const string& portname, speed_t bitrate) {
+    return utility_serial_read(fd_, data, portname, bitrate, 0);
+}
+
+string ytcg::utility_serial_read(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_) {
+    
+    int size_bytes, fd = fd_;
+    bool keep_open = true;
+    char read_buf[READ_BUFFER_SIZE];
+    if (fd < 0) {
+        fd = utility_serial_open(portname);
+        bool keep_open = false;
     }
+
+    utility_serial_write(fd, data, portname, bitrate);
+    size_bytes = read(fd, &read_buf, sizeof(read_buf));
+
+    if (size_bytes < 0)
+        throw std::runtime_error("Error reading the device");
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(sleep_));
+
+    if (!keep_open) 
+        utility_serial_close(fd);
+
+    return string(read_buf);
+}
+
+void ytcg::utility_serial_close(int fd) {
+    if (close(fd) < 0)
+        throw std::runtime_error("Error closing the device");
+}
+
+int ytcg::utility_serial_open(const string& portname) {
+    int fd = open(portname.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
+                                    // portname is, e.g., /dev/ttyS0 (J17 on TX2)
+    if (fd < 0)
+        throw std::runtime_error("Error opening the device");
+    
+    return fd;
 }
 
 vector<string> ytcg::utility_split(const string& source, char token) {
@@ -145,3 +211,4 @@ const string ytcg::utility_exec(const char* cmd) {
 }
 
 
+    

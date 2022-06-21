@@ -27,6 +27,7 @@
 #define CAMNAVRGB_TOPIC        "image_raw/compressed"
 #define COMM_80211             1000
 #define COMM_LORA              2000
+#define PAUSE_RN2903           10
 
 
 namespace ytcg {
@@ -43,17 +44,19 @@ namespace ytcg {
 
     private:
         void timer_callback(void);
-	void queue_emptier_callback(void);
-	void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
+	    void queue_emptier_callback(void);
+        void shutdown_callback(void);
+	    void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
         std_msgs::msg::Int8MultiArray msg_;
         rclcpp::TimerBase::SharedPtr timer_;
-	rclcpp::TimerBase::SharedPtr timer__;
+	    rclcpp::TimerBase::SharedPtr timer__;
         rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
-	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
+    	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
         size_t count_;
         size_t count__;
-	size_t first_get;
-	std::string addr;
+	    size_t first_get;
+        int fd_;
+    	std::string addr;
         CommProtocol commprotocol__;
     };
 }
