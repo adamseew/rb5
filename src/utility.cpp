@@ -91,7 +91,7 @@ void ytcg::utility_serial_write(int fd_, const string& data, const string& portn
     bool keep_open = true;
     if (fd < 0) {
         fd = utility_serial_open(portname);
-        bool keep_open = false;
+        keep_open = false;
     }
 
     utility_set_interface_attribs(fd, bitrate, 0);
@@ -124,9 +124,10 @@ string ytcg::utility_serial_read(int fd_, const string& data, const string& port
     int size_bytes, fd = fd_;
     bool keep_open = true;
     char read_buf[READ_BUFFER_SIZE];
+    read_buf[0] = '\0';
     if (fd < 0) {
         fd = utility_serial_open(portname);
-        bool keep_open = false;
+        keep_open = false;
     }
 
     utility_serial_write(fd, data, portname, bitrate);
@@ -211,4 +212,3 @@ const string ytcg::utility_exec(const char* cmd) {
 }
 
 
-    

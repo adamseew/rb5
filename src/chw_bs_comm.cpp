@@ -16,6 +16,7 @@
 #include <cstdio>
 #include <limits>
 #include <memory>
+#include <thread>
 #include <cmath>
 
 #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
@@ -54,7 +55,7 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
     } else {
         commprotocol_str = "LoRa";
         // navigation camera image transfer via LoRa is not implemented yet
-        RCLCPP_ERROR(this->get_logger(), "Navigation images are not transfered on the channel companion HW --- base-station with LoRa (use 802.11 instead if needed)");
+        RCLCPP_WARN(this->get_logger(), "Navigation images are not transfered on the channel companion HW --- base-station with LoRa (use 802.11 instead if needed)");
     }
     commprotocol__ = commprotocol_;
     RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to %s", commprotocol_str.c_str());
@@ -138,15 +139,15 @@ void BsCommPublisher::queue_emptier_callback(void) {
 
 void BsCommPublisher::timer_callback(void) {
 
-    int x_, y_;
-    string output, cmd;
+    int x_, y_, rx_pos;
+    string cmd, output;
     msg_.data.clear();
 
     if (commprotocol__ == CommProtocol::_80211) {
              // communication channel between chw---bs uses 802.11
         if (count__ == 0) { // testing if all is okay the first time
             output = utility_exec(("curl -Is " + addr + "/tele2_data | head -n 1").c_str());
-	        // is only able to check the connection if the protocol is http
+             // is only able to check the connection if the protocol is http
             if (string(PROTOCOL) == "http" && output.find("200 OK") == std::string::npos) {
                 RCLCPP_FATAL(this->get_logger(), "No connection to the base-station %s", addr.c_str());
                 return;
@@ -161,42 +162,44 @@ void BsCommPublisher::timer_callback(void) {
 	        return;
         }
     } else { // communication channel between chw---bs uses LoRa
-        if (count__ == 0) { // LoRa needs to be initialized... Also testing if all is
-                            // okay the first time with LoRa (similarly as with 802.11)
+        if (count__ == 0) { 
+             // LoRa needs to be initialized... Also testing if all is
+             // okay the first time with LoRa (similarly as with 802.11)
             fd_ = utility_serial_open(DEF_PORT_READ);
-            utility_serial_write(fd_, "sys get ver", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-            utility_serial_write(fd_, "mac pause", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-            output = utility_serial_read(fd_, "radio set pwr 10", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "sys get ver\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "mac pause\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            output_ = utility_serial_read(fd_, "radio set pwr 10\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
             RCLCPP_INFO(this->get_logger(), "%s", output.c_str());
-            output = utility_serial_read(fd_, "radio tx 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
             
-            if (output == "radio_err") {
+            if (output_.find("ok") != std::string::npos) {
+                RCLCPP_INFO(this->get_logger(), "Established connection with the base-station via LoRa");
+            } else {
                 RCLCPP_FATAL(this->get_logger(), "No connection to the base-station utilizing LoRa");
                 return;
-            } else if (output == "ok") {
-               RCLCPP_INFO(this->get_logger(), "Established connection with the base-station via LoRa (boundle output: %s)", output.c_str());
-            } else {
-                RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
-                return;
             }
-        }
+            output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            std::this_thread::sleep_for(std::chrono::milliseconds(PAUSE_RX));
+            RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
+	}
 
-        output = utility_serial_read(fd_, "radio rx 0", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+        output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
 
-        if (output.find("radio_rx") != std::string::npos) {
-            utility_serial_write(fd_, "sys set pindig GPIO10 1", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+        if ((rx_pos = output_.find("radio_rx")) != std::string::npos) {
+            utility_serial_write(fd_, "sys set pindig GPIO10 1\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
         } else {
             RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
             return;
         }
 
-        utility_serial_write(fd_, "sys set pindig GPIO10 0", DEF_PORT_READ, DEF_BITRATE_57600);
-        output = std::to_string((int)std::stoul(output.substr(9,2),  nullptr, 16) - 100) + " " + 
-                 std::to_string((int)std::stoul(output.substr(11,2), nullptr, 16) - 100);
+        utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+        output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " + 
+                 "y:" + std::to_string((int)std::stoul(output_.substr(rx_pos+12,2), nullptr, 16) - 100);
+	output_ = "";
     }
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
-        RCLCPP_INFO(this->get_logger(), "Raw data from base-station %s are %s", addr.c_str(), output.c_str());
+        RCLCPP_INFO(this->get_logger(), "Raw data from base-station %s are %s", addr.c_str(), (from_bs.at(0) + " " + from_bs.at(1)).c_str());
 
     try {
         x_ = std::__cxx11::stoi(utility_split(from_bs.at(0), ':').at(1));
@@ -227,8 +230,9 @@ void BsCommPublisher::shutdown_callback(void) {
 int main(int argc, char ** argv) {
     
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<BsCommPublisher>());
+    rclcpp::spin(std::make_shared<BsCommPublisher>(CommProtocol::LoRa));
     rclcpp::shutdown();
     return 0;
 }
+
 

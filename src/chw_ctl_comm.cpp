@@ -45,7 +45,7 @@ void CtlComm::topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg)
                                               // bitrate for the setial commmunication
     }
 
-    RCLCPP_INFO(this->get_logger(), "Transmitted %susing %s connection", data_.str().c_str(), commtype__ == CommType::Ethernet ? "ethernet" : "serial");
+    RCLCPP_INFO(this->get_logger(), "Transmitted %s using %s connection", data_.str().c_str(), commtype__ == CommType::Ethernet ? "ethernet" : "serial");
 }
         
 int main(int argc, char ** argv) {
