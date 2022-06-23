@@ -140,7 +140,7 @@ void BsCommPublisher::queue_emptier_callback(void) {
 void BsCommPublisher::timer_callback(void) {
 
     int x_, y_, rx_pos;
-    string cmd, output;
+    string cmd, output, output_;
     msg_.data.clear();
 
     if (commprotocol__ == CommProtocol::_80211) {
@@ -166,11 +166,15 @@ void BsCommPublisher::timer_callback(void) {
              // LoRa needs to be initialized... Also testing if all is
              // okay the first time with LoRa (similarly as with 802.11)
             fd_ = utility_serial_open(DEF_PORT_READ);
-            utility_serial_write(fd_, "sys get ver\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "sys factoryRESET\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+            std::this_thread::sleep_for(std::chrono::milliseconds(PAUSE_SYSRESET_RN2903));
+            output_ = utility_serial_read(fd_, "sys get ver\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+            RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
             utility_serial_write(fd_, "mac pause\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-            output_ = utility_serial_read(fd_, "radio set pwr 10\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-            RCLCPP_INFO(this->get_logger(), "%s", output.c_str());
-            output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "radio set pwr 10\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            utility_serial_write(fd_, "radio set mod fsk\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+            output_ = utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+            RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
             
             if (output_.find("ok") != std::string::npos) {
                 RCLCPP_INFO(this->get_logger(), "Established connection with the base-station via LoRa");
@@ -178,12 +182,11 @@ void BsCommPublisher::timer_callback(void) {
                 RCLCPP_FATAL(this->get_logger(), "No connection to the base-station utilizing LoRa");
                 return;
             }
-            output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
-            std::this_thread::sleep_for(std::chrono::milliseconds(PAUSE_RX));
-            RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
-	}
+	    }
 
-        output_ += utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+        output_ = utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+        RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
+
 
         if ((rx_pos = output_.find("radio_rx")) != std::string::npos) {
             utility_serial_write(fd_, "sys set pindig GPIO10 1\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
@@ -192,10 +195,10 @@ void BsCommPublisher::timer_callback(void) {
             return;
         }
 
-        utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
+        utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
         output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " + 
                  "y:" + std::to_string((int)std::stoul(output_.substr(rx_pos+12,2), nullptr, 16) - 100);
-	output_ = "";
+	    output_ = "";
     }
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
@@ -223,6 +226,7 @@ void BsCommPublisher::timer_callback(void) {
 }
 
 void BsCommPublisher::shutdown_callback(void) {
+    utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
     if (fd_ >= 0)
         utility_serial_close(fd_);
 }

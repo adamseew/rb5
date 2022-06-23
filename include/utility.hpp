@@ -21,10 +21,12 @@ namespace ytcg {
 
     void utility_set_interface_attribs(int fd, int speed, int parity);
     void utility_set_blocking(int fd, int should_block);
+    void utility_serial_write(int fd_, const std::string& data, const std::string& portname, speed_t bitrate, size_t sleep, bool blocking);
     void utility_serial_write(int fd_, const std::string& data, const std::string& portname, speed_t bitrate, size_t sleep);
     void utility_serial_write(int fd_, const std::string& data, const std::string& portname, speed_t bitrate);
     void utility_serial_write(const std::string& data, const std::string& portname, speed_t bitrate);
     void utility_serial_write(const std::string& data);
+    std::string utility_serial_read(int fd_, const std::string& data, const std::string& portname, speed_t bitrate, size_t sleep_, bool blocking);
     std::string utility_serial_read(int fd_, const std::string& data, const std::string& portname, speed_t bitrate, size_t sleep_);
     std::string utility_serial_read(int fd_, const std::string& data, const std::string& portname, speed_t bitrate);
     std::string utility_serial_read(const std::string& data, const std::string& portname, speed_t bitrate);

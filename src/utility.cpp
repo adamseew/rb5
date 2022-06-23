@@ -86,6 +86,10 @@ void ytcg::utility_serial_write(int fd_, const string& data, const string& portn
 }
 
 void ytcg::utility_serial_write(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_) {
+    utility_serial_write(fd_, data, portname, bitrate, sleep_, 0); // by default write is no blocking
+}
+
+void ytcg::utility_serial_write(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_, bool blocking) {
     
     int fd = fd_;
     bool keep_open = true;
@@ -95,8 +99,8 @@ void ytcg::utility_serial_write(int fd_, const string& data, const string& portn
     }
 
     utility_set_interface_attribs(fd, bitrate, 0);
-                                    // set speed to given bps, 8n1 (no par.)
-    utility_set_blocking(fd, 0);    // set no blocking
+                                        // set speed to given bps, 8n1 (no par.)
+    utility_set_blocking(fd, blocking); // set no blocking
     write(fd, data.c_str(), data.size());
 
     std::this_thread::sleep_for(std::chrono::milliseconds(sleep_));
@@ -120,6 +124,10 @@ string ytcg::utility_serial_read(int fd_, const string& data, const string& port
 }
 
 string ytcg::utility_serial_read(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_) {
+    return utility_serial_read(fd_, data, portname, bitrate, sleep_, 1); // by default read is blocking
+}
+
+string ytcg::utility_serial_read(int fd_, const string& data, const string& portname, speed_t bitrate, size_t sleep_, bool blocking) {
     
     int size_bytes, fd = fd_;
     bool keep_open = true;
@@ -130,7 +138,7 @@ string ytcg::utility_serial_read(int fd_, const string& data, const string& port
         keep_open = false;
     }
 
-    utility_serial_write(fd, data, portname, bitrate);
+    utility_serial_write(fd, data, portname, bitrate, 0, blocking);
     size_bytes = read(fd, &read_buf, sizeof(read_buf));
 
     if (size_bytes < 0)

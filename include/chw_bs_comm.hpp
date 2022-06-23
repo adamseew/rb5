@@ -28,7 +28,7 @@
 #define COMM_80211             1000
 #define COMM_LORA              2000
 #define PAUSE_RN2903           10
-#define PAUSE_RX               3000
+#define PAUSE_SYSRESET_RN2903  8000
 
 
 namespace ytcg {
@@ -58,8 +58,7 @@ namespace ytcg {
 	    size_t first_get;
         int fd_;
     	std::string addr;
-	std::string output_;
-        CommProtocol commprotocol__;
+	    CommProtocol commprotocol__;
         std::thread rx_thread;
     };
 }
