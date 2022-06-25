@@ -29,6 +29,7 @@
 #define COMM_LORA              2000
 #define PAUSE_RN2903           10
 #define PAUSE_SYSRESET_RN2903  8000
+#define PAUSE_FIRST_RX_RN2903  1000
 
 
 namespace ytcg {

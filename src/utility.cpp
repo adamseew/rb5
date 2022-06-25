@@ -100,7 +100,7 @@ void ytcg::utility_serial_write(int fd_, const string& data, const string& portn
 
     utility_set_interface_attribs(fd, bitrate, 0);
                                         // set speed to given bps, 8n1 (no par.)
-    utility_set_blocking(fd, blocking); // set no blocking
+    utility_set_blocking(fd, blocking); 
     write(fd, data.c_str(), data.size());
 
     std::this_thread::sleep_for(std::chrono::milliseconds(sleep_));

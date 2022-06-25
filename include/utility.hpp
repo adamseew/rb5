@@ -9,7 +9,7 @@
 
 #define DEF_BITRATE_9600  0000015
 #define DEF_BITRATE_57600 0010001
-#define DEF_PORT_WRITE    "/dev/ttyTHS2"
+#define DEF_PORT_WRITE    "/dev/ttyTHS0"
 #define DEF_PORT_READ     "/dev/ttyUSB0"
 #define READ_BUFFER_SIZE  256
 

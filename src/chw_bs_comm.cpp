@@ -162,7 +162,7 @@ void BsCommPublisher::timer_callback(void) {
 	        return;
         }
     } else { // communication channel between chw---bs uses LoRa
-        if (count__ == 0) { 
+        if (count__ == 0) {
              // LoRa needs to be initialized... Also testing if all is
              // okay the first time with LoRa (similarly as with 802.11)
             fd_ = utility_serial_open(DEF_PORT_READ);
@@ -175,14 +175,15 @@ void BsCommPublisher::timer_callback(void) {
             utility_serial_write(fd_, "radio set mod fsk\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
             output_ = utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
             RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
-            
+            std::this_thread::sleep_for(std::chrono::milliseconds(PAUSE_FIRST_RX_RN2903));
+
             if (output_.find("ok") != std::string::npos) {
                 RCLCPP_INFO(this->get_logger(), "Established connection with the base-station via LoRa");
             } else {
                 RCLCPP_FATAL(this->get_logger(), "No connection to the base-station utilizing LoRa");
                 return;
             }
-	    }
+        }
 
         output_ = utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
         RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
@@ -196,9 +197,8 @@ void BsCommPublisher::timer_callback(void) {
         }
 
         utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
-        output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " + 
+        output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " +
                  "y:" + std::to_string((int)std::stoul(output_.substr(rx_pos+12,2), nullptr, 16) - 100);
-	    output_ = "";
     }
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
@@ -212,7 +212,7 @@ void BsCommPublisher::timer_callback(void) {
     } if (std::abs(x_) > 100 || std::abs(y_) > 100) {
         
         // something is wrong with the value; probably an error on the
-	    // base-station side
+        // base-station side
         RCLCPP_ERROR(this->get_logger(), "Data from base-station are corrupted");
         return;
     }

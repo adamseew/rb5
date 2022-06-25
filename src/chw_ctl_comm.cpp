@@ -41,8 +41,7 @@ void CtlComm::topic_callback(const std_msgs::msg::Int8MultiArray::SharedPtr msg)
         ofs.close();
     } else {
         RCLCPP_INFO(this->get_logger(), "Establishing serial connection with the controller");
-        utility_serial_write(data_.str(), "/dev/ttyTHS2", B9600);
-                                              // bitrate for the setial commmunication
+        utility_serial_write(data_.str());    // use def. config. (see utility)
     }
 
     RCLCPP_INFO(this->get_logger(), "Transmitted %s using %s connection", data_.str().c_str(), commtype__ == CommType::Ethernet ? "ethernet" : "serial");
