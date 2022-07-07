@@ -183,7 +183,7 @@ void BsCommPublisher::timer_callback(void) {
                 RCLCPP_FATAL(this->get_logger(), "No connection to the base-station utilizing LoRa");
                 return;
             }
-        }
+        } try {
 
         output_ = utility_serial_read(fd_, "radio rx 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
         RCLCPP_INFO(this->get_logger(), "%s", output_.c_str());
@@ -199,7 +199,10 @@ void BsCommPublisher::timer_callback(void) {
         utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
         output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " +
                  "y:" + std::to_string((int)std::stoul(output_.substr(rx_pos+12,2), nullptr, 16) - 100);
-    }
+    } catch (...) { 
+        RCLCPP_FATAL(this->get_logger(), "Cannot communicate with the device");
+        return;
+    }}
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
         RCLCPP_INFO(this->get_logger(), "Raw data from base-station %s are %s", addr.c_str(), (from_bs.at(0) + " " + from_bs.at(1)).c_str());
