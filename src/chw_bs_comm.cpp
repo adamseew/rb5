@@ -57,6 +57,12 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
         // navigation camera image transfer via LoRa is not implemented yet
         RCLCPP_WARN(this->get_logger(), "Navigation images are not transfered on the channel companion HW --- base-station with LoRa (use 802.11 instead if needed)");
     }
+#ifdef SAVE_STATS
+    timer___ = this->create_wall_timer(
+        std::chrono::seconds(10), std::bind(&BsCommPublisher::stats_callback, this)
+    );
+    per_xseconds = 0;
+#endif
     commprotocol__ = commprotocol_;
     RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to %s", commprotocol_str.c_str());
 
@@ -129,7 +135,7 @@ void BsCommPublisher::queue_emptier_callback(void) {
                 RCLCPP_INFO(this->get_logger(), "Queue is being freed");
             } else
                 RCLCPP_INFO(this->get_logger(), "Something went wrong with the conncection");
-        
+
         }
     } else  
         RCLCPP_INFO(this->get_logger(), "Nothing to send this time");
@@ -207,6 +213,8 @@ void BsCommPublisher::timer_callback(void) {
     if (count__ == 0) 
         RCLCPP_INFO(this->get_logger(), "Raw data from base-station %s are %s", addr.c_str(), (from_bs.at(0) + " " + from_bs.at(1)).c_str());
 
+    per_xseconds++;
+
     try {
         x_ = std::__cxx11::stoi(utility_split(from_bs.at(0), ':').at(1));
         y_ = std::__cxx11::stoi(utility_split(from_bs.at(1), ':').at(1));
@@ -227,6 +235,15 @@ void BsCommPublisher::timer_callback(void) {
 
     ++count__;
 }
+
+#ifdef SAVE_STATS
+void BsCommPublisher::stats_callback(void) {
+
+    RCLCPP_INFO(this->get_logger(), "Success communication rate is: %f", per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0)*10));
+    
+    per_xseconds = 0;
+}
+#endif
 
 void BsCommPublisher::shutdown_callback(void) {
     utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);

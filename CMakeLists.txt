@@ -69,7 +69,7 @@ ament_target_dependencies(chw_bs_comm rclcpp std_msgs sensor_msgs cv_bridge)
 ament_target_dependencies(chw_plan_static rclcpp std_msgs)
 ament_target_dependencies(pos_estimator rclcpp std_msgs nav_msgs geometry_msgs)
 ament_target_dependencies(camera_wrapper rclcpp)
-ament_target_dependencies(obstacles rclcpp std_msgs)
+ament_target_dependencies(obstacles rclcpp std_msgs sensor_msgs)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})

@@ -30,6 +30,9 @@
 #define PAUSE_RN2903           10
 #define PAUSE_SYSRESET_RN2903  8000
 #define PAUSE_FIRST_RX_RN2903  1000
+#define SAVE_STATS             1
+                               // specifies whether to save statistics on the arrived and
+			       // lost messages from the base station
 
 
 namespace ytcg {
@@ -46,20 +49,29 @@ namespace ytcg {
 
     private:
         void timer_callback(void);
-	    void queue_emptier_callback(void);
+        void queue_emptier_callback(void);
         void shutdown_callback(void);
-	    void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
+        void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
+#ifdef SAVE_STATS
+        void stats_callback(void);
+#endif
         std_msgs::msg::Int8MultiArray msg_;
         rclcpp::TimerBase::SharedPtr timer_;
-	    rclcpp::TimerBase::SharedPtr timer__;
+        rclcpp::TimerBase::SharedPtr timer__;
+#ifdef SAVE_STATS
+        rclcpp::TimerBase::SharedPtr timer___;
+#endif
         rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
     	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
         size_t count_;
         size_t count__;
-	    size_t first_get;
+#ifdef SAVE_STATS
+	std::atomic<size_t> per_xseconds;
+#endif
+        size_t first_get;
         int fd_;
     	std::string addr;
-	    CommProtocol commprotocol__;
+        CommProtocol commprotocol__;
         std::thread rx_thread;
     };
 }

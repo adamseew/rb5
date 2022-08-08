@@ -17,9 +17,15 @@ using std::placeholders::_1;
 
 Obstacles::Obstacles() : 
     Node(NODE_OBSTACLES) {
-
+    
+    subscription_ == this->create_subscription<sensor_msgs::msg::PointCloud2>("/rtabmap/cloud_obstacles", 1, std::bind(&Obstacles::topic_callback, this, _1));
 }
 
+
+void Obstacles::topic_callback(const sensor_msgs::msg::PointCloud2::SharedPtr msg) {
+    count_++;
+    RCLCPP_INFO(this->get_logger(), "%d time called", count_);
+}
 
 Obstacles::~Obstacles(void) { }
 
