@@ -22,6 +22,8 @@ find_package(ament_cmake REQUIRED)
 # further dependencies filled manually
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(message_filters REQUIRED)
 find_package(Boost 1.67 REQUIRED COMPONENTS
   system
   filesystem
@@ -69,7 +71,7 @@ ament_target_dependencies(chw_bs_comm rclcpp std_msgs sensor_msgs cv_bridge)
 ament_target_dependencies(chw_plan_static rclcpp std_msgs)
 ament_target_dependencies(pos_estimator rclcpp std_msgs nav_msgs geometry_msgs)
 ament_target_dependencies(camera_wrapper rclcpp)
-ament_target_dependencies(obstacles rclcpp std_msgs sensor_msgs)
+ament_target_dependencies(obstacles rclcpp std_msgs sensor_msgs geometry_msgs message_filters)
 
 install(TARGETS chw_ctl_comm
   DESTINATION lib/${PROJECT_NAME})
