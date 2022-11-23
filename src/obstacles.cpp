@@ -18,7 +18,7 @@ using std::placeholders::_2;
 
 
 Obstacles::Obstacles() : 
-    Node(NODE_OBSTACLES) {
+    Node(NODE_OBSTACLES), count__(0), x_(0), y_(0) {
     
     subscription_.subscribe(this, LONGEST_DISTANCE_POINT1_TOPIC);
     subscription__.subscribe(this, LONGEST_DISTANCE_POINT2_TOPIC);
@@ -37,44 +37,75 @@ Obstacles::Obstacles() :
         LONGEST_DISTANCE_POINT2_TOPIC << " using approximate time");
 
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
+    timer_ = this->create_wall_timer(
+        std::chrono::milliseconds(CTL_SEND_RATE), std::bind(&Obstacles::timer_callback, this)
+    );
 
     RCLCPP_INFO_STREAM(this->get_logger(), "created publisher for topic " << COMM_FROM_BS_TOPIC);
     RCLCPP_INFO_STREAM(this->get_logger(), "node " << NODE_OBSTACLES << " is now initialized");
 }
 
-
 void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr& msg, const geometry_msgs::msg::Point::ConstPtr& _msg) {
     
-    static size_t count_ = 0;
     Point3D       ld_point1, ld_point2,
-                  waypoint,  waypoint_;
-    int           x_, y_;
+                  midpoint;
+    double        distance;
+    int           x, y;
 
     msg_.data.clear();
 
-    if (count_++ == 0)
+    if (count__++ == 0)
         RCLCPP_INFO(this->get_logger(), "first points callback");   
 
     ld_point1 = msg;
     ld_point2 = _msg;
-    waypoint = (ld_point1+ld_point2)/2;
-    _mutex.lock();
-    waypoint_ = waypoint-_point;
-    _mutex.unlock();
-    x_ = 100*(waypoint_.x);
-    y_ = 100*(waypoint_.y);
+    distance = std::abs(ld_point1.x-ld_point2.x);
+    midpoint = (ld_point1+ld_point2)/2;
+    midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
+    RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
+    // _mutex.lock();
+    // midpoint = midpoint-_point;
+    // _mutex.unlock();
+    
+    if (distance < ROCKER_BOGIE_MIN_WIDTH) {
+        RCLCPP_WARN(this->get_logger(), "the gap is too narrow");
+	x = 0;
+	y = 0;
+    } else {
+        x = (-1/MAX_FOV_REALSENSE_X)*(midpoint.x);
+	y = 100;
+    }
+    RCLCPP_INFO(this->get_logger(), "highest distance is: %f", distance);
+
+    __mutex.lock();
+    x_ = x;
+    y_ = y;
+    RCLCPP_INFO(this->get_logger(), "direction is x: %d, y: %d", x_, y_); 
+    __mutex.unlock();
+} 
+
+void Obstacles::timer_callback(void) {
+
+    if (count__ == 0)
+        return;
+
+    __mutex.lock();	
+    if (x_ <= 0 || y_ <= 0) {
+        RCLCPP_WARN(this->get_logger(), "control action is too old, check if the points are still transmitted");
+        __mutex.unlock();
+        return;
+    }
 
     msg_.data.push_back(x_);
     msg_.data.push_back(y_);
-    
+
     RCLCPP_INFO(this->get_logger(), "Publishing command x: %d, y: %d", x_, y_);
+    x_ -= 10;
+    y_ -= 10;
+    __mutex.unlock();
     publisher_->publish(msg_);
-
-    RCLCPP_INFO(this->get_logger(), "next waypoint is (%f, %f, %f)", waypoint.x, waypoint.y, waypoint.z); 
-
-} 
-	
+}
 
 void Obstacles::pose_topic_callback(const geometry_msgs::msg::Pose::SharedPtr msg) {
 

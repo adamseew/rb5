@@ -17,10 +17,15 @@
 #define YTCG_OBSTACLES_HPP
 
 #define NODE_OBSTACLES                "obstacles"
-
+#define CTL_SEND_RATE                 200
 #define ORBSLAM_FRAMES_TOPIC          "/orb_slam3_ros_wrapper/pose"
 #define LONGEST_DISTANCE_POINT1_TOPIC "/pointcloud_depth_wrapper/ld_point1"
 #define LONGEST_DISTANCE_POINT2_TOPIC "/pointcloud_depth_wrapper/ld_point2"
+
+#define ROCKER_BOGIE_MIN_WIDTH        .8
+#define POINT_MAX_DISTANCE            1.2
+#define MAX_FOV_REALSENSE_X           .55
+
 
 namespace ytcg {
 
@@ -52,10 +57,16 @@ namespace ytcg {
             z += _point.z;
             return *this;
         }
-        Point3D& operator/(const int val) {
+        Point3D& operator/(const double val) {
             x /= val;
             y /= val;
             z /= val;
+            return *this;
+        }
+        Point3D& operator*(const double val) {
+            x *= val;
+            y *= val;
+            z *= val;
             return *this;
         }
     };
@@ -66,15 +77,17 @@ namespace ytcg {
 	~Obstacles(void);
 
     private:
-
+        void timer_callback(void);
         void pose_topic_callback(const geometry_msgs::msg::Pose::SharedPtr);
         void points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&, const geometry_msgs::msg::Point::ConstPtr&);
 
-
+        size_t                                                      count__;
+        int                                                         x_, y_;
 	typedef message_filters::sync_policies::ApproximateTime<
                                       geometry_msgs::msg::Point,
                                       geometry_msgs::msg::Point>    policy;
-	std::mutex                                                  _mutex;
+	std::mutex                                                  _mutex,
+                                                                    __mutex;
 
         std::shared_ptr<message_filters::Synchronizer<policy>>      sync_;
         rclcpp::Subscription<geometry_msgs::msg::Pose>::SharedPtr   subscription___;
@@ -83,6 +96,7 @@ namespace ytcg {
         Point3D                                                     _point;
 
         rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
+        rclcpp::TimerBase::SharedPtr                                timer_;
 	std_msgs::msg::Int8MultiArray                               msg_;
     };
 }
