@@ -17,7 +17,7 @@
 #define YTCG_OBSTACLES_HPP
 
 #define NODE_OBSTACLES                "obstacles"
-#define CTL_SEND_RATE                 200
+#define CTL_SEND_RATE                 500
 #define ORBSLAM_FRAMES_TOPIC          "/orb_slam3_ros_wrapper/pose"
 #define LONGEST_DISTANCE_POINT1_TOPIC "/pointcloud_depth_wrapper/ld_point1"
 #define LONGEST_DISTANCE_POINT2_TOPIC "/pointcloud_depth_wrapper/ld_point2"
@@ -25,6 +25,8 @@
 #define ROCKER_BOGIE_MIN_WIDTH        .8
 #define POINT_MAX_DISTANCE            1.2
 #define MAX_FOV_REALSENSE_X           .55
+#define INIT_VELOCITY                 65
+#define MIDPOINT_MIN_DISTANCE_Z       .6
 
 
 namespace ytcg {
@@ -81,7 +83,7 @@ namespace ytcg {
         void pose_topic_callback(const geometry_msgs::msg::Pose::SharedPtr);
         void points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&, const geometry_msgs::msg::Point::ConstPtr&);
 
-        size_t                                                      count__;
+        size_t                                                      count__, ctl_count;
         int                                                         x_, y_;
 	typedef message_filters::sync_policies::ApproximateTime<
                                       geometry_msgs::msg::Point,

@@ -18,7 +18,7 @@ using std::placeholders::_2;
 
 
 Obstacles::Obstacles() : 
-    Node(NODE_OBSTACLES), count__(0), x_(0), y_(0) {
+    Node(NODE_OBSTACLES), count__(0), x_(0), y_(0), ctl_count(0) {
     
     subscription_.subscribe(this, LONGEST_DISTANCE_POINT1_TOPIC);
     subscription__.subscribe(this, LONGEST_DISTANCE_POINT2_TOPIC);
@@ -49,7 +49,7 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     
     Point3D       ld_point1, ld_point2,
                   midpoint;
-    double        distance;
+    double        distance, _distance, z_distance;
     int           x, y;
 
     msg_.data.clear();
@@ -59,8 +59,10 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
 
     ld_point1 = msg;
     ld_point2 = _msg;
-    distance = std::abs(ld_point1.x-ld_point2.x);
+    _distance = ld_point1.x-ld_point2.x;
+    distance = std::abs(_distance);
     midpoint = (ld_point1+ld_point2)/2;
+    z_distance = midpoint.z;
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
@@ -68,19 +70,23 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     // midpoint = midpoint-_point;
     // _mutex.unlock();
     
-    if (distance < ROCKER_BOGIE_MIN_WIDTH) {
+    if (distance >= ROCKER_BOGIE_MIN_WIDTH) {
+        x = (-100/MAX_FOV_REALSENSE_X)*(midpoint.x);
+        y = INIT_VELOCITY;
+    } else if (z_distance < MIDPOINT_MIN_DISTANCE_Z) {
         RCLCPP_WARN(this->get_logger(), "the gap is too narrow");
-	x = 0;
-	y = 0;
+        x = 0;
+        y = 0;
     } else {
-        x = (-1/MAX_FOV_REALSENSE_X)*(midpoint.x);
-	y = 100;
-    }
+        x = (-100/MAX_FOV_REALSENSE_X)*(midpoint.x);
+        y = 0;
+    }		        
     RCLCPP_INFO(this->get_logger(), "highest distance is: %f", distance);
 
     __mutex.lock();
     x_ = x;
     y_ = y;
+    ctl_count = 10;
     RCLCPP_INFO(this->get_logger(), "direction is x: %d, y: %d", x_, y_); 
     __mutex.unlock();
 } 
@@ -91,7 +97,7 @@ void Obstacles::timer_callback(void) {
         return;
 
     __mutex.lock();	
-    if (x_ <= 0 || y_ <= 0) {
+    if (--ctl_count <= 0) {
         RCLCPP_WARN(this->get_logger(), "control action is too old, check if the points are still transmitted");
         __mutex.unlock();
         return;
@@ -101,8 +107,6 @@ void Obstacles::timer_callback(void) {
     msg_.data.push_back(y_);
 
     RCLCPP_INFO(this->get_logger(), "Publishing command x: %d, y: %d", x_, y_);
-    x_ -= 10;
-    y_ -= 10;
     __mutex.unlock();
     publisher_->publish(msg_);
 }
