@@ -26,7 +26,7 @@
 #define POINT_MAX_DISTANCE            1.2
 #define MAX_FOV_REALSENSE_X           .55
 #define INIT_VELOCITY                 65
-#define MIDPOINT_MIN_DISTANCE_Z       .6
+#define MIDPOINT_MIN_DISTANCE_Z       .4
 
 
 namespace ytcg {

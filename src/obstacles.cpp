@@ -62,7 +62,7 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     _distance = ld_point1.x-ld_point2.x;
     distance = std::abs(_distance);
     midpoint = (ld_point1+ld_point2)/2;
-    z_distance = midpoint.z;
+    z_distance = std::min(ld_point1.z, ld_point2.z);
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
@@ -70,17 +70,21 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     // midpoint = midpoint-_point;
     // _mutex.unlock();
     
-    if (distance >= ROCKER_BOGIE_MIN_WIDTH) {
-        x = (-100/MAX_FOV_REALSENSE_X)*(midpoint.x);
-        y = INIT_VELOCITY;
-    } else if (z_distance < MIDPOINT_MIN_DISTANCE_Z) {
+    if (_distance < 0) {
+       x = INIT_VELOCITY;
+       y = 0;
+    } else if (_distance > 0) {
+       x = -1*INIT_VELOCITY;
+       y = 0;
+    } else {
+       x = 0;
+       y = INIT_VELOCITY;
+    }
+    if (z_distance < MIDPOINT_MIN_DISTANCE_Z) {
         RCLCPP_WARN(this->get_logger(), "the gap is too narrow");
         x = 0;
         y = 0;
-    } else {
-        x = (-100/MAX_FOV_REALSENSE_X)*(midpoint.x);
-        y = 0;
-    }		        
+    }
     RCLCPP_INFO(this->get_logger(), "highest distance is: %f", distance);
 
     __mutex.lock();
