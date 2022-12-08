@@ -59,16 +59,20 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
 
     ld_point1 = msg;
     ld_point2 = _msg;
-    _distance = ld_point1.x-ld_point2.x;
-    distance = std::abs(_distance);
+    distance = std::abs(ld_point1.x-ld_point2.x);
     midpoint = (ld_point1+ld_point2)/2;
+    _distance = midpoint.x;
     z_distance = std::min(ld_point1.z, ld_point2.z);
+    RCLCPP_INFO(this->get_logger(), "debug 3 (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
     // _mutex.lock();
     // midpoint = midpoint-_point;
     // _mutex.unlock();
+    //
+
+    RCLCPP_INFO(this->get_logger(), "debug 4 %f", _distance);
     
     if (_distance < 0) {
        x = INIT_VELOCITY;

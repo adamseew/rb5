@@ -25,7 +25,7 @@
 #define ROCKER_BOGIE_MIN_WIDTH        .8
 #define POINT_MAX_DISTANCE            1.2
 #define MAX_FOV_REALSENSE_X           .55
-#define INIT_VELOCITY                 65
+#define INIT_VELOCITY                 70
 #define MIDPOINT_MIN_DISTANCE_Z       .4
 
 
