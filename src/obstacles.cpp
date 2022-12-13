@@ -15,6 +15,7 @@ using namespace std::chrono;
 
 using std::placeholders::_1;
 using std::placeholders::_2;
+using std::placeholders::_3;
 
 
 Obstacles::Obstacles() : 
@@ -22,6 +23,7 @@ Obstacles::Obstacles() :
     
     subscription_.subscribe(this, LONGEST_DISTANCE_POINT1_TOPIC);
     subscription__.subscribe(this, LONGEST_DISTANCE_POINT2_TOPIC);
+    subscription____.subscribe(this, MIN_DISTANCE_Z_TOPIC);
 
     subscription___ = this->create_subscription<geometry_msgs::msg::Pose>(
         ORBSLAM_FRAMES_TOPIC, 1, std::bind(&Obstacles::pose_topic_callback, this, _1)
@@ -29,12 +31,13 @@ Obstacles::Obstacles() :
 
     RCLCPP_INFO_STREAM(this->get_logger(), "subscribed to " << ORBSLAM_FRAMES_TOPIC);
 
-    sync_ = std::make_shared<message_filters::Synchronizer<policy>>(policy(10), subscription_, subscription__);
-    sync_->registerCallback(std::bind(&Obstacles::points_topic_callback, this, _1, _2));
+    sync_ = std::make_shared<message_filters::Synchronizer<policy>>(policy(10), subscription_, subscription__, subscription____);
+    sync_->registerCallback(std::bind(&Obstacles::points_topic_callback, this, _1, _2, _3));
 
-    RCLCPP_INFO_STREAM(this->get_logger(), "subscribed to both " << 
-        LONGEST_DISTANCE_POINT1_TOPIC  << ", " << 
-        LONGEST_DISTANCE_POINT2_TOPIC << " using approximate time");
+    RCLCPP_INFO_STREAM(this->get_logger(), "subscribed to " << 
+        LONGEST_DISTANCE_POINT1_TOPIC << ", " << 
+        LONGEST_DISTANCE_POINT2_TOPIC << ", " <<
+        MIN_DISTANCE_Z_TOPIC << " using approximate time");
 
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
     timer_ = this->create_wall_timer(
@@ -45,11 +48,11 @@ Obstacles::Obstacles() :
     RCLCPP_INFO_STREAM(this->get_logger(), "node " << NODE_OBSTACLES << " is now initialized");
 }
 
-void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr& msg, const geometry_msgs::msg::Point::ConstPtr& _msg) {
+void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr& msg, const geometry_msgs::msg::Point::ConstPtr& _msg, const std_msgs::msg::Float32::ConstPtr& __msg) {
     
     Point3D       ld_point1, ld_point2,
                   midpoint;
-    double        distance, _distance, z_distance;
+    double        distance, _distance;
     int           x, y;
 
     msg_.data.clear();
@@ -62,7 +65,6 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     distance = std::abs(ld_point1.x-ld_point2.x);
     midpoint = (ld_point1+ld_point2)/2;
     _distance = midpoint.x;
-    z_distance = std::min(ld_point1.z, ld_point2.z);
     RCLCPP_INFO(this->get_logger(), "debug 3 (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
@@ -75,26 +77,28 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     RCLCPP_INFO(this->get_logger(), "debug 4 %f", _distance);
     
     if (_distance < 0) {
-       x = INIT_VELOCITY;
-       y = 0;
+       x = 1*INIT_VELOCITY;
+       y = TURNING_RATE;
     } else if (_distance > 0) {
        x = -1*INIT_VELOCITY;
-       y = 0;
+       y = TURNING_RATE;
     } else {
        x = 0;
        y = INIT_VELOCITY;
     }
-    if (z_distance < MIDPOINT_MIN_DISTANCE_Z) {
-        RCLCPP_WARN(this->get_logger(), "the gap is too narrow");
+
+    if (__msg->data < MIN_DISTANCE_Z) {
+        RCLCPP_WARN(this->get_logger(), "rocker-bogie is too close to the obstacle (%f m away)", __msg->data);
         x = 0;
-        y = 0;
+        y = -1*INIT_VELOCITY;
     }
+
     RCLCPP_INFO(this->get_logger(), "highest distance is: %f", distance);
 
     __mutex.lock();
     x_ = x;
     y_ = y;
-    ctl_count = 10;
+    ctl_count = CTL_COUNT;
     RCLCPP_INFO(this->get_logger(), "direction is x: %d, y: %d", x_, y_); 
     __mutex.unlock();
 } 
