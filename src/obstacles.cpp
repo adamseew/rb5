@@ -76,21 +76,13 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
 
     RCLCPP_INFO(this->get_logger(), "debug 4 %f", _distance);
     
-    if (_distance < 0) {
-       x = 1*INIT_VELOCITY;
-       y = TURNING_RATE;
-    } else if (_distance > 0) {
-       x = -1*INIT_VELOCITY;
-       y = TURNING_RATE;
-    } else {
-       x = 0;
-       y = INIT_VELOCITY;
-    }
+    x = (-100/MAX_FOV_REALSENSE_X)*_distance;
+    y = INIT_VELOCITY;
 
     if (__msg->data < MIN_DISTANCE_Z) {
         RCLCPP_WARN(this->get_logger(), "rocker-bogie is too close to the obstacle (%f m away)", __msg->data);
         x = 0;
-        y = -1*INIT_VELOCITY;
+        y = 0;
     }
 
     RCLCPP_INFO(this->get_logger(), "highest distance is: %f", distance);

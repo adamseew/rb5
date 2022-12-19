@@ -30,7 +30,6 @@
 #define MAX_FOV_REALSENSE_X           .55
 #define INIT_VELOCITY                 70
 #define MIN_DISTANCE_Z                .4
-#define TURNING_RATE                  1
 
 
 namespace ytcg {
