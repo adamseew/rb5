@@ -76,7 +76,7 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
 
     RCLCPP_INFO(this->get_logger(), "debug 4 %f", _distance);
     
-    x = (-100/MAX_FOV_REALSENSE_X)*_distance;
+    x = (-100/MAX_FOV_REALSENSE_X)*_distance*TURNING_RATIO;
     y = INIT_VELOCITY;
 
     if (__msg->data < MIN_DISTANCE_Z) {

@@ -28,8 +28,9 @@
 #define ROCKER_BOGIE_MIN_WIDTH        .4
 #define POINT_MAX_DISTANCE            1.2
 #define MAX_FOV_REALSENSE_X           .55
-#define INIT_VELOCITY                 70
+#define INIT_VELOCITY                 66
 #define MIN_DISTANCE_Z                .4
+#define TURNING_RATIO                 .999
 
 
 namespace ytcg {
