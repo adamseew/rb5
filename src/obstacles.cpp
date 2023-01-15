@@ -65,19 +65,18 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     distance = std::abs(ld_point1.x-ld_point2.x);
     midpoint = (ld_point1+ld_point2)/2;
     _distance = midpoint.x;
-    RCLCPP_INFO(this->get_logger(), "debug 3 (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
-    // _mutex.lock();
-    // midpoint = midpoint-_point;
-    // _mutex.unlock();
-    //
-
-    RCLCPP_INFO(this->get_logger(), "debug 4 %f", _distance);
-    
-    x = (-100/MAX_FOV_REALSENSE_X)*_distance*TURNING_RATIO;
+    x = (-100/MAX_FOV_REALSENSE_X)*_distance*TURNING_RATIO_X;
     y = INIT_VELOCITY;
+    if (x != 0) {
+        y *= TURNING_RATIO_Y;
+	if (std::abs(x) < MIN_TURNING_RATE)
+            x = MIN_TURNING_RATE*x/std::abs(x);
+	else if (std::abs(x) > MAX_TURNING_RATE)
+            x = MAX_TURNING_RATE*x/std::abs(x);
+    }
 
     if (__msg->data < MIN_DISTANCE_Z) {
         RCLCPP_WARN(this->get_logger(), "rocker-bogie is too close to the obstacle (%f m away)", __msg->data);
