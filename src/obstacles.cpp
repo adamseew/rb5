@@ -46,19 +46,60 @@ Obstacles::Obstacles() :
 
     RCLCPP_INFO_STREAM(this->get_logger(), "created publisher for topic " << COMM_FROM_BS_TOPIC);
     RCLCPP_INFO_STREAM(this->get_logger(), "node " << NODE_OBSTACLES << " is now initialized");
+
+    this->declare_parameter("turning_ratio_x", TURNING_RATIO_X);
+    this->declare_parameter("turning_ratio_y", TURNING_RATIO_Y);
+    this->declare_parameter("init_velocity", INIT_VELOCITY);
+    this->declare_parameter("min_turning_rate", MIN_TURNING_RATE);
+    this->declare_parameter("max_turning_rate", MAX_TURNING_RATE);
 }
 
 void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr& msg, const geometry_msgs::msg::Point::ConstPtr& _msg, const std_msgs::msg::Float32::ConstPtr& __msg) {
     
     Point3D       ld_point1, ld_point2,
                   midpoint;
-    double        distance, _distance;
-    int           x, y;
+    double        distance, _distance, turning_ratio_x, turning_ratio_y;
+    static double _turning_ratio_x, _turning_ratio_y;
+    int           x, y, init_velocity, min_turning_rate, max_turning_rate;
+    static int    _init_velocity, _min_turning_rate, _max_turning_rate;
 
     msg_.data.clear();
 
-    if (count__++ == 0)
+    init_velocity = this->get_parameter("init_velocity").get_parameter_value().get<int>();
+    turning_ratio_x = this->get_parameter("turning_ratio_x").get_parameter_value().get<double>();
+    turning_ratio_y = this->get_parameter("turning_ratio_y").get_parameter_value().get<double>();
+    min_turning_rate = this->get_parameter("min_turning_rate").get_parameter_value().get<int>();
+    max_turning_rate = this->get_parameter("max_turning_rate").get_parameter_value().get<int>();
+
+    if (count__++ == 0) {
         RCLCPP_INFO(this->get_logger(), "first points callback");   
+	_init_velocity = init_velocity;
+        _turning_ratio_x = turning_ratio_x;
+	_turning_ratio_y = turning_ratio_y;
+	_min_turning_rate = min_turning_rate;
+        _max_turning_rate = max_turning_rate;
+    } else {
+        if (init_velocity != _init_velocity) {
+            RCLCPP_WARN_STREAM(this->get_logger(), "velocity changed to " << init_velocity);
+	    _init_velocity = init_velocity;
+        }
+        if (turning_ratio_x != _turning_ratio_x) {
+            RCLCPP_WARN_STREAM(this->get_logger(), "turning ratio on the x axis changed to " << turning_ratio_x);
+            _turning_ratio_x = turning_ratio_x;
+        }
+        if (turning_ratio_y != _turning_ratio_y) {
+            RCLCPP_WARN_STREAM(this->get_logger(), "turning ratio on the x axis changed to " << turning_ratio_y);
+            _turning_ratio_y = turning_ratio_y;
+        }
+        if (min_turning_rate != _min_turning_rate) {
+            RCLCPP_WARN_STREAM(this->get_logger(), "minimum turning rate changed to " << min_turning_rate);
+            _min_turning_rate = min_turning_rate;
+        }
+        if (max_turning_rate != _max_turning_rate) {
+            RCLCPP_WARN_STREAM(this->get_logger(), "maximum turning rate changed to " << max_turning_rate);
+            _max_turning_rate = max_turning_rate;
+        }
+    }
 
     ld_point1 = msg;
     ld_point2 = _msg;
@@ -68,14 +109,14 @@ void Obstacles::points_topic_callback(const geometry_msgs::msg::Point::ConstPtr&
     midpoint = midpoint/sqrt(pow(midpoint.x, 2)+pow(midpoint.y, 2)+pow(midpoint.z, 2))*POINT_MAX_DISTANCE;
     RCLCPP_INFO(this->get_logger(), "detected midpoint is (%f, %f, %f)", midpoint.x, midpoint.y, midpoint.z);
 
-    x = (-100/MAX_FOV_REALSENSE_X)*_distance*TURNING_RATIO_X;
-    y = INIT_VELOCITY;
+    x = (-100/MAX_FOV_REALSENSE_X)*_distance*turning_ratio_x;
+    y = init_velocity;
     if (x != 0) {
-        y *= TURNING_RATIO_Y;
-	if (std::abs(x) < MIN_TURNING_RATE)
-            x = MIN_TURNING_RATE*x/std::abs(x);
-	else if (std::abs(x) > MAX_TURNING_RATE)
-            x = MAX_TURNING_RATE*x/std::abs(x);
+        y *= turning_ratio_y;
+	if (std::abs(x) < min_turning_rate)
+            x = min_turning_rate*x/std::abs(x);
+	else if (std::abs(x) > max_turning_rate)
+            x = max_turning_rate*x/std::abs(x);
     }
 
     if (__msg->data < MIN_DISTANCE_Z) {
