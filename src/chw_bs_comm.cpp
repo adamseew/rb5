@@ -59,9 +59,10 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
     }
 #ifdef SAVE_STATS
     timer___ = this->create_wall_timer(
-        std::chrono::seconds(10), std::bind(&BsCommPublisher::stats_callback, this)
+        std::chrono::seconds(1), std::bind(&BsCommPublisher::stats_callback, this)
     );
     per_xseconds = 0;
+    rssi = -128;
 #endif
     commprotocol__ = commprotocol_;
     RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to %s", commprotocol_str.c_str());
@@ -205,6 +206,7 @@ void BsCommPublisher::timer_callback(void) {
         utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
         output = "x:" + std::to_string((int)std::stoul(output_.substr(rx_pos+10,2), nullptr, 16) - 100) + " " +
                  "y:" + std::to_string((int)std::stoul(output_.substr(rx_pos+12,2), nullptr, 16) - 100);
+
     } catch (...) { 
         RCLCPP_FATAL(this->get_logger(), "Cannot communicate with the device");
         return;
@@ -239,8 +241,16 @@ void BsCommPublisher::timer_callback(void) {
 #ifdef SAVE_STATS
 void BsCommPublisher::stats_callback(void) {
 
-    RCLCPP_INFO(this->get_logger(), "Success communication rate is: %f", per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0)*10));
-    
+    string output_ = utility_serial_read(fd_, "radio get rssi\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+    RCLCPP_WARN(this->get_logger(), "rssi command output %s", output_.c_str());
+    try {
+        rssi = atoi(output_.c_str());
+    } catch (...) {
+        RCLCPP_ERROR(this->get_logger(), "Unable to read RSSI");
+    }
+
+    RCLCPP_WARN(this->get_logger(), "Success communication rate: %f", per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0)));
+    RCLCPP_WARN(this->get_logger(), "RSSI: %d", rssi); 
     per_xseconds = 0;
 }
 #endif

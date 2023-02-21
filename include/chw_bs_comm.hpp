@@ -67,6 +67,7 @@ namespace ytcg {
         size_t count__;
 #ifdef SAVE_STATS
 	std::atomic<size_t> per_xseconds;
+        int rssi;
 #endif
         size_t first_get;
         int fd_;
