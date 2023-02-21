@@ -6,13 +6,14 @@
 
 #include "rclcpp/rclcpp.hpp"
 
+#include <fstream>
 #include <string>
 
 #ifndef YTCG_CHW_BS_COMM_HPP
 #define YTCG_CHW_BS_COMM_HPP
 
 #define NODE_CHW_BS_COMM       "chw_bs_node"
-#define CHW_BS_COMM_RATE       500
+#define CHW_BS_COMM_RATE       100
 #define CHW_QUEUE_EMPTIER_RATE 500
 #define COMM_FROM_BS_TOPIC     "ground_based/cmd"
 #define COMM_FROM_BS_TOPIC_LBL "commands"
@@ -33,6 +34,7 @@
 #define SAVE_STATS             1
                                // specifies whether to save statistics on the arrived and
 			       // lost messages from the base station
+#define LOG_COMM_FILE          "log_comm.dat"
 
 
 namespace ytcg {
@@ -41,6 +43,14 @@ namespace ytcg {
                                // the wide range 802.11ah comm. protocol)
         LoRa =   COMM_LORA     // communication relies on LoRa physical layer protocol
     };
+#ifdef SAVE_STATS
+    struct __LOG_COMM {
+        static std::ofstream& file() { 
+            static std::ofstream __file;
+            return __file;
+        }
+    };
+#endif
 
     class BsCommPublisher : public rclcpp::Node {
     public:
@@ -67,7 +77,6 @@ namespace ytcg {
         size_t count__;
 #ifdef SAVE_STATS
 	std::atomic<size_t> per_xseconds;
-        int rssi;
 #endif
         size_t first_get;
         int fd_;

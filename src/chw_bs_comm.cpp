@@ -7,6 +7,8 @@
 #include <opencv2/imgcodecs.hpp>
 #include <boost/filesystem.hpp>
 
+#include <time.h>
+
 #include <functional>
 #include <iostream>
 #include <cstdlib>
@@ -62,7 +64,6 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
         std::chrono::seconds(1), std::bind(&BsCommPublisher::stats_callback, this)
     );
     per_xseconds = 0;
-    rssi = -128;
 #endif
     commprotocol__ = commprotocol_;
     RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to %s", commprotocol_str.c_str());
@@ -241,17 +242,27 @@ void BsCommPublisher::timer_callback(void) {
 #ifdef SAVE_STATS
 void BsCommPublisher::stats_callback(void) {
 
-    string output_ = utility_serial_read(fd_, "radio get rssi\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
-    RCLCPP_WARN(this->get_logger(), "rssi command output %s", output_.c_str());
-    try {
-        rssi = atoi(output_.c_str());
-    } catch (...) {
-        RCLCPP_ERROR(this->get_logger(), "Unable to read RSSI");
+    double        sc_rate;
+    static size_t _count      = 0;
+    uint64_t      micro_se;
+    char          buffer[100];
+
+    if (_count++ == 0) {
+	__LOG_COMM::file().open(LOG_COMM_FILE, std::ios::app);
+	RCLCPP_INFO_STREAM(this->get_logger(), "logging enabled, check file " << LOG_COMM_FILE);
+        snprintf(buffer, sizeof(buffer), "time,success_rate");
+        __LOG_COMM::file() << buffer << std::endl;
     }
 
-    RCLCPP_WARN(this->get_logger(), "Success communication rate: %f", per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0)));
-    RCLCPP_WARN(this->get_logger(), "RSSI: %d", rssi); 
+    sc_rate = per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0));
+
+    RCLCPP_WARN(this->get_logger(), "Success communication rate: %f", sc_rate);
     per_xseconds = 0;
+
+    micro_se = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+
+    snprintf(buffer, sizeof(buffer), "%.6f,%f", micro_se*1e-6, sc_rate);
+    __LOG_COMM::file() << buffer << std::endl;
 }
 #endif
 
@@ -259,6 +270,10 @@ void BsCommPublisher::shutdown_callback(void) {
     utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
     if (fd_ >= 0)
         utility_serial_close(fd_);
+#ifdef LOG_POSE
+    __LOG_COMM::file().close();
+    ROS_INFO_STREAM(LOG_COMM_FILE << " closed");
+#endif
 }
         
 int main(int argc, char ** argv) {
