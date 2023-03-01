@@ -24,7 +24,7 @@
 
 // #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
 
-// using namespace ytcg;
+using namespace ytcg;
 using namespace std::chrono;
 
 // using std::placeholders::_1;
@@ -51,10 +51,11 @@ class SnrLogger : public rclcpp::Node
         void snr_callback(void) {
 
             static size_t _count = 0;
+            int rx_pos;
             uint64_t micro_se;
             char buffer[100];
             string cmd, output, output_;
-            msg_.data.clear();
+            // msg_.data.clear();
 
             // communication channel between chw---bs uses LoRa
             if (count__ == 0) {
@@ -284,7 +285,7 @@ class SnrLogger : public rclcpp::Node
 int main(int argc, char ** argv) {
     
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<SnLoggerer>());//(CommProtocol::LoRa));
+    rclcpp::spin(std::make_shared<SnrLoggerer>());//(CommProtocol::LoRa));
     rclcpp::shutdown();
     return 0;
 }

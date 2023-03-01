@@ -2,6 +2,7 @@
 #include "../include/chw_bs_comm.hpp"
 #include "../include/utility.hpp"
 
+#include <boost/range/adaptors.hpp>
 #include <boost/filesystem.hpp>
 
 #include <time.h>
@@ -46,10 +47,10 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
 
         // subscriber to the image raw topic which sends images from the
         // navigation camera
-        subscription_ = this->create_subscription<sensor_msgs::msg::CompressedImage>(CAMNAVRGB_TOPIC, 10, std::bind(&BsCommPublisher::camnavrgb_callback, this, _1));
-        timer__ = this->create_wall_timer(
-            std::chrono::milliseconds(CHW_QUEUE_EMPTIER_RATE), std::bind(&BsCommPublisher::queue_emptier_callback, this)
-        );
+        // subscription_ = this->create_subscription<sensor_msgs::msg::CompressedImage>(CAMNAVRGB_TOPIC, 10, std::bind(&BsCommPublisher::camnavrgb_callback, this, _1));
+        // timer__ = this->create_wall_timer(
+        //     std::chrono::milliseconds(CHW_QUEUE_EMPTIER_RATE), std::bind(&BsCommPublisher::queue_emptier_callback, this)
+        // );
         RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to 802.11");
     } else {
         commprotocol_str = "LoRa";
