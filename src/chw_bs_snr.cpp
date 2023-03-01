@@ -35,10 +35,11 @@ using std::string;
 
 // BsSnrPublisher::BsSnrPublisher() : BsSnrPublisher::BsSnrPublisher(CommProtocol::_80211) { }
 
-class SnrLogger : public rclcpp::Node
-{
-    public:
-        SnrLogger()
+// class SnrLogger : public rclcpp::Node
+// SnrLogger::SnrLogger()
+// {
+    // public:
+        SnrLogger::SnrLogger()
         : Node("snr_logger"), count_(0)
         {
             // publisher_ = this->create_publisher<std_msgs::msg::Float32>(SNR_TOPIC, 10);
@@ -47,8 +48,10 @@ class SnrLogger : public rclcpp::Node
 
             rclcpp::on_shutdown(std::bind(&SnrLogger::shutdown_callback, this));
         }
-    private:
-        void snr_callback(void) {
+    
+    // private:
+        // void snr_callback(void) {
+void SnrLogger::snr_callback(void) {
 
             static size_t _count = 0;
             int rx_pos;
@@ -126,7 +129,8 @@ class SnrLogger : public rclcpp::Node
             __LOG_SNR::file() << buffer << std::endl;
         }
 
-        void shutdown_callback(void) {
+        // void shutdown_callback(void) {
+void SnrLogger::shutdown_callback(void) {
             utility_serial_write(fd_, "sys set pindig GPIO10 0\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
             if (fd_ >= 0)
                 utility_serial_close(fd_);
@@ -135,7 +139,7 @@ class SnrLogger : public rclcpp::Node
                 ROS_INFO_STREAM(LOG_SNR_FILE << " closed");
             #endif
         }
-};
+// };
 // BsSnrPublisher::BsSnrPublisher(CommProtocol commprotocol_) : 
 //     Node(NODE_CHW_BS_COMM), count_(0), count__(0), first_get(0), fd_(-1) {
 
