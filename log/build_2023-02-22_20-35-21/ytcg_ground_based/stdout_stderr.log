@@ -1,0 +1,168 @@
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+-- Found FastRTPS: /opt/ros/foxy/include  
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)
+-- Found message_filters: 3.2.5 (/opt/ros/foxy/share/message_filters/cmake)
+-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.67") found components: system filesystem regex 
+-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)
+-- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)
+-- Found nav_msgs: 2.0.5 (/opt/ros/foxy/share/nav_msgs/cmake)
+-- Found ament_lint_auto: 0.9.7 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+-- Added test 'copyright' to check source files copyright and LICENSE
+-- Added test 'cppcheck' to perform static code analysis on C / C++ code
+-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/pi/ros2_ws/src/ytcg_ground-based/include>
+-- Configured cppcheck exclude dirs and/or files: 
+-- Added test 'cpplint' to check C / C++ code against the Google style
+-- Configured cpplint exclude dirs and/or files: 
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'uncrustify' to check C / C++ code style
+-- Configured uncrustify additional arguments: 
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based
+[35m[1mScanning dependencies of target chw_bs_snr[0m
+[35m[1mScanning dependencies of target chw_bs_comm[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/chw_bs_snr.dir/src/chw_bs_snr.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/chw_bs_snr.dir/src/utility.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/chw_bs_comm.dir/src/chw_bs_comm.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/chw_bs_comm.dir/src/utility.cpp.o[0m
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:22:[m[K [01;35m[Kwarning: [m[K"BOOST_RANGE_ENABLE_CONCEPT_ASSERT" redefined
+   22 | #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
+      | 
+In file included from [01m[K/usr/include/boost/range/size_type.hpp:20[m[K,
+                 from [01m[K/usr/include/boost/range/size.hpp:21[m[K,
+                 from [01m[K/usr/include/boost/range/functions.hpp:20[m[K,
+                 from [01m[K/usr/include/boost/range/iterator_range_core.hpp:38[m[K,
+                 from [01m[K/usr/include/boost/range/iterator_range.hpp:13[m[K,
+                 from [01m[K/usr/include/boost/range/adaptor/adjacent_filtered.hpp:21[m[K,
+                 from [01m[K/usr/include/boost/range/adaptors.hpp:15[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:5[m[K:
+[01m[K/usr/include/boost/range/concepts.hpp:98:[m[K [01;36m[Knote: [m[Kthis is the location of the previous definition
+   98 |         #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 1
+      | 
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:24:[m[K [01;35m[Kwarning: [m[K"BOOST_RANGE_ENABLE_CONCEPT_ASSERT" redefined
+   24 | #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
+      | 
+In file included from [01m[K/usr/include/boost/range/size_type.hpp:20[m[K,
+                 from [01m[K/usr/include/boost/range/size.hpp:21[m[K,
+                 from [01m[K/usr/include/boost/range/functions.hpp:20[m[K,
+                 from [01m[K/usr/include/boost/range/iterator_range_core.hpp:38[m[K,
+                 from [01m[K/usr/include/boost/range/iterator_range.hpp:13[m[K,
+                 from [01m[K/usr/include/boost/range/adaptor/adjacent_filtered.hpp:21[m[K,
+                 from [01m[K/usr/include/boost/range/adaptors.hpp:15[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:5[m[K:
+[01m[K/usr/include/boost/range/concepts.hpp:98:[m[K [01;36m[Knote: [m[Kthis is the location of the previous definition
+   98 |         #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 1
+      | 
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:[m[K In constructor ‘[01m[Kytcg::BsCommPublisher::BsCommPublisher(ytcg::CommProtocol)[m[K’:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:58:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kstd::chrono::duration<long int, std::ratio<1, 1000> >::duration(double)[m[K’
+   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ[01;31m[K)[m[K, std::bind(&BsCommPublisher::snr_callback, this)
+      |                                                          [01;31m[K^[m[K
+In file included from [01m[K/usr/include/c++/9/mutex:39[m[K,
+                 from [01m[K/usr/include/c++/9/future:38[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:18[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2[m[K:
+[01m[K/usr/include/c++/9/chrono:338:14:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Rep2, class _Period2, class> constexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&)[m[K’
+  338 |    constexpr [01;36m[Kduration[m[K(const duration<_Rep2, _Period2>& __d)
+      |              [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/chrono:338:14:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:58:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::chrono::duration<_Rep1, _Period1>[m[K’ and ‘[01m[Kdouble[m[K’
+   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ[01;36m[K)[m[K, std::bind(&BsCommPublisher::snr_callback, this)
+      |                                                          [01;36m[K^[m[K
+In file included from [01m[K/usr/include/c++/9/mutex:39[m[K,
+                 from [01m[K/usr/include/c++/9/future:38[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:18[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2[m[K:
+[01m[K/usr/include/c++/9/chrono:331:23:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Rep2, class> constexpr std::chrono::duration<_Rep, _Period>::duration(const _Rep2&)[m[K’
+  331 |    constexpr explicit [01;36m[Kduration[m[K(const _Rep2& __rep)
+      |                       [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/chrono:331:23:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+In file included from [01m[K/usr/include/c++/9/bits/move.h:55[m[K,
+                 from [01m[K/usr/include/c++/9/bits/stl_pair.h:59[m[K,
+                 from [01m[K/usr/include/c++/9/utility:70[m[K,
+                 from [01m[K/usr/include/c++/9/algorithm:60[m[K,
+                 from [01m[K/opt/ros/foxy/include/rosidl_runtime_cpp/bounded_vector.hpp:18[m[K,
+                 from [01m[K/opt/ros/foxy/include/std_msgs/msg/detail/multi_array_dimension__struct.hpp:8[m[K,
+                 from [01m[K/opt/ros/foxy/include/std_msgs/msg/multi_array_dimension.hpp:7[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:2[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2[m[K:
+/usr/include/c++/9/type_traits: In substitution of ‘[01m[Ktemplate<class ... _Cond> using _Require = typename std::enable_if<std::__and_< <template-parameter-1-1> >::value>::type [with _Cond = {std::is_convertible<const double&, long int>, std::__or_<std::chrono::treat_as_floating_point<long int>, std::__not_<std::chrono::treat_as_floating_point<double> > >}][m[K’:
+[01m[K/usr/include/c++/9/chrono:328:27:[m[K   required from here
+[01m[K/usr/include/c++/9/type_traits:2048:11:[m[K [01;31m[Kerror: [m[Kno type named ‘[01m[Ktype[m[K’ in ‘[01m[Kstruct std::enable_if<false, void>[m[K’
+ 2048 |     using [01;31m[K_Require[m[K = typename enable_if<__and_<_Cond...>::value>::type;
+      |           [01;31m[K^~~~~~~~[m[K
+In file included from [01m[K/usr/include/c++/9/mutex:39[m[K,
+                 from [01m[K/usr/include/c++/9/future:38[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:18[m[K,
+                 from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7[m[K,
+                 from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2[m[K:
+[01m[K/usr/include/c++/9/chrono:324:2:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&) [with _Rep = long int; _Period = std::ratio<1, 1000>][m[K’
+  324 |  [01;36m[Kduration[m[K(const duration&) = default;
+      |  [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/chrono:324:11:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kdouble[m[K’ to ‘[01m[Kconst std::chrono::duration<long int, std::ratio<1, 1000> >&[m[K’
+  324 |  duration([01;36m[Kconst duration&[m[K) = default;
+      |           [01;36m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/usr/include/c++/9/chrono:322:12:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstd::chrono::duration<_Rep, _Period>::duration() [with _Rep = long int; _Period = std::ratio<1, 1000>][m[K’
+  322 |  constexpr [01;36m[Kduration[m[K() = default;
+      |            [01;36m[K^~~~~~~~[m[K
+[01m[K/usr/include/c++/9/chrono:322:12:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:89:[m[K [01;31m[Kerror: [m[K‘[01m[Ksnr_callback[m[K’ is not a member of ‘[01m[Kytcg::BsCommPublisher[m[K’
+   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ), std::bind(&BsCommPublisher::[01;31m[Ksnr_callback[m[K, this)
+      |                                                                                         [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:[m[K At global scope:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:81:6:[m[K [01;31m[Kerror: [m[Kno declaration matches ‘[01m[Kvoid ytcg::BsCommPublisher::snr_callback()[m[K’
+   81 | void [01;31m[KBsCommPublisher[m[K::snr_callback(void) {
+      |      [01;31m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:81:6:[m[K [01;36m[Knote: [m[Kno functions named ‘[01m[Kvoid ytcg::BsCommPublisher::snr_callback()[m[K’
+In file included from [01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2[m[K:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:55:11:[m[K [01;36m[Knote: [m[K‘[01m[Kclass ytcg::BsCommPublisher[m[K’ defined here
+   55 |     class [01;36m[KBsCommPublisher[m[K : public rclcpp::Node {
+      |           [01;36m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:[m[K In member function ‘[01m[Kvoid ytcg::BsCommPublisher::queue_emptier_callback()[m[K’:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:111:34:[m[K [01;35m[Kwarning: [m[Kunknown escape sequence: '\.'
+  111 |     const boost::regex my_filter([01;35m[K"image.*\.jpg"[m[K);
+      |                                  [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:[m[K In member function ‘[01m[Kvoid ytcg::BsCommPublisher::timer_callback()[m[K’:
+[01m[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:200:49:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kconst size_type[m[K’ {aka ‘[01m[Kconst long unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+  200 |         if ([01;35m[K(rx_pos = output_.find("radio_rx")) != std::string::npos[m[K) {
+      |             [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~[m[K
+make[2]: *** [CMakeFiles/chw_bs_snr.dir/build.make:63: CMakeFiles/chw_bs_snr.dir/src/chw_bs_snr.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/chw_bs_snr.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....

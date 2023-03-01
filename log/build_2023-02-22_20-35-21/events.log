@@ -1,0 +1,1491 @@
+[0.000000] (-) TimerEvent: {}
+[0.001997] (ytcg_ground_based) JobQueued: {'identifier': 'ytcg_ground_based', 'dependencies': OrderedDict()}
+[0.004441] (ytcg_ground_based) JobStarted: {'identifier': 'ytcg_ground_based'}
+[0.100213] (-) TimerEvent: {}
+[0.142731] (ytcg_ground_based) JobProgress: {'identifier': 'ytcg_ground_based', 'progress': 'cmake'}
+[0.144526] (ytcg_ground_based) Command: {'cmd': ['/usr/bin/cmake', '/home/pi/ros2_ws/src/ytcg_ground-based', '-DCMAKE_INSTALL_PREFIX=/home/pi/ros2_ws/src/ytcg_ground-based/install/ytcg_ground_based'], 'cwd': '/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('TMUX', '/tmp/tmux-1000/default,1530,0'), ('USER', 'pi'), ('SSH_CLIENT', '172.28.142.139 63686 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/pi'), ('OLDPWD', '/home/pi/ros2_ws'), ('SSH_TTY', '/dev/pts/0'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/pi/ros2_ws/install:/home/pi/ros2_ws/src/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'pi'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('tmux', 'tmux -2'), ('TERM', 'screen-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/pi/ros2_ws/install/ytcg_ground_based:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '172.28.142.139 63686 172.29.33.118 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('TMUX_PANE', '%2'), ('CMAKE_PREFIX_PATH', '/home/pi/ros2_ws/install/ytcg_ground_based:/opt/ros/foxy')]), 'shell': False}
+[0.200512] (-) TimerEvent: {}
+[0.301829] (-) TimerEvent: {}
+[0.403134] (-) TimerEvent: {}
+[0.504451] (-) TimerEvent: {}
+[0.605660] (-) TimerEvent: {}
+[0.706955] (-) TimerEvent: {}
+[0.808193] (-) TimerEvent: {}
+[0.909407] (-) TimerEvent: {}
+[1.010581] (-) TimerEvent: {}
+[1.111768] (-) TimerEvent: {}
+[1.212946] (-) TimerEvent: {}
+[1.314121] (-) TimerEvent: {}
+[1.415421] (-) TimerEvent: {}
+[1.516682] (-) TimerEvent: {}
+[1.617986] (-) TimerEvent: {}
+[1.719227] (-) TimerEvent: {}
+[1.820627] (-) TimerEvent: {}
+[1.921961] (-) TimerEvent: {}
+[2.023265] (-) TimerEvent: {}
+[2.096467] (ytcg_ground_based) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[2.123536] (-) TimerEvent: {}
+[2.224842] (-) TimerEvent: {}
+[2.326029] (-) TimerEvent: {}
+[2.427204] (-) TimerEvent: {}
+[2.528436] (-) TimerEvent: {}
+[2.629621] (-) TimerEvent: {}
+[2.730807] (-) TimerEvent: {}
+[2.832093] (-) TimerEvent: {}
+[2.933306] (-) TimerEvent: {}
+[3.034451] (-) TimerEvent: {}
+[3.135688] (-) TimerEvent: {}
+[3.236949] (-) TimerEvent: {}
+[3.338431] (-) TimerEvent: {}
+[3.439830] (-) TimerEvent: {}
+[3.494191] (ytcg_ground_based) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[3.540104] (-) TimerEvent: {}
+[3.558977] (ytcg_ground_based) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc\n'}
+[3.640345] (-) TimerEvent: {}
+[3.741553] (-) TimerEvent: {}
+[3.842822] (-) TimerEvent: {}
+[3.944330] (-) TimerEvent: {}
+[4.045726] (-) TimerEvent: {}
+[4.147306] (-) TimerEvent: {}
+[4.154034] (ytcg_ground_based) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc -- works\n'}
+[4.167462] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[4.247577] (-) TimerEvent: {}
+[4.348956] (-) TimerEvent: {}
+[4.450351] (-) TimerEvent: {}
+[4.551686] (-) TimerEvent: {}
+[4.652828] (-) TimerEvent: {}
+[4.708215] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[4.753086] (-) TimerEvent: {}
+[4.800922] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[4.804996] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[4.832402] (ytcg_ground_based) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++\n'}
+[4.853318] (-) TimerEvent: {}
+[4.954573] (-) TimerEvent: {}
+[5.055959] (-) TimerEvent: {}
+[5.157350] (-) TimerEvent: {}
+[5.258772] (-) TimerEvent: {}
+[5.360605] (-) TimerEvent: {}
+[5.462183] (-) TimerEvent: {}
+[5.486924] (ytcg_ground_based) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ -- works\n'}
+[5.494910] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.562449] (-) TimerEvent: {}
+[5.663705] (-) TimerEvent: {}
+[5.765027] (-) TimerEvent: {}
+[5.866342] (-) TimerEvent: {}
+[5.967775] (-) TimerEvent: {}
+[6.069074] (-) TimerEvent: {}
+[6.093293] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[6.169334] (-) TimerEvent: {}
+[6.186512] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[6.190514] (ytcg_ground_based) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[6.246148] (ytcg_ground_based) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[6.269597] (-) TimerEvent: {}
+[6.370801] (-) TimerEvent: {}
+[6.472146] (-) TimerEvent: {}
+[6.506122] (ytcg_ground_based) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[6.507710] (ytcg_ground_based) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[6.572360] (-) TimerEvent: {}
+[6.673476] (-) TimerEvent: {}
+[6.774694] (-) TimerEvent: {}
+[6.875996] (-) TimerEvent: {}
+[6.977246] (-) TimerEvent: {}
+[7.078465] (-) TimerEvent: {}
+[7.179690] (-) TimerEvent: {}
+[7.280800] (-) TimerEvent: {}
+[7.381885] (-) TimerEvent: {}
+[7.483105] (-) TimerEvent: {}
+[7.584376] (-) TimerEvent: {}
+[7.685528] (-) TimerEvent: {}
+[7.786704] (-) TimerEvent: {}
+[7.887864] (-) TimerEvent: {}
+[7.989031] (-) TimerEvent: {}
+[8.090258] (-) TimerEvent: {}
+[8.191693] (-) TimerEvent: {}
+[8.292948] (-) TimerEvent: {}
+[8.394157] (-) TimerEvent: {}
+[8.491965] (ytcg_ground_based) StdoutLine: {'line': b'-- Found rclcpp: 2.4.2 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[8.505958] (-) TimerEvent: {}
+[8.607080] (-) TimerEvent: {}
+[8.708359] (-) TimerEvent: {}
+[8.809580] (-) TimerEvent: {}
+[8.910807] (-) TimerEvent: {}
+[9.012133] (-) TimerEvent: {}
+[9.113448] (-) TimerEvent: {}
+[9.155895] (ytcg_ground_based) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[9.213738] (-) TimerEvent: {}
+[9.266605] (ytcg_ground_based) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.3.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[9.314012] (-) TimerEvent: {}
+[9.415241] (-) TimerEvent: {}
+[9.516544] (-) TimerEvent: {}
+[9.617740] (-) TimerEvent: {}
+[9.718896] (-) TimerEvent: {}
+[9.820164] (-) TimerEvent: {}
+[9.921419] (-) TimerEvent: {}
+[10.022712] (-) TimerEvent: {}
+[10.124117] (-) TimerEvent: {}
+[10.225424] (-) TimerEvent: {}
+[10.313710] (ytcg_ground_based) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[10.325684] (-) TimerEvent: {}
+[10.426917] (-) TimerEvent: {}
+[10.528327] (-) TimerEvent: {}
+[10.629522] (-) TimerEvent: {}
+[10.730704] (-) TimerEvent: {}
+[10.796758] (ytcg_ground_based) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[10.830973] (-) TimerEvent: {}
+[10.932223] (-) TimerEvent: {}
+[11.033450] (-) TimerEvent: {}
+[11.134622] (-) TimerEvent: {}
+[11.235897] (-) TimerEvent: {}
+[11.337185] (-) TimerEvent: {}
+[11.438339] (-) TimerEvent: {}
+[11.539526] (-) TimerEvent: {}
+[11.640804] (-) TimerEvent: {}
+[11.742095] (-) TimerEvent: {}
+[11.843327] (-) TimerEvent: {}
+[11.933576] (ytcg_ground_based) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[11.943514] (-) TimerEvent: {}
+[12.044789] (-) TimerEvent: {}
+[12.146044] (-) TimerEvent: {}
+[12.247292] (-) TimerEvent: {}
+[12.348652] (-) TimerEvent: {}
+[12.449873] (-) TimerEvent: {}
+[12.551040] (-) TimerEvent: {}
+[12.590550] (ytcg_ground_based) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[12.610744] (ytcg_ground_based) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[12.624032] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[12.651292] (-) TimerEvent: {}
+[12.752634] (-) TimerEvent: {}
+[12.853944] (-) TimerEvent: {}
+[12.955231] (-) TimerEvent: {}
+[13.056580] (-) TimerEvent: {}
+[13.157835] (-) TimerEvent: {}
+[13.226876] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[13.228875] (ytcg_ground_based) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[13.258112] (-) TimerEvent: {}
+[13.359361] (-) TimerEvent: {}
+[13.460697] (-) TimerEvent: {}
+[13.561968] (-) TimerEvent: {}
+[13.663296] (-) TimerEvent: {}
+[13.764529] (-) TimerEvent: {}
+[13.806511] (ytcg_ground_based) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[13.808049] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[13.864849] (-) TimerEvent: {}
+[13.966145] (-) TimerEvent: {}
+[14.067432] (-) TimerEvent: {}
+[14.168866] (-) TimerEvent: {}
+[14.241143] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[14.242482] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[14.269121] (-) TimerEvent: {}
+[14.370407] (-) TimerEvent: {}
+[14.471805] (-) TimerEvent: {}
+[14.573173] (-) TimerEvent: {}
+[14.674524] (-) TimerEvent: {}
+[14.776157] (-) TimerEvent: {}
+[14.785911] (ytcg_ground_based) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[14.793240] (ytcg_ground_based) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[14.876419] (-) TimerEvent: {}
+[14.977552] (-) TimerEvent: {}
+[15.078712] (-) TimerEvent: {}
+[15.179907] (-) TimerEvent: {}
+[15.281144] (-) TimerEvent: {}
+[15.382457] (-) TimerEvent: {}
+[15.483834] (-) TimerEvent: {}
+[15.585292] (-) TimerEvent: {}
+[15.686527] (-) TimerEvent: {}
+[15.787777] (-) TimerEvent: {}
+[15.889038] (-) TimerEvent: {}
+[15.990250] (-) TimerEvent: {}
+[16.091545] (-) TimerEvent: {}
+[16.192866] (-) TimerEvent: {}
+[16.294105] (-) TimerEvent: {}
+[16.364646] (ytcg_ground_based) StdoutLine: {'line': b'-- Found geometry_msgs: 2.0.5 (/opt/ros/foxy/share/geometry_msgs/cmake)\n'}
+[16.394346] (-) TimerEvent: {}
+[16.495615] (-) TimerEvent: {}
+[16.596823] (-) TimerEvent: {}
+[16.698045] (-) TimerEvent: {}
+[16.702024] (ytcg_ground_based) StdoutLine: {'line': b'-- Found message_filters: 3.2.5 (/opt/ros/foxy/share/message_filters/cmake)\n'}
+[16.798293] (-) TimerEvent: {}
+[16.899555] (-) TimerEvent: {}
+[16.945642] (ytcg_ground_based) StdoutLine: {'line': b'-- Found Boost: /usr/lib/aarch64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found suitable version "1.71.0", minimum required is "1.67") found components: system filesystem regex \n'}
+[16.991729] (ytcg_ground_based) StdoutLine: {'line': b'-- Found sensor_msgs: 2.0.5 (/opt/ros/foxy/share/sensor_msgs/cmake)\n'}
+[16.999857] (-) TimerEvent: {}
+[17.101089] (-) TimerEvent: {}
+[17.202351] (-) TimerEvent: {}
+[17.303587] (-) TimerEvent: {}
+[17.404907] (-) TimerEvent: {}
+[17.506131] (-) TimerEvent: {}
+[17.607384] (-) TimerEvent: {}
+[17.662303] (ytcg_ground_based) StdoutLine: {'line': b'-- Found cv_bridge: 3.0.7 (/opt/ros/foxy/share/cv_bridge/cmake)\n'}
+[17.707781] (-) TimerEvent: {}
+[17.809130] (-) TimerEvent: {}
+[17.910394] (-) TimerEvent: {}
+[17.972605] (ytcg_ground_based) StdoutLine: {'line': b'-- Found nav_msgs: 2.0.5 (/opt/ros/foxy/share/nav_msgs/cmake)\n'}
+[18.010648] (-) TimerEvent: {}
+[18.111900] (-) TimerEvent: {}
+[18.213133] (-) TimerEvent: {}
+[18.314350] (-) TimerEvent: {}
+[18.415544] (-) TimerEvent: {}
+[18.516782] (-) TimerEvent: {}
+[18.618169] (-) TimerEvent: {}
+[18.719483] (ytcg_ground_based) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.7 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[18.720729] (-) TimerEvent: {}
+[18.821830] (-) TimerEvent: {}
+[18.923023] (-) TimerEvent: {}
+[19.024263] (-) TimerEvent: {}
+[19.125489] (-) TimerEvent: {}
+[19.226751] (-) TimerEvent: {}
+[19.327973] (-) TimerEvent: {}
+[19.429083] (-) TimerEvent: {}
+[19.515276] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[19.529341] (-) TimerEvent: {}
+[19.630488] (-) TimerEvent: {}
+[19.696942] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[19.699229] (ytcg_ground_based) StdoutLine: {'line': b'-- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/pi/ros2_ws/src/ytcg_ground-based/include>\n'}
+[19.700558] (ytcg_ground_based) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[19.730734] (-) TimerEvent: {}
+[19.831880] (-) TimerEvent: {}
+[19.854534] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[19.855853] (ytcg_ground_based) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[19.922758] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[19.932116] (-) TimerEvent: {}
+[20.033220] (-) TimerEvent: {}
+[20.103549] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[20.104909] (ytcg_ground_based) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[20.130494] (ytcg_ground_based) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[20.133441] (-) TimerEvent: {}
+[20.182339] (ytcg_ground_based) StdoutLine: {'line': b'-- Configuring done\n'}
+[20.233712] (-) TimerEvent: {}
+[20.334863] (-) TimerEvent: {}
+[20.397644] (ytcg_ground_based) StdoutLine: {'line': b'-- Generating done\n'}
+[20.414005] (ytcg_ground_based) StdoutLine: {'line': b'-- Build files have been written to: /home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based\n'}
+[20.435159] (-) TimerEvent: {}
+[20.485156] (ytcg_ground_based) CommandEnded: {'returncode': 0}
+[20.489394] (ytcg_ground_based) JobProgress: {'identifier': 'ytcg_ground_based', 'progress': 'build'}
+[20.495283] (ytcg_ground_based) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based', '--', '-j4', '-l4'], 'cwd': '/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('TMUX', '/tmp/tmux-1000/default,1530,0'), ('USER', 'pi'), ('SSH_CLIENT', '172.28.142.139 63686 22'), ('XDG_SESSION_TYPE', 'tty'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/pi'), ('OLDPWD', '/home/pi/ros2_ws'), ('SSH_TTY', '/dev/pts/0'), ('ROS_PYTHON_VERSION', '3'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLCON_PREFIX_PATH', '/home/pi/ros2_ws/install:/home/pi/ros2_ws/src/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'pi'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('tmux', 'tmux -2'), ('TERM', 'screen-256color'), ('XDG_SESSION_ID', '2'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/pi/ros2_ws/install/ytcg_ground_based:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '172.28.142.139 63686 172.29.33.118 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('TMUX_PANE', '%2'), ('CMAKE_PREFIX_PATH', '/home/pi/ros2_ws/install/ytcg_ground_based:/opt/ros/foxy')]), 'shell': False}
+[20.535486] (-) TimerEvent: {}
+[20.637074] (-) TimerEvent: {}
+[20.738547] (-) TimerEvent: {}
+[20.830822] (ytcg_ground_based) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target chw_bs_snr\x1b[0m\n'}
+[20.832643] (ytcg_ground_based) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target chw_bs_comm\x1b[0m\n'}
+[20.838769] (-) TimerEvent: {}
+[20.940326] (-) TimerEvent: {}
+[21.041636] (-) TimerEvent: {}
+[21.142916] (-) TimerEvent: {}
+[21.244265] (-) TimerEvent: {}
+[21.345591] (-) TimerEvent: {}
+[21.446842] (-) TimerEvent: {}
+[21.548345] (-) TimerEvent: {}
+[21.649661] (-) TimerEvent: {}
+[21.661908] (ytcg_ground_based) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/chw_bs_snr.dir/src/chw_bs_snr.cpp.o\x1b[0m\n'}
+[21.664377] (ytcg_ground_based) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/chw_bs_snr.dir/src/utility.cpp.o\x1b[0m\n'}
+[21.750020] (-) TimerEvent: {}
+[21.851549] (-) TimerEvent: {}
+[21.861531] (ytcg_ground_based) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/chw_bs_comm.dir/src/chw_bs_comm.cpp.o\x1b[0m\n'}
+[21.877898] (ytcg_ground_based) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/chw_bs_comm.dir/src/utility.cpp.o\x1b[0m\n'}
+[21.951944] (-) TimerEvent: {}
+[22.053762] (-) TimerEvent: {}
+[22.156880] (-) TimerEvent: {}
+[22.258126] (-) TimerEvent: {}
+[22.360362] (-) TimerEvent: {}
+[22.476585] (-) TimerEvent: {}
+[22.579485] (-) TimerEvent: {}
+[22.683256] (-) TimerEvent: {}
+[22.787091] (-) TimerEvent: {}
+[22.888661] (-) TimerEvent: {}
+[22.990359] (-) TimerEvent: {}
+[23.092087] (-) TimerEvent: {}
+[23.193891] (-) TimerEvent: {}
+[23.295518] (-) TimerEvent: {}
+[23.397351] (-) TimerEvent: {}
+[23.499090] (-) TimerEvent: {}
+[23.600773] (-) TimerEvent: {}
+[23.702534] (-) TimerEvent: {}
+[23.804521] (-) TimerEvent: {}
+[23.905969] (-) TimerEvent: {}
+[24.009391] (-) TimerEvent: {}
+[24.112468] (-) TimerEvent: {}
+[24.216411] (-) TimerEvent: {}
+[24.320408] (-) TimerEvent: {}
+[24.425019] (-) TimerEvent: {}
+[24.529420] (-) TimerEvent: {}
+[24.633514] (-) TimerEvent: {}
+[24.735353] (-) TimerEvent: {}
+[24.837274] (-) TimerEvent: {}
+[24.943313] (-) TimerEvent: {}
+[25.052465] (-) TimerEvent: {}
+[25.168125] (-) TimerEvent: {}
+[25.274525] (-) TimerEvent: {}
+[25.376189] (-) TimerEvent: {}
+[25.477803] (-) TimerEvent: {}
+[25.579311] (-) TimerEvent: {}
+[25.680974] (-) TimerEvent: {}
+[25.782666] (-) TimerEvent: {}
+[25.884400] (-) TimerEvent: {}
+[25.996198] (-) TimerEvent: {}
+[26.098275] (-) TimerEvent: {}
+[26.201487] (-) TimerEvent: {}
+[26.302988] (-) TimerEvent: {}
+[26.406500] (-) TimerEvent: {}
+[26.510664] (-) TimerEvent: {}
+[26.615841] (-) TimerEvent: {}
+[26.717737] (-) TimerEvent: {}
+[26.820232] (-) TimerEvent: {}
+[26.922092] (-) TimerEvent: {}
+[27.023728] (-) TimerEvent: {}
+[27.125462] (-) TimerEvent: {}
+[27.226985] (-) TimerEvent: {}
+[27.328887] (-) TimerEvent: {}
+[27.432935] (-) TimerEvent: {}
+[27.538237] (-) TimerEvent: {}
+[27.642221] (-) TimerEvent: {}
+[27.744059] (-) TimerEvent: {}
+[27.845649] (-) TimerEvent: {}
+[27.946980] (-) TimerEvent: {}
+[28.048848] (-) TimerEvent: {}
+[28.150926] (-) TimerEvent: {}
+[28.252331] (-) TimerEvent: {}
+[28.353821] (-) TimerEvent: {}
+[28.455568] (-) TimerEvent: {}
+[28.557011] (-) TimerEvent: {}
+[28.658715] (-) TimerEvent: {}
+[28.760145] (-) TimerEvent: {}
+[28.861800] (-) TimerEvent: {}
+[28.880184] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:22:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"BOOST_RANGE_ENABLE_CONCEPT_ASSERT" redefined\n'}
+[28.883900] (ytcg_ground_based) StderrLine: {'line': b'   22 | #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0\n'}
+[28.885330] (ytcg_ground_based) StderrLine: {'line': b'      | \n'}
+[28.886581] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/boost/range/size_type.hpp:20\x1b[m\x1b[K,\n'}
+[28.887870] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/size.hpp:21\x1b[m\x1b[K,\n'}
+[28.889131] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/functions.hpp:20\x1b[m\x1b[K,\n'}
+[28.890366] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/iterator_range_core.hpp:38\x1b[m\x1b[K,\n'}
+[28.891774] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/iterator_range.hpp:13\x1b[m\x1b[K,\n'}
+[28.893027] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/adaptor/adjacent_filtered.hpp:21\x1b[m\x1b[K,\n'}
+[28.894267] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/adaptors.hpp:15\x1b[m\x1b[K,\n'}
+[28.895601] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:5\x1b[m\x1b[K:\n'}
+[28.897120] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/boost/range/concepts.hpp:98:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kthis is the location of the previous definition\n'}
+[28.898375] (ytcg_ground_based) StderrLine: {'line': b'   98 |         #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 1\n'}
+[28.899697] (ytcg_ground_based) StderrLine: {'line': b'      | \n'}
+[28.962130] (-) TimerEvent: {}
+[29.063784] (-) TimerEvent: {}
+[29.165367] (-) TimerEvent: {}
+[29.266820] (-) TimerEvent: {}
+[29.368218] (-) TimerEvent: {}
+[29.469650] (-) TimerEvent: {}
+[29.571812] (-) TimerEvent: {}
+[29.663906] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:24:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"BOOST_RANGE_ENABLE_CONCEPT_ASSERT" redefined\n'}
+[29.666042] (ytcg_ground_based) StderrLine: {'line': b'   24 | #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0\n'}
+[29.667436] (ytcg_ground_based) StderrLine: {'line': b'      | \n'}
+[29.668942] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/boost/range/size_type.hpp:20\x1b[m\x1b[K,\n'}
+[29.670216] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/size.hpp:21\x1b[m\x1b[K,\n'}
+[29.671497] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/functions.hpp:20\x1b[m\x1b[K,\n'}
+[29.672883] (-) TimerEvent: {}
+[29.674051] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/iterator_range_core.hpp:38\x1b[m\x1b[K,\n'}
+[29.675889] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/iterator_range.hpp:13\x1b[m\x1b[K,\n'}
+[29.677383] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/adaptor/adjacent_filtered.hpp:21\x1b[m\x1b[K,\n'}
+[29.678980] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/boost/range/adaptors.hpp:15\x1b[m\x1b[K,\n'}
+[29.680557] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:5\x1b[m\x1b[K:\n'}
+[29.681990] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/boost/range/concepts.hpp:98:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kthis is the location of the previous definition\n'}
+[29.683421] (ytcg_ground_based) StderrLine: {'line': b'   98 |         #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 1\n'}
+[29.684982] (ytcg_ground_based) StderrLine: {'line': b'      | \n'}
+[29.773211] (-) TimerEvent: {}
+[29.874731] (-) TimerEvent: {}
+[29.976339] (-) TimerEvent: {}
+[30.077923] (-) TimerEvent: {}
+[30.179378] (-) TimerEvent: {}
+[30.281087] (-) TimerEvent: {}
+[30.382664] (-) TimerEvent: {}
+[30.484189] (-) TimerEvent: {}
+[30.585686] (-) TimerEvent: {}
+[30.687303] (-) TimerEvent: {}
+[30.788887] (-) TimerEvent: {}
+[30.890476] (-) TimerEvent: {}
+[30.992109] (-) TimerEvent: {}
+[31.093692] (-) TimerEvent: {}
+[31.195242] (-) TimerEvent: {}
+[31.296901] (-) TimerEvent: {}
+[31.398502] (-) TimerEvent: {}
+[31.500157] (-) TimerEvent: {}
+[31.601805] (-) TimerEvent: {}
+[31.703378] (-) TimerEvent: {}
+[31.805057] (-) TimerEvent: {}
+[31.906605] (-) TimerEvent: {}
+[32.008249] (-) TimerEvent: {}
+[32.113107] (-) TimerEvent: {}
+[32.215252] (-) TimerEvent: {}
+[32.316843] (-) TimerEvent: {}
+[32.418389] (-) TimerEvent: {}
+[32.520750] (-) TimerEvent: {}
+[32.622955] (-) TimerEvent: {}
+[32.725232] (-) TimerEvent: {}
+[32.827455] (-) TimerEvent: {}
+[32.929702] (-) TimerEvent: {}
+[33.031952] (-) TimerEvent: {}
+[33.134140] (-) TimerEvent: {}
+[33.236528] (-) TimerEvent: {}
+[33.339511] (-) TimerEvent: {}
+[33.441937] (-) TimerEvent: {}
+[33.544229] (-) TimerEvent: {}
+[33.646354] (-) TimerEvent: {}
+[33.748682] (-) TimerEvent: {}
+[33.850940] (-) TimerEvent: {}
+[33.952926] (-) TimerEvent: {}
+[34.054391] (-) TimerEvent: {}
+[34.155969] (-) TimerEvent: {}
+[34.257591] (-) TimerEvent: {}
+[34.359176] (-) TimerEvent: {}
+[34.463257] (-) TimerEvent: {}
+[34.567366] (-) TimerEvent: {}
+[34.669663] (-) TimerEvent: {}
+[34.771850] (-) TimerEvent: {}
+[34.874162] (-) TimerEvent: {}
+[34.976335] (-) TimerEvent: {}
+[35.078618] (-) TimerEvent: {}
+[35.182743] (-) TimerEvent: {}
+[35.284428] (-) TimerEvent: {}
+[35.387016] (-) TimerEvent: {}
+[35.489182] (-) TimerEvent: {}
+[35.591391] (-) TimerEvent: {}
+[35.693700] (-) TimerEvent: {}
+[35.795093] (-) TimerEvent: {}
+[35.896649] (-) TimerEvent: {}
+[35.997945] (-) TimerEvent: {}
+[36.099491] (-) TimerEvent: {}
+[36.201157] (-) TimerEvent: {}
+[36.302648] (-) TimerEvent: {}
+[36.404750] (-) TimerEvent: {}
+[36.508967] (-) TimerEvent: {}
+[36.610345] (-) TimerEvent: {}
+[36.711971] (-) TimerEvent: {}
+[36.815071] (-) TimerEvent: {}
+[36.916332] (-) TimerEvent: {}
+[37.017955] (-) TimerEvent: {}
+[37.119612] (-) TimerEvent: {}
+[37.224781] (-) TimerEvent: {}
+[37.326490] (-) TimerEvent: {}
+[37.428006] (-) TimerEvent: {}
+[37.532225] (-) TimerEvent: {}
+[37.634569] (-) TimerEvent: {}
+[37.736883] (-) TimerEvent: {}
+[37.838470] (-) TimerEvent: {}
+[37.940395] (-) TimerEvent: {}
+[38.042005] (-) TimerEvent: {}
+[38.143612] (-) TimerEvent: {}
+[38.245235] (-) TimerEvent: {}
+[38.346909] (-) TimerEvent: {}
+[38.448410] (-) TimerEvent: {}
+[38.549879] (-) TimerEvent: {}
+[38.651383] (-) TimerEvent: {}
+[38.752921] (-) TimerEvent: {}
+[38.854485] (-) TimerEvent: {}
+[38.956094] (-) TimerEvent: {}
+[39.058000] (-) TimerEvent: {}
+[39.463337] (-) TimerEvent: {}
+[39.567344] (-) TimerEvent: {}
+[39.669593] (-) TimerEvent: {}
+[39.773899] (-) TimerEvent: {}
+[39.876397] (-) TimerEvent: {}
+[39.978524] (-) TimerEvent: {}
+[40.080717] (-) TimerEvent: {}
+[40.182205] (-) TimerEvent: {}
+[40.283869] (-) TimerEvent: {}
+[40.385356] (-) TimerEvent: {}
+[40.486425] (-) TimerEvent: {}
+[40.587422] (-) TimerEvent: {}
+[40.688460] (-) TimerEvent: {}
+[40.789513] (-) TimerEvent: {}
+[40.890532] (-) TimerEvent: {}
+[40.991585] (-) TimerEvent: {}
+[41.092667] (-) TimerEvent: {}
+[41.193776] (-) TimerEvent: {}
+[41.294955] (-) TimerEvent: {}
+[41.396082] (-) TimerEvent: {}
+[41.497123] (-) TimerEvent: {}
+[41.598167] (-) TimerEvent: {}
+[41.699237] (-) TimerEvent: {}
+[41.800354] (-) TimerEvent: {}
+[41.901407] (-) TimerEvent: {}
+[42.002458] (-) TimerEvent: {}
+[42.103614] (-) TimerEvent: {}
+[42.205132] (-) TimerEvent: {}
+[42.306705] (-) TimerEvent: {}
+[42.407871] (-) TimerEvent: {}
+[42.508998] (-) TimerEvent: {}
+[42.610104] (-) TimerEvent: {}
+[42.711233] (-) TimerEvent: {}
+[42.812391] (-) TimerEvent: {}
+[42.913456] (-) TimerEvent: {}
+[43.014537] (-) TimerEvent: {}
+[43.115607] (-) TimerEvent: {}
+[43.216730] (-) TimerEvent: {}
+[43.317824] (-) TimerEvent: {}
+[43.418906] (-) TimerEvent: {}
+[43.520035] (-) TimerEvent: {}
+[43.621150] (-) TimerEvent: {}
+[43.722292] (-) TimerEvent: {}
+[43.823396] (-) TimerEvent: {}
+[43.924527] (-) TimerEvent: {}
+[44.025604] (-) TimerEvent: {}
+[44.126719] (-) TimerEvent: {}
+[44.228007] (-) TimerEvent: {}
+[44.329141] (-) TimerEvent: {}
+[44.430259] (-) TimerEvent: {}
+[44.531343] (-) TimerEvent: {}
+[44.632473] (-) TimerEvent: {}
+[45.234348] (-) TimerEvent: {}
+[45.336185] (-) TimerEvent: {}
+[45.437739] (-) TimerEvent: {}
+[45.538826] (-) TimerEvent: {}
+[45.639950] (-) TimerEvent: {}
+[45.741174] (-) TimerEvent: {}
+[45.842779] (-) TimerEvent: {}
+[45.944399] (-) TimerEvent: {}
+[46.045948] (-) TimerEvent: {}
+[46.147522] (-) TimerEvent: {}
+[46.249133] (-) TimerEvent: {}
+[46.350724] (-) TimerEvent: {}
+[46.452407] (-) TimerEvent: {}
+[46.554011] (-) TimerEvent: {}
+[46.655688] (-) TimerEvent: {}
+[46.757279] (-) TimerEvent: {}
+[46.858605] (-) TimerEvent: {}
+[46.960154] (-) TimerEvent: {}
+[47.061773] (-) TimerEvent: {}
+[47.163413] (-) TimerEvent: {}
+[47.265067] (-) TimerEvent: {}
+[47.366702] (-) TimerEvent: {}
+[47.468389] (-) TimerEvent: {}
+[47.569968] (-) TimerEvent: {}
+[47.671571] (-) TimerEvent: {}
+[47.773257] (-) TimerEvent: {}
+[47.874890] (-) TimerEvent: {}
+[47.976691] (-) TimerEvent: {}
+[48.078316] (-) TimerEvent: {}
+[48.179923] (-) TimerEvent: {}
+[48.281877] (-) TimerEvent: {}
+[48.383481] (-) TimerEvent: {}
+[48.485086] (-) TimerEvent: {}
+[48.586762] (-) TimerEvent: {}
+[48.688545] (-) TimerEvent: {}
+[48.790241] (-) TimerEvent: {}
+[48.891969] (-) TimerEvent: {}
+[48.993625] (-) TimerEvent: {}
+[49.095243] (-) TimerEvent: {}
+[49.196932] (-) TimerEvent: {}
+[49.298628] (-) TimerEvent: {}
+[49.400361] (-) TimerEvent: {}
+[49.502133] (-) TimerEvent: {}
+[49.604410] (-) TimerEvent: {}
+[49.706887] (-) TimerEvent: {}
+[49.812682] (-) TimerEvent: {}
+[49.914762] (-) TimerEvent: {}
+[50.016265] (-) TimerEvent: {}
+[50.117384] (-) TimerEvent: {}
+[50.218492] (-) TimerEvent: {}
+[50.319593] (-) TimerEvent: {}
+[50.420723] (-) TimerEvent: {}
+[50.521816] (-) TimerEvent: {}
+[50.622898] (-) TimerEvent: {}
+[50.724073] (-) TimerEvent: {}
+[50.825430] (-) TimerEvent: {}
+[50.927037] (-) TimerEvent: {}
+[51.029318] (-) TimerEvent: {}
+[51.130844] (-) TimerEvent: {}
+[51.232350] (-) TimerEvent: {}
+[51.333919] (-) TimerEvent: {}
+[51.435420] (-) TimerEvent: {}
+[51.537077] (-) TimerEvent: {}
+[51.638640] (-) TimerEvent: {}
+[51.740873] (-) TimerEvent: {}
+[51.842112] (-) TimerEvent: {}
+[51.943854] (-) TimerEvent: {}
+[52.048252] (-) TimerEvent: {}
+[52.149665] (-) TimerEvent: {}
+[52.250708] (-) TimerEvent: {}
+[52.351732] (-) TimerEvent: {}
+[52.452742] (-) TimerEvent: {}
+[52.553761] (-) TimerEvent: {}
+[52.654761] (-) TimerEvent: {}
+[52.755736] (-) TimerEvent: {}
+[52.856572] (-) TimerEvent: {}
+[52.957474] (-) TimerEvent: {}
+[53.058470] (-) TimerEvent: {}
+[53.159274] (-) TimerEvent: {}
+[53.260184] (-) TimerEvent: {}
+[53.360949] (-) TimerEvent: {}
+[53.461857] (-) TimerEvent: {}
+[53.562749] (-) TimerEvent: {}
+[53.663607] (-) TimerEvent: {}
+[53.764601] (-) TimerEvent: {}
+[53.865391] (-) TimerEvent: {}
+[53.966310] (-) TimerEvent: {}
+[54.067045] (-) TimerEvent: {}
+[54.167999] (-) TimerEvent: {}
+[54.268880] (-) TimerEvent: {}
+[54.369725] (-) TimerEvent: {}
+[54.470534] (-) TimerEvent: {}
+[54.571591] (-) TimerEvent: {}
+[54.673127] (-) TimerEvent: {}
+[67.280344] (-) TimerEvent: {}
+[67.381552] (-) TimerEvent: {}
+[67.482987] (-) TimerEvent: {}
+[67.584704] (-) TimerEvent: {}
+[67.686710] (-) TimerEvent: {}
+[67.788339] (-) TimerEvent: {}
+[67.889922] (-) TimerEvent: {}
+[67.991536] (-) TimerEvent: {}
+[68.093222] (-) TimerEvent: {}
+[68.194718] (-) TimerEvent: {}
+[68.295970] (-) TimerEvent: {}
+[68.397959] (-) TimerEvent: {}
+[68.500038] (-) TimerEvent: {}
+[68.601741] (-) TimerEvent: {}
+[68.703251] (-) TimerEvent: {}
+[68.804859] (-) TimerEvent: {}
+[68.906472] (-) TimerEvent: {}
+[69.008022] (-) TimerEvent: {}
+[69.109639] (-) TimerEvent: {}
+[69.211154] (-) TimerEvent: {}
+[69.312773] (-) TimerEvent: {}
+[69.414480] (-) TimerEvent: {}
+[69.517361] (-) TimerEvent: {}
+[69.618845] (-) TimerEvent: {}
+[69.720345] (-) TimerEvent: {}
+[69.821635] (-) TimerEvent: {}
+[69.922811] (-) TimerEvent: {}
+[70.023954] (-) TimerEvent: {}
+[70.125081] (-) TimerEvent: {}
+[70.226206] (-) TimerEvent: {}
+[70.327322] (-) TimerEvent: {}
+[70.428517] (-) TimerEvent: {}
+[70.529605] (-) TimerEvent: {}
+[70.630723] (-) TimerEvent: {}
+[70.731845] (-) TimerEvent: {}
+[70.832960] (-) TimerEvent: {}
+[70.934029] (-) TimerEvent: {}
+[71.035139] (-) TimerEvent: {}
+[71.136240] (-) TimerEvent: {}
+[71.237353] (-) TimerEvent: {}
+[71.338443] (-) TimerEvent: {}
+[71.439536] (-) TimerEvent: {}
+[71.540649] (-) TimerEvent: {}
+[71.641761] (-) TimerEvent: {}
+[71.742872] (-) TimerEvent: {}
+[71.844041] (-) TimerEvent: {}
+[71.945118] (-) TimerEvent: {}
+[72.046180] (-) TimerEvent: {}
+[72.147239] (-) TimerEvent: {}
+[72.248382] (-) TimerEvent: {}
+[72.349462] (-) TimerEvent: {}
+[72.450602] (-) TimerEvent: {}
+[85.236716] (-) TimerEvent: {}
+[85.339239] (-) TimerEvent: {}
+[85.441068] (-) TimerEvent: {}
+[85.542756] (-) TimerEvent: {}
+[85.645101] (-) TimerEvent: {}
+[85.747419] (-) TimerEvent: {}
+[85.849655] (-) TimerEvent: {}
+[85.951251] (-) TimerEvent: {}
+[86.053021] (-) TimerEvent: {}
+[86.154599] (-) TimerEvent: {}
+[86.256256] (-) TimerEvent: {}
+[86.317051] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kytcg::BsCommPublisher::BsCommPublisher(ytcg::CommProtocol)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[86.346403] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:58:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kstd::chrono::duration<long int, std::ratio<1, 1000> >::duration(double)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.348195] (ytcg_ground_based) StderrLine: {'line': b'   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ\x1b[01;31m\x1b[K)\x1b[m\x1b[K, std::bind(&BsCommPublisher::snr_callback, this)\n'}
+[86.350574] (ytcg_ground_based) StderrLine: {'line': b'      |                                                          \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[86.352782] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/mutex:39\x1b[m\x1b[K,\n'}
+[86.354419] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/future:38\x1b[m\x1b[K,\n'}
+[86.355990] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/executors.hpp:18\x1b[m\x1b[K,\n'}
+[86.357437] (-) TimerEvent: {}
+[86.358791] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146\x1b[m\x1b[K,\n'}
+[86.360748] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7\x1b[m\x1b[K,\n'}
+[86.362164] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2\x1b[m\x1b[K:\n'}
+[86.363685] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:338:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Rep2, class _Period2, class> constexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.365325] (ytcg_ground_based) StderrLine: {'line': b'  338 |    constexpr \x1b[01;36m\x1b[Kduration\x1b[m\x1b[K(const duration<_Rep2, _Period2>& __d)\n'}
+[86.366807] (ytcg_ground_based) StderrLine: {'line': b'      |              \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[86.368470] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:338:14:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[86.370028] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:58:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  mismatched types \xe2\x80\x98\x1b[01m\x1b[Kconst std::chrono::duration<_Rep1, _Period1>\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.371393] (ytcg_ground_based) StderrLine: {'line': b'   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ\x1b[01;36m\x1b[K)\x1b[m\x1b[K, std::bind(&BsCommPublisher::snr_callback, this)\n'}
+[86.373220] (ytcg_ground_based) StderrLine: {'line': b'      |                                                          \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[86.374734] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/mutex:39\x1b[m\x1b[K,\n'}
+[86.376467] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/future:38\x1b[m\x1b[K,\n'}
+[86.378025] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/executors.hpp:18\x1b[m\x1b[K,\n'}
+[86.379538] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146\x1b[m\x1b[K,\n'}
+[86.381222] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7\x1b[m\x1b[K,\n'}
+[86.382927] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2\x1b[m\x1b[K:\n'}
+[86.384605] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:331:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class _Rep2, class> constexpr std::chrono::duration<_Rep, _Period>::duration(const _Rep2&)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.386196] (ytcg_ground_based) StderrLine: {'line': b'  331 |    constexpr explicit \x1b[01;36m\x1b[Kduration\x1b[m\x1b[K(const _Rep2& __rep)\n'}
+[86.388046] (ytcg_ground_based) StderrLine: {'line': b'      |                       \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[86.389680] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:331:23:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  template argument deduction/substitution failed:\n'}
+[86.391227] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/bits/move.h:55\x1b[m\x1b[K,\n'}
+[86.393149] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/bits/stl_pair.h:59\x1b[m\x1b[K,\n'}
+[86.394662] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/utility:70\x1b[m\x1b[K,\n'}
+[86.396256] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/algorithm:60\x1b[m\x1b[K,\n'}
+[86.397837] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rosidl_runtime_cpp/bounded_vector.hpp:18\x1b[m\x1b[K,\n'}
+[86.399347] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/std_msgs/msg/detail/multi_array_dimension__struct.hpp:8\x1b[m\x1b[K,\n'}
+[86.400951] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/std_msgs/msg/multi_array_dimension.hpp:7\x1b[m\x1b[K,\n'}
+[86.402302] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:2\x1b[m\x1b[K,\n'}
+[86.403348] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2\x1b[m\x1b[K:\n'}
+[86.404519] (ytcg_ground_based) StderrLine: {'line': b'/usr/include/c++/9/type_traits: In substitution of \xe2\x80\x98\x1b[01m\x1b[Ktemplate<class ... _Cond> using _Require = typename std::enable_if<std::__and_< <template-parameter-1-1> >::value>::type [with _Cond = {std::is_convertible<const double&, long int>, std::__or_<std::chrono::treat_as_floating_point<long int>, std::__not_<std::chrono::treat_as_floating_point<double> > >}]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[86.405644] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:328:27:\x1b[m\x1b[K   required from here\n'}
+[86.406721] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/type_traits:2048:11:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno type named \xe2\x80\x98\x1b[01m\x1b[Ktype\x1b[m\x1b[K\xe2\x80\x99 in \xe2\x80\x98\x1b[01m\x1b[Kstruct std::enable_if<false, void>\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.408088] (ytcg_ground_based) StderrLine: {'line': b' 2048 |     using \x1b[01;31m\x1b[K_Require\x1b[m\x1b[K = typename enable_if<__and_<_Cond...>::value>::type;\n'}
+[86.409577] (ytcg_ground_based) StderrLine: {'line': b'      |           \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[86.410730] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/9/mutex:39\x1b[m\x1b[K,\n'}
+[86.411942] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/9/future:38\x1b[m\x1b[K,\n'}
+[86.413089] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/executors.hpp:18\x1b[m\x1b[K,\n'}
+[86.414284] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146\x1b[m\x1b[K,\n'}
+[86.415386] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:7\x1b[m\x1b[K,\n'}
+[86.416612] (ytcg_ground_based) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2\x1b[m\x1b[K:\n'}
+[86.418169] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:324:2:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kconstexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&) [with _Rep = long int; _Period = std::ratio<1, 1000>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.419592] (ytcg_ground_based) StderrLine: {'line': b'  324 |  \x1b[01;36m\x1b[Kduration\x1b[m\x1b[K(const duration&) = default;\n'}
+[86.421175] (ytcg_ground_based) StderrLine: {'line': b'      |  \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[86.422659] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:324:11:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Kdouble\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst std::chrono::duration<long int, std::ratio<1, 1000> >&\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.424295] (ytcg_ground_based) StderrLine: {'line': b'  324 |  duration(\x1b[01;36m\x1b[Kconst duration&\x1b[m\x1b[K) = default;\n'}
+[86.425844] (ytcg_ground_based) StderrLine: {'line': b'      |           \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[86.427332] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:322:12:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kstd::chrono::duration<_Rep, _Period>::duration() [with _Rep = long int; _Period = std::ratio<1, 1000>]\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.428985] (ytcg_ground_based) StderrLine: {'line': b'  322 |  constexpr \x1b[01;36m\x1b[Kduration\x1b[m\x1b[K() = default;\n'}
+[86.430520] (ytcg_ground_based) StderrLine: {'line': b'      |            \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[86.432265] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/9/chrono:322:12:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  candidate expects 0 arguments, 1 provided\n'}
+[86.433790] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:68:89:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Ksnr_callback\x1b[m\x1b[K\xe2\x80\x99 is not a member of \xe2\x80\x98\x1b[01m\x1b[Kytcg::BsCommPublisher\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.435303] (ytcg_ground_based) StderrLine: {'line': b'   68 |         std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ), std::bind(&BsCommPublisher::\x1b[01;31m\x1b[Ksnr_callback\x1b[m\x1b[K, this)\n'}
+[86.437036] (ytcg_ground_based) StderrLine: {'line': b'      |                                                                                         \x1b[01;31m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[86.438569] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:\x1b[m\x1b[K At global scope:\n'}
+[86.440210] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:81:6:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno declaration matches \xe2\x80\x98\x1b[01m\x1b[Kvoid ytcg::BsCommPublisher::snr_callback()\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.441780] (ytcg_ground_based) StderrLine: {'line': b'   81 | void \x1b[01;31m\x1b[KBsCommPublisher\x1b[m\x1b[K::snr_callback(void) {\n'}
+[86.443328] (ytcg_ground_based) StderrLine: {'line': b'      |      \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[86.444877] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:81:6:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kno functions named \xe2\x80\x98\x1b[01m\x1b[Kvoid ytcg::BsCommPublisher::snr_callback()\x1b[m\x1b[K\xe2\x80\x99\n'}
+[86.446478] (ytcg_ground_based) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_snr.cpp:2\x1b[m\x1b[K:\n'}
+[86.448084] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/../include/chw_bs_snr.hpp:55:11:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kclass ytcg::BsCommPublisher\x1b[m\x1b[K\xe2\x80\x99 defined here\n'}
+[86.449637] (ytcg_ground_based) StderrLine: {'line': b'   55 |     class \x1b[01;36m\x1b[KBsCommPublisher\x1b[m\x1b[K : public rclcpp::Node {\n'}
+[86.451155] (ytcg_ground_based) StderrLine: {'line': b'      |           \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[86.457780] (-) TimerEvent: {}
+[86.559408] (-) TimerEvent: {}
+[86.661351] (-) TimerEvent: {}
+[86.766161] (-) TimerEvent: {}
+[86.868591] (-) TimerEvent: {}
+[86.971090] (-) TimerEvent: {}
+[87.073070] (-) TimerEvent: {}
+[87.174916] (-) TimerEvent: {}
+[87.276438] (-) TimerEvent: {}
+[87.377582] (-) TimerEvent: {}
+[87.478686] (-) TimerEvent: {}
+[87.579796] (-) TimerEvent: {}
+[87.680905] (-) TimerEvent: {}
+[87.782002] (-) TimerEvent: {}
+[87.883219] (-) TimerEvent: {}
+[87.984791] (-) TimerEvent: {}
+[88.086460] (-) TimerEvent: {}
+[88.188188] (-) TimerEvent: {}
+[88.289847] (-) TimerEvent: {}
+[88.391504] (-) TimerEvent: {}
+[88.493264] (-) TimerEvent: {}
+[88.594959] (-) TimerEvent: {}
+[88.696673] (-) TimerEvent: {}
+[88.798321] (-) TimerEvent: {}
+[88.900063] (-) TimerEvent: {}
+[89.001758] (-) TimerEvent: {}
+[89.103416] (-) TimerEvent: {}
+[89.205146] (-) TimerEvent: {}
+[89.306792] (-) TimerEvent: {}
+[89.408437] (-) TimerEvent: {}
+[89.510041] (-) TimerEvent: {}
+[89.611728] (-) TimerEvent: {}
+[89.713416] (-) TimerEvent: {}
+[89.815053] (-) TimerEvent: {}
+[89.916794] (-) TimerEvent: {}
+[90.018398] (-) TimerEvent: {}
+[90.120060] (-) TimerEvent: {}
+[90.221700] (-) TimerEvent: {}
+[90.323370] (-) TimerEvent: {}
+[90.425180] (-) TimerEvent: {}
+[105.008733] (-) TimerEvent: {}
+[105.109871] (-) TimerEvent: {}
+[105.211006] (-) TimerEvent: {}
+[105.312198] (-) TimerEvent: {}
+[105.413334] (-) TimerEvent: {}
+[105.514430] (-) TimerEvent: {}
+[105.615509] (-) TimerEvent: {}
+[105.716632] (-) TimerEvent: {}
+[105.817719] (-) TimerEvent: {}
+[105.918806] (-) TimerEvent: {}
+[106.019945] (-) TimerEvent: {}
+[106.121036] (-) TimerEvent: {}
+[106.222106] (-) TimerEvent: {}
+[106.323272] (-) TimerEvent: {}
+[106.424820] (-) TimerEvent: {}
+[106.526690] (-) TimerEvent: {}
+[106.628120] (-) TimerEvent: {}
+[106.729516] (-) TimerEvent: {}
+[106.830861] (-) TimerEvent: {}
+[106.932068] (-) TimerEvent: {}
+[107.033186] (-) TimerEvent: {}
+[107.134407] (-) TimerEvent: {}
+[107.265084] (-) TimerEvent: {}
+[107.366697] (-) TimerEvent: {}
+[107.467932] (-) TimerEvent: {}
+[107.569658] (-) TimerEvent: {}
+[107.672189] (-) TimerEvent: {}
+[107.774507] (-) TimerEvent: {}
+[107.879849] (-) TimerEvent: {}
+[107.982166] (-) TimerEvent: {}
+[108.083163] (-) TimerEvent: {}
+[108.184073] (-) TimerEvent: {}
+[108.285225] (-) TimerEvent: {}
+[108.386624] (-) TimerEvent: {}
+[108.487784] (-) TimerEvent: {}
+[108.588845] (-) TimerEvent: {}
+[108.689929] (-) TimerEvent: {}
+[108.791268] (-) TimerEvent: {}
+[108.892354] (-) TimerEvent: {}
+[108.993343] (-) TimerEvent: {}
+[109.094364] (-) TimerEvent: {}
+[109.195306] (-) TimerEvent: {}
+[109.296355] (-) TimerEvent: {}
+[109.397411] (-) TimerEvent: {}
+[109.498745] (-) TimerEvent: {}
+[109.599856] (-) TimerEvent: {}
+[109.700984] (-) TimerEvent: {}
+[109.802072] (-) TimerEvent: {}
+[109.903140] (-) TimerEvent: {}
+[110.004256] (-) TimerEvent: {}
+[110.105263] (-) TimerEvent: {}
+[110.206126] (-) TimerEvent: {}
+[110.306977] (-) TimerEvent: {}
+[110.407875] (-) TimerEvent: {}
+[110.508805] (-) TimerEvent: {}
+[110.609795] (-) TimerEvent: {}
+[110.710707] (-) TimerEvent: {}
+[110.811586] (-) TimerEvent: {}
+[110.912476] (-) TimerEvent: {}
+[111.013399] (-) TimerEvent: {}
+[111.114399] (-) TimerEvent: {}
+[111.215446] (-) TimerEvent: {}
+[111.317025] (-) TimerEvent: {}
+[111.418401] (-) TimerEvent: {}
+[111.519526] (-) TimerEvent: {}
+[111.620931] (-) TimerEvent: {}
+[111.722552] (-) TimerEvent: {}
+[111.824105] (-) TimerEvent: {}
+[111.925551] (-) TimerEvent: {}
+[112.027229] (-) TimerEvent: {}
+[112.128566] (-) TimerEvent: {}
+[112.229550] (-) TimerEvent: {}
+[112.330425] (-) TimerEvent: {}
+[121.858709] (-) TimerEvent: {}
+[122.022921] (-) TimerEvent: {}
+[122.124538] (-) TimerEvent: {}
+[122.225969] (-) TimerEvent: {}
+[122.327405] (-) TimerEvent: {}
+[122.428885] (-) TimerEvent: {}
+[122.530087] (-) TimerEvent: {}
+[122.631479] (-) TimerEvent: {}
+[122.733077] (-) TimerEvent: {}
+[122.834468] (-) TimerEvent: {}
+[122.935796] (-) TimerEvent: {}
+[123.037858] (-) TimerEvent: {}
+[123.139367] (-) TimerEvent: {}
+[123.240687] (-) TimerEvent: {}
+[123.342085] (-) TimerEvent: {}
+[123.443446] (-) TimerEvent: {}
+[123.544824] (-) TimerEvent: {}
+[123.646174] (-) TimerEvent: {}
+[123.748158] (-) TimerEvent: {}
+[123.849517] (-) TimerEvent: {}
+[123.951483] (-) TimerEvent: {}
+[124.053201] (-) TimerEvent: {}
+[124.154572] (-) TimerEvent: {}
+[124.256812] (-) TimerEvent: {}
+[124.358077] (-) TimerEvent: {}
+[124.459419] (-) TimerEvent: {}
+[124.560746] (-) TimerEvent: {}
+[124.662011] (-) TimerEvent: {}
+[124.763186] (-) TimerEvent: {}
+[124.864608] (-) TimerEvent: {}
+[124.966134] (-) TimerEvent: {}
+[125.067569] (-) TimerEvent: {}
+[125.168946] (-) TimerEvent: {}
+[125.270410] (-) TimerEvent: {}
+[125.371847] (-) TimerEvent: {}
+[125.473074] (-) TimerEvent: {}
+[125.574305] (-) TimerEvent: {}
+[125.675792] (-) TimerEvent: {}
+[125.777597] (-) TimerEvent: {}
+[125.879489] (-) TimerEvent: {}
+[125.982103] (-) TimerEvent: {}
+[126.083591] (-) TimerEvent: {}
+[126.185935] (-) TimerEvent: {}
+[126.287506] (-) TimerEvent: {}
+[126.389091] (-) TimerEvent: {}
+[126.490577] (-) TimerEvent: {}
+[126.592170] (-) TimerEvent: {}
+[126.693621] (-) TimerEvent: {}
+[126.795317] (-) TimerEvent: {}
+[126.900343] (-) TimerEvent: {}
+[127.039416] (-) TimerEvent: {}
+[127.141271] (-) TimerEvent: {}
+[127.242785] (-) TimerEvent: {}
+[127.344199] (-) TimerEvent: {}
+[127.445804] (-) TimerEvent: {}
+[127.547492] (-) TimerEvent: {}
+[127.649137] (-) TimerEvent: {}
+[127.758625] (-) TimerEvent: {}
+[127.875884] (-) TimerEvent: {}
+[127.981256] (-) TimerEvent: {}
+[128.082813] (-) TimerEvent: {}
+[128.184440] (-) TimerEvent: {}
+[128.285664] (-) TimerEvent: {}
+[128.386745] (-) TimerEvent: {}
+[128.487750] (-) TimerEvent: {}
+[128.588642] (-) TimerEvent: {}
+[130.733353] (-) TimerEvent: {}
+[130.835059] (-) TimerEvent: {}
+[130.936446] (-) TimerEvent: {}
+[131.037834] (-) TimerEvent: {}
+[131.139140] (-) TimerEvent: {}
+[131.240654] (-) TimerEvent: {}
+[131.342096] (-) TimerEvent: {}
+[131.443520] (-) TimerEvent: {}
+[131.545133] (-) TimerEvent: {}
+[131.646627] (-) TimerEvent: {}
+[131.748167] (-) TimerEvent: {}
+[131.849730] (-) TimerEvent: {}
+[131.951571] (-) TimerEvent: {}
+[132.066678] (-) TimerEvent: {}
+[132.168234] (-) TimerEvent: {}
+[132.244713] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ytcg::BsCommPublisher::queue_emptier_callback()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[132.287797] (-) TimerEvent: {}
+[132.289049] (ytcg_ground_based) StderrLine: {'line': b"\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:111:34:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunknown escape sequence: '\\.'\n"}
+[132.290590] (ytcg_ground_based) StderrLine: {'line': b'  111 |     const boost::regex my_filter(\x1b[01;35m\x1b[K"image.*\\.jpg"\x1b[m\x1b[K);\n'}
+[132.291714] (ytcg_ground_based) StderrLine: {'line': b'      |                                  \x1b[01;35m\x1b[K^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[132.388124] (-) TimerEvent: {}
+[132.471112] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid ytcg::BsCommPublisher::timer_callback()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[132.472619] (ytcg_ground_based) StderrLine: {'line': b'\x1b[01m\x1b[K/home/pi/ros2_ws/src/ytcg_ground-based/src/chw_bs_comm.cpp:200:49:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kconst size_type\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kconst long unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[132.479054] (ytcg_ground_based) StderrLine: {'line': b'  200 |         if (\x1b[01;35m\x1b[K(rx_pos = output_.find("radio_rx")) != std::string::npos\x1b[m\x1b[K) {\n'}
+[132.480764] (ytcg_ground_based) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[132.488431] (-) TimerEvent: {}
+[132.590101] (-) TimerEvent: {}
+[132.692601] (-) TimerEvent: {}
+[132.794820] (-) TimerEvent: {}
+[132.896372] (-) TimerEvent: {}
+[132.997469] (-) TimerEvent: {}
+[133.098502] (-) TimerEvent: {}
+[133.199471] (-) TimerEvent: {}
+[133.300446] (-) TimerEvent: {}
+[133.401465] (-) TimerEvent: {}
+[133.502465] (-) TimerEvent: {}
+[133.603450] (-) TimerEvent: {}
+[133.704488] (-) TimerEvent: {}
+[133.805470] (-) TimerEvent: {}
+[133.906496] (-) TimerEvent: {}
+[134.007515] (-) TimerEvent: {}
+[134.108478] (-) TimerEvent: {}
+[134.209436] (-) TimerEvent: {}
+[134.310366] (-) TimerEvent: {}
+[134.411364] (-) TimerEvent: {}
+[134.512406] (-) TimerEvent: {}
+[134.613426] (-) TimerEvent: {}
+[134.714532] (-) TimerEvent: {}
+[134.815889] (-) TimerEvent: {}
+[134.917001] (-) TimerEvent: {}
+[135.018082] (-) TimerEvent: {}
+[135.119145] (-) TimerEvent: {}
+[135.220191] (-) TimerEvent: {}
+[135.321219] (-) TimerEvent: {}
+[135.422293] (-) TimerEvent: {}
+[135.523351] (-) TimerEvent: {}
+[135.624538] (-) TimerEvent: {}
+[135.725856] (-) TimerEvent: {}
+[135.826991] (-) TimerEvent: {}
+[135.928179] (-) TimerEvent: {}
+[136.029316] (-) TimerEvent: {}
+[136.130445] (-) TimerEvent: {}
+[136.231578] (-) TimerEvent: {}
+[136.332706] (-) TimerEvent: {}
+[136.433824] (-) TimerEvent: {}
+[136.534919] (-) TimerEvent: {}
+[136.636044] (-) TimerEvent: {}
+[136.737200] (-) TimerEvent: {}
+[136.838524] (-) TimerEvent: {}
+[136.939655] (-) TimerEvent: {}
+[137.040782] (-) TimerEvent: {}
+[137.142316] (-) TimerEvent: {}
+[151.873716] (-) TimerEvent: {}
+[151.975235] (-) TimerEvent: {}
+[152.076898] (-) TimerEvent: {}
+[152.178505] (-) TimerEvent: {}
+[152.280168] (-) TimerEvent: {}
+[152.381745] (-) TimerEvent: {}
+[152.483423] (-) TimerEvent: {}
+[152.589302] (-) TimerEvent: {}
+[152.691098] (-) TimerEvent: {}
+[152.792666] (-) TimerEvent: {}
+[152.894271] (-) TimerEvent: {}
+[152.995793] (-) TimerEvent: {}
+[153.097292] (-) TimerEvent: {}
+[153.203593] (-) TimerEvent: {}
+[153.314464] (-) TimerEvent: {}
+[153.416180] (-) TimerEvent: {}
+[153.517664] (-) TimerEvent: {}
+[153.619297] (-) TimerEvent: {}
+[153.721038] (-) TimerEvent: {}
+[153.822513] (-) TimerEvent: {}
+[153.924021] (-) TimerEvent: {}
+[154.025723] (-) TimerEvent: {}
+[154.127150] (-) TimerEvent: {}
+[154.228475] (-) TimerEvent: {}
+[154.329967] (-) TimerEvent: {}
+[154.431547] (-) TimerEvent: {}
+[154.533247] (-) TimerEvent: {}
+[154.634713] (-) TimerEvent: {}
+[154.736120] (-) TimerEvent: {}
+[154.837311] (-) TimerEvent: {}
+[154.938795] (-) TimerEvent: {}
+[155.040147] (-) TimerEvent: {}
+[155.141541] (-) TimerEvent: {}
+[155.242900] (-) TimerEvent: {}
+[155.344490] (-) TimerEvent: {}
+[155.446132] (-) TimerEvent: {}
+[155.547677] (-) TimerEvent: {}
+[155.649222] (-) TimerEvent: {}
+[155.751739] (-) TimerEvent: {}
+[155.853338] (-) TimerEvent: {}
+[155.954488] (-) TimerEvent: {}
+[156.055604] (-) TimerEvent: {}
+[156.156727] (-) TimerEvent: {}
+[156.257926] (-) TimerEvent: {}
+[156.359551] (-) TimerEvent: {}
+[156.461304] (-) TimerEvent: {}
+[156.562939] (-) TimerEvent: {}
+[156.664535] (-) TimerEvent: {}
+[156.766219] (-) TimerEvent: {}
+[156.867483] (-) TimerEvent: {}
+[156.968653] (-) TimerEvent: {}
+[157.069771] (-) TimerEvent: {}
+[157.170879] (-) TimerEvent: {}
+[157.272004] (-) TimerEvent: {}
+[157.373134] (-) TimerEvent: {}
+[157.474219] (-) TimerEvent: {}
+[157.575411] (-) TimerEvent: {}
+[157.676863] (-) TimerEvent: {}
+[165.582583] (-) TimerEvent: {}
+[165.684414] (-) TimerEvent: {}
+[165.786045] (-) TimerEvent: {}
+[165.887504] (-) TimerEvent: {}
+[165.989274] (-) TimerEvent: {}
+[166.090739] (-) TimerEvent: {}
+[166.192328] (-) TimerEvent: {}
+[166.293541] (-) TimerEvent: {}
+[166.395148] (-) TimerEvent: {}
+[166.496467] (-) TimerEvent: {}
+[166.597888] (-) TimerEvent: {}
+[166.699101] (-) TimerEvent: {}
+[166.801563] (-) TimerEvent: {}
+[166.902729] (-) TimerEvent: {}
+[167.003929] (-) TimerEvent: {}
+[167.105265] (-) TimerEvent: {}
+[167.208319] (-) TimerEvent: {}
+[167.309901] (-) TimerEvent: {}
+[167.411124] (-) TimerEvent: {}
+[167.512581] (-) TimerEvent: {}
+[167.616377] (-) TimerEvent: {}
+[167.717661] (-) TimerEvent: {}
+[167.818936] (-) TimerEvent: {}
+[167.920376] (-) TimerEvent: {}
+[168.021608] (-) TimerEvent: {}
+[168.122921] (-) TimerEvent: {}
+[168.224386] (-) TimerEvent: {}
+[168.325706] (-) TimerEvent: {}
+[168.427198] (-) TimerEvent: {}
+[168.528701] (-) TimerEvent: {}
+[168.630307] (-) TimerEvent: {}
+[168.731601] (-) TimerEvent: {}
+[168.832955] (-) TimerEvent: {}
+[168.934171] (-) TimerEvent: {}
+[169.035591] (-) TimerEvent: {}
+[169.137042] (-) TimerEvent: {}
+[169.238165] (-) TimerEvent: {}
+[169.339306] (-) TimerEvent: {}
+[169.440466] (-) TimerEvent: {}
+[169.541542] (-) TimerEvent: {}
+[169.642647] (-) TimerEvent: {}
+[169.743764] (-) TimerEvent: {}
+[169.844846] (-) TimerEvent: {}
+[169.945941] (-) TimerEvent: {}
+[170.047005] (-) TimerEvent: {}
+[170.148153] (-) TimerEvent: {}
+[170.249205] (-) TimerEvent: {}
+[170.350230] (-) TimerEvent: {}
+[170.451335] (-) TimerEvent: {}
+[170.552465] (-) TimerEvent: {}
+[170.653579] (-) TimerEvent: {}
+[176.732997] (-) TimerEvent: {}
+[176.834732] (-) TimerEvent: {}
+[176.936282] (-) TimerEvent: {}
+[177.037926] (-) TimerEvent: {}
+[177.139441] (-) TimerEvent: {}
+[177.240877] (-) TimerEvent: {}
+[177.342325] (-) TimerEvent: {}
+[177.443740] (-) TimerEvent: {}
+[177.544927] (-) TimerEvent: {}
+[177.646197] (-) TimerEvent: {}
+[177.747585] (-) TimerEvent: {}
+[177.849025] (-) TimerEvent: {}
+[177.950334] (-) TimerEvent: {}
+[178.051651] (-) TimerEvent: {}
+[178.156369] (-) TimerEvent: {}
+[178.257950] (-) TimerEvent: {}
+[178.359456] (-) TimerEvent: {}
+[178.461142] (-) TimerEvent: {}
+[178.562408] (-) TimerEvent: {}
+[178.663883] (-) TimerEvent: {}
+[178.765174] (-) TimerEvent: {}
+[178.866469] (-) TimerEvent: {}
+[178.967731] (-) TimerEvent: {}
+[179.069118] (-) TimerEvent: {}
+[179.170813] (-) TimerEvent: {}
+[179.272545] (-) TimerEvent: {}
+[179.374161] (-) TimerEvent: {}
+[179.475936] (-) TimerEvent: {}
+[179.578065] (-) TimerEvent: {}
+[179.679673] (-) TimerEvent: {}
+[179.781247] (-) TimerEvent: {}
+[179.883095] (-) TimerEvent: {}
+[179.985025] (-) TimerEvent: {}
+[180.087179] (-) TimerEvent: {}
+[180.188563] (-) TimerEvent: {}
+[180.289824] (-) TimerEvent: {}
+[180.391155] (-) TimerEvent: {}
+[180.492498] (-) TimerEvent: {}
+[180.593906] (-) TimerEvent: {}
+[180.695693] (-) TimerEvent: {}
+[180.797045] (-) TimerEvent: {}
+[180.898231] (-) TimerEvent: {}
+[180.999819] (-) TimerEvent: {}
+[181.101354] (-) TimerEvent: {}
+[181.202773] (-) TimerEvent: {}
+[181.304534] (-) TimerEvent: {}
+[181.407275] (-) TimerEvent: {}
+[181.509289] (-) TimerEvent: {}
+[181.610789] (-) TimerEvent: {}
+[181.712278] (-) TimerEvent: {}
+[181.813388] (-) TimerEvent: {}
+[181.914549] (-) TimerEvent: {}
+[182.016540] (-) TimerEvent: {}
+[182.118044] (-) TimerEvent: {}
+[182.219726] (-) TimerEvent: {}
+[182.321408] (-) TimerEvent: {}
+[182.422732] (-) TimerEvent: {}
+[183.961510] (-) TimerEvent: {}
+[184.062641] (-) TimerEvent: {}
+[184.163788] (-) TimerEvent: {}
+[184.264980] (-) TimerEvent: {}
+[184.366090] (-) TimerEvent: {}
+[184.467175] (-) TimerEvent: {}
+[184.568229] (-) TimerEvent: {}
+[184.669220] (-) TimerEvent: {}
+[184.770225] (-) TimerEvent: {}
+[184.871347] (-) TimerEvent: {}
+[184.972812] (-) TimerEvent: {}
+[185.074283] (-) TimerEvent: {}
+[185.175838] (-) TimerEvent: {}
+[185.277400] (-) TimerEvent: {}
+[185.378998] (-) TimerEvent: {}
+[185.480624] (-) TimerEvent: {}
+[185.582186] (-) TimerEvent: {}
+[185.683853] (-) TimerEvent: {}
+[185.785639] (-) TimerEvent: {}
+[185.887211] (-) TimerEvent: {}
+[185.988729] (-) TimerEvent: {}
+[186.090213] (-) TimerEvent: {}
+[186.191719] (-) TimerEvent: {}
+[186.293170] (-) TimerEvent: {}
+[186.394654] (-) TimerEvent: {}
+[186.496246] (-) TimerEvent: {}
+[186.597720] (-) TimerEvent: {}
+[186.699249] (-) TimerEvent: {}
+[186.800935] (-) TimerEvent: {}
+[186.902512] (-) TimerEvent: {}
+[187.004131] (-) TimerEvent: {}
+[187.105766] (-) TimerEvent: {}
+[187.207546] (-) TimerEvent: {}
+[187.309059] (-) TimerEvent: {}
+[187.410652] (-) TimerEvent: {}
+[187.512278] (-) TimerEvent: {}
+[187.613815] (-) TimerEvent: {}
+[187.715310] (-) TimerEvent: {}
+[187.816841] (-) TimerEvent: {}
+[187.918382] (-) TimerEvent: {}
+[188.019941] (-) TimerEvent: {}
+[188.121448] (-) TimerEvent: {}
+[188.222910] (-) TimerEvent: {}
+[188.324427] (-) TimerEvent: {}
+[188.425941] (-) TimerEvent: {}
+[188.527448] (-) TimerEvent: {}
+[188.629058] (-) TimerEvent: {}
+[188.730606] (-) TimerEvent: {}
+[188.832232] (-) TimerEvent: {}
+[188.933692] (-) TimerEvent: {}
+[189.035419] (-) TimerEvent: {}
+[189.137046] (-) TimerEvent: {}
+[189.239019] (-) TimerEvent: {}
+[189.340926] (-) TimerEvent: {}
+[189.442412] (-) TimerEvent: {}
+[189.544305] (-) TimerEvent: {}
+[189.646036] (-) TimerEvent: {}
+[189.747723] (-) TimerEvent: {}
+[189.849161] (-) TimerEvent: {}
+[189.950564] (-) TimerEvent: {}
+[190.053096] (-) TimerEvent: {}
+[190.154936] (-) TimerEvent: {}
+[190.258132] (-) TimerEvent: {}
+[190.359614] (-) TimerEvent: {}
+[190.461141] (-) TimerEvent: {}
+[190.564832] (-) TimerEvent: {}
+[190.666587] (-) TimerEvent: {}
+[190.768248] (-) TimerEvent: {}
+[190.869365] (-) TimerEvent: {}
+[190.970353] (-) TimerEvent: {}
+[191.071440] (-) TimerEvent: {}
+[191.172588] (-) TimerEvent: {}
+[191.273622] (-) TimerEvent: {}
+[191.374602] (-) TimerEvent: {}
+[191.475610] (-) TimerEvent: {}
+[191.576651] (-) TimerEvent: {}
+[191.677629] (-) TimerEvent: {}
+[191.778604] (-) TimerEvent: {}
+[191.879660] (-) TimerEvent: {}
+[191.980723] (-) TimerEvent: {}
+[192.081728] (-) TimerEvent: {}
+[192.182687] (-) TimerEvent: {}
+[192.283682] (-) TimerEvent: {}
+[192.384655] (-) TimerEvent: {}
+[192.485722] (-) TimerEvent: {}
+[192.586736] (-) TimerEvent: {}
+[192.687750] (-) TimerEvent: {}
+[192.788778] (-) TimerEvent: {}
+[192.889842] (-) TimerEvent: {}
+[192.990852] (-) TimerEvent: {}
+[193.091895] (-) TimerEvent: {}
+[193.192874] (-) TimerEvent: {}
+[193.293849] (-) TimerEvent: {}
+[193.394819] (-) TimerEvent: {}
+[193.495822] (-) TimerEvent: {}
+[193.596827] (-) TimerEvent: {}
+[193.697832] (-) TimerEvent: {}
+[193.798841] (-) TimerEvent: {}
+[193.899835] (-) TimerEvent: {}
+[194.000866] (-) TimerEvent: {}
+[194.101879] (-) TimerEvent: {}
+[194.202843] (-) TimerEvent: {}
+[194.303800] (-) TimerEvent: {}
+[194.404827] (-) TimerEvent: {}
+[198.457590] (-) TimerEvent: {}
+[198.559001] (-) TimerEvent: {}
+[198.660664] (-) TimerEvent: {}
+[198.762162] (-) TimerEvent: {}
+[198.863862] (-) TimerEvent: {}
+[198.965166] (-) TimerEvent: {}
+[199.066801] (-) TimerEvent: {}
+[199.168308] (-) TimerEvent: {}
+[199.269452] (-) TimerEvent: {}
+[199.370490] (-) TimerEvent: {}
+[199.471500] (-) TimerEvent: {}
+[199.572641] (-) TimerEvent: {}
+[202.762167] (-) TimerEvent: {}
+[202.863279] (-) TimerEvent: {}
+[202.964410] (-) TimerEvent: {}
+[203.065493] (-) TimerEvent: {}
+[203.166621] (-) TimerEvent: {}
+[203.267756] (-) TimerEvent: {}
+[203.368945] (-) TimerEvent: {}
+[203.470067] (-) TimerEvent: {}
+[203.571185] (-) TimerEvent: {}
+[203.672383] (-) TimerEvent: {}
+[203.773824] (-) TimerEvent: {}
+[203.875400] (-) TimerEvent: {}
+[203.977045] (-) TimerEvent: {}
+[204.078652] (-) TimerEvent: {}
+[204.180293] (-) TimerEvent: {}
+[204.281847] (-) TimerEvent: {}
+[204.383422] (-) TimerEvent: {}
+[204.485118] (-) TimerEvent: {}
+[204.586677] (-) TimerEvent: {}
+[204.688315] (-) TimerEvent: {}
+[204.789914] (-) TimerEvent: {}
+[204.891514] (-) TimerEvent: {}
+[204.993212] (-) TimerEvent: {}
+[205.094800] (-) TimerEvent: {}
+[205.196471] (-) TimerEvent: {}
+[205.298090] (-) TimerEvent: {}
+[205.399747] (-) TimerEvent: {}
+[205.501236] (-) TimerEvent: {}
+[205.602967] (-) TimerEvent: {}
+[205.705203] (-) TimerEvent: {}
+[205.806942] (-) TimerEvent: {}
+[205.908591] (-) TimerEvent: {}
+[206.009930] (-) TimerEvent: {}
+[206.111283] (-) TimerEvent: {}
+[206.212673] (-) TimerEvent: {}
+[206.314170] (-) TimerEvent: {}
+[206.415607] (-) TimerEvent: {}
+[206.517125] (-) TimerEvent: {}
+[206.618332] (-) TimerEvent: {}
+[206.719500] (-) TimerEvent: {}
+[206.820762] (-) TimerEvent: {}
+[206.872655] (ytcg_ground_based) StderrLine: {'line': b'make[2]: *** [CMakeFiles/chw_bs_snr.dir/build.make:63: CMakeFiles/chw_bs_snr.dir/src/chw_bs_snr.cpp.o] Error 1\n'}
+[206.921099] (-) TimerEvent: {}
+[206.955260] (ytcg_ground_based) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/chw_bs_snr.dir/all] Error 2\n'}
+[206.957534] (ytcg_ground_based) StderrLine: {'line': b'make[1]: *** Waiting for unfinished jobs....\n'}
+[207.021368] (-) TimerEvent: {}
+[207.122663] (-) TimerEvent: {}
+[207.223930] (-) TimerEvent: {}
+[207.325307] (-) TimerEvent: {}
+[207.426724] (-) TimerEvent: {}
+[207.528079] (-) TimerEvent: {}
+[207.629385] (-) TimerEvent: {}
+[207.730627] (-) TimerEvent: {}
+[207.832200] (-) TimerEvent: {}
+[207.933579] (-) TimerEvent: {}
+[208.034905] (-) TimerEvent: {}
+[208.136228] (-) TimerEvent: {}
+[208.237582] (-) TimerEvent: {}
+[208.338949] (-) TimerEvent: {}
+[208.440338] (-) TimerEvent: {}
+[208.541704] (-) TimerEvent: {}
+[208.643042] (-) TimerEvent: {}
+[208.744463] (-) TimerEvent: {}
+[208.845594] (-) TimerEvent: {}
+[208.946845] (-) TimerEvent: {}
+[209.048271] (-) TimerEvent: {}
+[209.149636] (-) TimerEvent: {}
+[209.250965] (-) TimerEvent: {}
+[209.352362] (-) TimerEvent: {}
+[209.453731] (-) TimerEvent: {}
+[209.554941] (-) TimerEvent: {}
+[209.656265] (-) TimerEvent: {}
+[209.757548] (-) TimerEvent: {}
+[209.858910] (-) TimerEvent: {}
+[209.960235] (-) TimerEvent: {}
+[210.061577] (-) TimerEvent: {}
+[210.162950] (-) TimerEvent: {}
+[210.264382] (-) TimerEvent: {}
+[210.365755] (-) TimerEvent: {}
+[210.467097] (-) TimerEvent: {}
+[210.568514] (-) TimerEvent: {}
+[210.669929] (-) TimerEvent: {}
+[210.771603] (-) TimerEvent: {}
+[210.872978] (-) TimerEvent: {}
+[210.974319] (-) TimerEvent: {}
+[211.075707] (-) TimerEvent: {}
+[211.177043] (-) TimerEvent: {}
+[211.278372] (-) TimerEvent: {}
+[211.379749] (-) TimerEvent: {}
+[211.481095] (-) TimerEvent: {}
+[211.582386] (-) TimerEvent: {}
+[211.683837] (-) TimerEvent: {}
+[211.785154] (-) TimerEvent: {}
+[211.886495] (-) TimerEvent: {}
+[211.987881] (-) TimerEvent: {}
+[212.089250] (-) TimerEvent: {}
+[212.190623] (-) TimerEvent: {}
+[212.291973] (-) TimerEvent: {}
+[212.393305] (-) TimerEvent: {}
+[212.494734] (-) TimerEvent: {}
+[212.596043] (-) TimerEvent: {}
+[212.697240] (-) TimerEvent: {}
+[212.798490] (-) TimerEvent: {}
+[212.899745] (-) TimerEvent: {}
+[213.000961] (-) TimerEvent: {}
+[213.102328] (-) TimerEvent: {}
+[213.203710] (-) TimerEvent: {}
+[213.305053] (-) TimerEvent: {}
+[213.406223] (-) TimerEvent: {}
+[213.507591] (-) TimerEvent: {}
+[213.609009] (-) TimerEvent: {}
+[213.710383] (-) TimerEvent: {}
+[213.811714] (-) TimerEvent: {}
+[213.912941] (-) TimerEvent: {}
+[214.014279] (-) TimerEvent: {}
+[214.115528] (-) TimerEvent: {}
+[214.216796] (-) TimerEvent: {}
+[214.318012] (-) TimerEvent: {}
+[214.419223] (-) TimerEvent: {}
+[214.520493] (-) TimerEvent: {}
+[214.621853] (-) TimerEvent: {}
+[214.723087] (-) TimerEvent: {}
+[214.824442] (-) TimerEvent: {}
+[214.925660] (-) TimerEvent: {}
+[215.026895] (-) TimerEvent: {}
+[215.128360] (-) TimerEvent: {}
+[215.229579] (-) TimerEvent: {}
+[215.330793] (-) TimerEvent: {}
+[215.432052] (-) TimerEvent: {}
+[215.533341] (-) TimerEvent: {}
+[215.634746] (-) TimerEvent: {}
+[215.736146] (-) TimerEvent: {}
+[215.837647] (-) TimerEvent: {}
+[215.939231] (-) TimerEvent: {}
+[216.040835] (-) TimerEvent: {}
+[216.142754] (-) TimerEvent: {}
+[216.244465] (-) TimerEvent: {}
+[216.346080] (-) TimerEvent: {}
+[216.447721] (-) TimerEvent: {}
+[216.549208] (-) TimerEvent: {}
+[216.650954] (-) TimerEvent: {}
+[216.752773] (-) TimerEvent: {}
+[216.854675] (-) TimerEvent: {}
+[216.956269] (-) TimerEvent: {}
+[217.057787] (-) TimerEvent: {}
+[217.159385] (-) TimerEvent: {}
+[217.260956] (-) TimerEvent: {}
+[217.362541] (-) TimerEvent: {}
+[217.464272] (-) TimerEvent: {}
+[217.565976] (-) TimerEvent: {}
+[217.667822] (-) TimerEvent: {}
+[217.769413] (-) TimerEvent: {}
+[217.870903] (-) TimerEvent: {}
+[217.972469] (-) TimerEvent: {}
+[218.074091] (-) TimerEvent: {}
+[218.175806] (-) TimerEvent: {}
+[218.277244] (-) TimerEvent: {}
+[218.378917] (-) TimerEvent: {}
+[218.480762] (-) TimerEvent: {}
+[218.582571] (-) TimerEvent: {}
+[218.684293] (-) TimerEvent: {}
+[218.785880] (-) TimerEvent: {}
+[218.887574] (-) TimerEvent: {}
+[218.989146] (-) TimerEvent: {}
+[219.090731] (-) TimerEvent: {}
+[219.192490] (-) TimerEvent: {}
+[219.294024] (-) TimerEvent: {}
+[219.395458] (-) TimerEvent: {}
+[219.496960] (-) TimerEvent: {}
+[219.598623] (-) TimerEvent: {}
+[219.700210] (-) TimerEvent: {}
+[219.801585] (-) TimerEvent: {}
+[219.902794] (-) TimerEvent: {}
+[220.004177] (-) TimerEvent: {}
+[220.105515] (-) TimerEvent: {}
+[220.207425] (-) TimerEvent: {}
+[220.308850] (-) TimerEvent: {}
+[220.410259] (-) TimerEvent: {}
+[220.511905] (-) TimerEvent: {}
+[220.613235] (-) TimerEvent: {}
+[220.714502] (-) TimerEvent: {}
+[220.815878] (-) TimerEvent: {}
+[220.917119] (-) TimerEvent: {}
+[221.018349] (-) TimerEvent: {}
+[221.119551] (-) TimerEvent: {}
+[221.220856] (-) TimerEvent: {}
+[221.322082] (-) TimerEvent: {}
+[221.423218] (-) TimerEvent: {}
+[221.524483] (-) TimerEvent: {}
+[221.625746] (-) TimerEvent: {}
+[221.726882] (-) TimerEvent: {}
+[221.828132] (-) TimerEvent: {}
+[221.929284] (-) TimerEvent: {}
+[222.030424] (-) TimerEvent: {}
+[222.131615] (-) TimerEvent: {}
+[222.232783] (-) TimerEvent: {}
+[222.333904] (-) TimerEvent: {}
+[222.435013] (-) TimerEvent: {}
+[222.536206] (-) TimerEvent: {}

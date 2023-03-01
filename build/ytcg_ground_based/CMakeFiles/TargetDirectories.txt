@@ -1,0 +1,11 @@
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/install/strip.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/install/local.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/chw_bs_snr.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/edit_cache.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/test.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/chw_bs_comm.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/install.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/list_install_components.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/rebuild_cache.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/ytcg_ground_based_uninstall.dir
+/home/pi/ros2_ws/src/ytcg_ground-based/build/ytcg_ground_based/CMakeFiles/uninstall.dir

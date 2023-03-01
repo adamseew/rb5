@@ -70,9 +70,9 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
 
     publisher_ = this->create_publisher<std_msgs::msg::Int8MultiArray>(COMM_FROM_BS_TOPIC, 10);
     // publishes the data from the base-station
-    // use CHW_BS_COMM_RATE to personalize frequency in milliseconds
+    // use CHW_BS_COMM_RATE_HZ to personalize frequency in milliseconds
     timer_ = this->create_wall_timer(
-        std::chrono::milliseconds(CHW_BS_COMM_RATE), std::bind(&BsCommPublisher::timer_callback, this)
+        std::chrono::milliseconds(1000/CHW_BS_COMM_RATE_HZ), std::bind(&BsCommPublisher::timer_callback, this)
     );
     // the node publishes a message containing the two commands from
     // base-station: offset on x and on y, from -100 to 100. Default
@@ -200,7 +200,8 @@ void BsCommPublisher::timer_callback(void) {
         if ((rx_pos = output_.find("radio_rx")) != std::string::npos) {
             utility_serial_write(fd_, "sys set pindig GPIO10 1\r\n", DEF_PORT_READ, DEF_BITRATE_57600, PAUSE_RN2903);
         } else {
-            RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
+            RCLCPP_INFO(this->get_logger(), "Output is %s", output_.c_str());
+	    RCLCPP_WARN(this->get_logger(), "Unable to retrieve data from the channel with LoRa this time");
             return;
         }
 
@@ -215,8 +216,6 @@ void BsCommPublisher::timer_callback(void) {
     auto from_bs = utility_split(output, ' ');
     if (count__ == 0) 
         RCLCPP_INFO(this->get_logger(), "Raw data from base-station %s are %s", addr.c_str(), (from_bs.at(0) + " " + from_bs.at(1)).c_str());
-
-    per_xseconds++;
 
     try {
         x_ = std::__cxx11::stoi(utility_split(from_bs.at(0), ':').at(1));
@@ -236,6 +235,8 @@ void BsCommPublisher::timer_callback(void) {
     RCLCPP_INFO(this->get_logger(), "Publishing command from base-station, x: %d, y: %d", x_, y_);
     publisher_->publish(msg_);
 
+    per_xseconds++;
+
     ++count__;
 }
 
@@ -254,7 +255,7 @@ void BsCommPublisher::stats_callback(void) {
         __LOG_COMM::file() << buffer << std::endl;
     }
 
-    sc_rate = per_xseconds/(1.0/(CHW_BS_COMM_RATE/1000.0));
+    sc_rate = per_xseconds/CHW_BS_COMM_RATE_HZ;
 
     RCLCPP_WARN(this->get_logger(), "Success communication rate: %f", sc_rate);
     per_xseconds = 0;

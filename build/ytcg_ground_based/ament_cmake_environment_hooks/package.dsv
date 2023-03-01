@@ -1,0 +1,4 @@
+source;share/ytcg_ground_based/local_setup.bash
+source;share/ytcg_ground_based/local_setup.dsv
+source;share/ytcg_ground_based/local_setup.sh
+source;share/ytcg_ground_based/local_setup.zsh

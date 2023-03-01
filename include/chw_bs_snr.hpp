@@ -12,8 +12,8 @@
 #ifndef YTCG_CHW_BS_COMM_HPP
 #define YTCG_CHW_BS_COMM_HPP
 
-#define NODE_CHW_BS_COMM       "chw_bs_node"
-#define CHW_BS_COMM_RATE_HZ    2
+#define NODE_CHW_BS_SNR       "chw_bs_snr_node"
+#define CHW_BS_SNR_RATE_HZ     0.2
 #define CHW_QUEUE_EMPTIER_RATE 500
 #define COMM_FROM_BS_TOPIC     "ground_based/cmd"
 #define COMM_FROM_BS_TOPIC_LBL "commands"
@@ -52,19 +52,15 @@ namespace ytcg {
     };
 #endif
 
-    class BsCommPublisher : public rclcpp::Node {
+    class BsSnrPublisher : public rclcpp::Node {
     public:
-        BsCommPublisher(void);
-        BsCommPublisher(CommProtocol);
+        BsSnrPublisher(void);
+        BsSnrPublisher(CommProtocol);
 
     private:
-        void timer_callback(void);
-        void queue_emptier_callback(void);
+        void snr_callback(void);
         void shutdown_callback(void);
-        void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
-#ifdef SAVE_STATS
-        void stats_callback(void);
-#endif
+        
         std_msgs::msg::Int8MultiArray msg_;
         rclcpp::TimerBase::SharedPtr timer_;
         rclcpp::TimerBase::SharedPtr timer__;
@@ -75,9 +71,9 @@ namespace ytcg {
     	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
         size_t count_;
         size_t count__;
-#ifdef SAVE_STATS
-	std::atomic<size_t> per_xseconds;
-#endif
+	
+	float snr;
+
         size_t first_get;
         int fd_;
     	std::string addr;
