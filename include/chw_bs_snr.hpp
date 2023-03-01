@@ -13,7 +13,7 @@
 #define YTCG_CHW_BS_COMM_HPP
 
 #define NODE_CHW_BS_SNR       "chw_bs_snr_node"
-#define CHW_BS_SNR_RATE_HZ     0.2
+#define CHW_BS_SNR_RATE_MS     5000
 #define CHW_QUEUE_EMPTIER_RATE 500
 // #define SNR_TOPIC              "ground_based/snr"
 // #define COMM_FROM_BS_TOPIC_LBL "commands"
