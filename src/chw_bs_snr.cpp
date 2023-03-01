@@ -8,7 +8,7 @@
 // #include <boost/filesystem.hpp>
 
 
-// #include <time.h>
+#include <time.h>
 
 #include <functional>
 // #include <iostream>
@@ -44,7 +44,7 @@ using std::string;
         {
             // publisher_ = this->create_publisher<std_msgs::msg::Float32>(SNR_TOPIC, 10);
             timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(1000/CHW_BS_SNR_RATE_HZ), std::bind(&SnrLogger::snr_callback, this));
+            std::chrono::milliseconds(CHW_BS_SNR_RATE_MS), std::bind(&SnrLogger::snr_callback, this));
 
             rclcpp::on_shutdown(std::bind(&SnrLogger::shutdown_callback, this));
         }
