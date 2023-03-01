@@ -39,7 +39,7 @@ class SnrLogger : public rclcpp::Node
 {
     public:
         SnrLogger()
-        : Node("snr_logger"), countr_(0)
+        : Node("snr_logger"), count_(0)
         {
             // publisher_ = this->create_publisher<std_msgs::msg::Float32>(SNR_TOPIC, 10);
             timer_ = this->create_wall_timer(
@@ -135,7 +135,7 @@ class SnrLogger : public rclcpp::Node
                 ROS_INFO_STREAM(LOG_SNR_FILE << " closed");
             #endif
         }
-}
+};
 // BsSnrPublisher::BsSnrPublisher(CommProtocol commprotocol_) : 
 //     Node(NODE_CHW_BS_COMM), count_(0), count__(0), first_get(0), fd_(-1) {
 
