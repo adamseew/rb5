@@ -24,7 +24,7 @@
 
 // #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
 
-using namespace ytcg;
+using namespace ytcg_snr;
 using namespace std::chrono;
 
 // using std::placeholders::_1;
@@ -285,7 +285,7 @@ class SnrLogger : public rclcpp::Node
 int main(int argc, char ** argv) {
     
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<SnrLoggerer>());//(CommProtocol::LoRa));
+    rclcpp::spin(std::make_shared<SnrLogger>());//(CommProtocol::LoRa));
     rclcpp::shutdown();
     return 0;
 }

@@ -37,7 +37,7 @@
 #define LOG_SNR_FILE          "log_snr.dat"
 
 
-namespace ytcg {
+namespace ytcg_snr {
     enum struct CommProtocol { 
         _80211 = COMM_80211,   // communication happens via std. wifi protocols (e.g., 802.11g or
                                // the wide range 802.11ah comm. protocol)
