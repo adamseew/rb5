@@ -59,9 +59,8 @@ namespace ytcg {
 
     private:
         void timer_callback(void);
-        void queue_emptier_callback(void);
         void shutdown_callback(void);
-        void camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
+        
 #ifdef SAVE_STATS
         void stats_callback(void);
 #endif

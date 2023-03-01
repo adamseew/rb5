@@ -2,9 +2,6 @@
 #include "../include/chw_bs_comm.hpp"
 #include "../include/utility.hpp"
 
-#include <boost/range/adaptors.hpp>
-#include <cv_bridge/cv_bridge.h>
-#include <opencv2/imgcodecs.hpp>
 #include <boost/filesystem.hpp>
 
 #include <time.h>
@@ -65,6 +62,7 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
     );
     per_xseconds = 0;
 #endif
+
     commprotocol__ = commprotocol_;
     RCLCPP_INFO(this->get_logger(), "Companion HW --- base-station is set to %s", commprotocol_str.c_str());
 
@@ -83,66 +81,6 @@ BsCommPublisher::BsCommPublisher(CommProtocol commprotocol_) :
     msg_.layout.dim[0].label = COMM_FROM_BS_TOPIC_LBL;
 
     rclcpp::on_shutdown(std::bind(&BsCommPublisher::shutdown_callback, this));
-}
-
-void BsCommPublisher::camnavrgb_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg) {
-    	
-    cv_bridge::CvImagePtr cv_ptr;
-    milliseconds ms = duration_cast<milliseconds>(
-        system_clock::now().time_since_epoch()
-    );
-    string stored_path;
-
-    try {
-        cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
-    } catch (cv_bridge::Exception& e) {
-        RCLCPP_ERROR(this->get_logger(), "CV library bridge exception: %s", e.what());
-        return;
-    }
-
-    cv::imwrite(stored_path = "image_" + std::to_string(count_++) + "-" + std::to_string(ms.count()) + ".jpg", cv_ptr->image);
-
-    RCLCPP_INFO(this->get_logger(), "image stored as %s", stored_path.c_str());
-}
-
-void BsCommPublisher::queue_emptier_callback(void) {
-    
-    string target_path(getenv(ENV_QUEUE_PATH));
-    const boost::regex my_filter("image.*\.jpg");
-    boost::smatch what;
-    std::vector<string> images;
-
-    for (auto &entry: boost::make_iterator_range(bfs::directory_iterator(target_path), {})
-         | ba::filtered(static_cast<bool (*)(const bfs::path &)>(&bfs::is_regular_file))
-         | ba::filtered([&](const bfs::path &path){ return boost::regex_match(path.filename().string(), what, my_filter); })
-        )
-            // images matching the pattern "image*.jpg".
-            images.push_back(entry.path().filename().string());
-	
-    if (images.size() > 0) {
-	
-        RCLCPP_INFO(this->get_logger(), "The queue has %d items", images.size());		
-        for (auto image : images) {
-
-            std::string curl_command = "curl ";
-	    curl_command += "-s -F \"data=@" + target_path + image + "\" ";
-            curl_command += addr + "/fromagent.php";
-            
-            RCLCPP_INFO(this->get_logger(), "%s", curl_command.c_str());  
-            if (utility_exec(curl_command.c_str()).find("good job agent") != std::string::npos) {
-			
-                RCLCPP_INFO(this->get_logger(), "%s transfer ack", image.c_str());			
-                // deleting image that has been sent correctly
-                boost::filesystem::remove(image);					
-                RCLCPP_INFO(this->get_logger(), "Queue is being freed");
-            } else
-                RCLCPP_INFO(this->get_logger(), "Something went wrong with the conncection");
-
-        }
-    } else  
-        RCLCPP_INFO(this->get_logger(), "Nothing to send this time");
-
-    ++count_;
 }
 
 void BsCommPublisher::timer_callback(void) {
@@ -239,7 +177,6 @@ void BsCommPublisher::timer_callback(void) {
 
     ++count__;
 }
-
 #ifdef SAVE_STATS
 void BsCommPublisher::stats_callback(void) {
 

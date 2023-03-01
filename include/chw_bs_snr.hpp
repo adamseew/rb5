@@ -15,7 +15,7 @@
 #define NODE_CHW_BS_SNR       "chw_bs_snr_node"
 #define CHW_BS_SNR_RATE_HZ     0.2
 #define CHW_QUEUE_EMPTIER_RATE 500
-#define COMM_FROM_BS_TOPIC     "ground_based/cmd"
+// #define SNR_TOPIC              "ground_based/snr"
 #define COMM_FROM_BS_TOPIC_LBL "commands"
 #define ENV_BS_ADDR            "BS_ADDR"
 #define ENV_BS_PORT            "BS_PORT"
@@ -31,10 +31,10 @@
 #define PAUSE_RN2903           10
 #define PAUSE_SYSRESET_RN2903  8000
 #define PAUSE_FIRST_RX_RN2903  1000
-#define SAVE_STATS             1
+
                                // specifies whether to save statistics on the arrived and
 			       // lost messages from the base station
-#define LOG_COMM_FILE          "log_comm.dat"
+#define LOG_SNR_FILE          "log_snr.dat"
 
 
 namespace ytcg {
@@ -43,36 +43,35 @@ namespace ytcg {
                                // the wide range 802.11ah comm. protocol)
         LoRa =   COMM_LORA     // communication relies on LoRa physical layer protocol
     };
-#ifdef SAVE_STATS
-    struct __LOG_COMM {
+
+    struct __LOG_SNR {
         static std::ofstream& file() { 
             static std::ofstream __file;
             return __file;
         }
     };
-#endif
 
-    class BsSnrPublisher : public rclcpp::Node {
+
+    class SnrLogger : public rclcpp::Node {
     public:
-        BsSnrPublisher(void);
-        BsSnrPublisher(CommProtocol);
+        SnrLogger(void);
+        // SnrLogger(CommProtocol);
 
     private:
         void snr_callback(void);
         void shutdown_callback(void);
         
-        std_msgs::msg::Int8MultiArray msg_;
+        // std_msgs::msg::Int8MultiArray msg_;
         rclcpp::TimerBase::SharedPtr timer_;
         rclcpp::TimerBase::SharedPtr timer__;
-#ifdef SAVE_STATS
         rclcpp::TimerBase::SharedPtr timer___;
-#endif
-        rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
-    	rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
+
+        // rclcpp::Publisher<std_msgs::msg::Int8MultiArray>::SharedPtr publisher_;
+    	// rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr subscription_;
         size_t count_;
         size_t count__;
 	
-	float snr;
+	    float snr;
 
         size_t first_get;
         int fd_;
