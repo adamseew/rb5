@@ -16,7 +16,7 @@
 #define CHW_BS_SNR_RATE_HZ     0.2
 #define CHW_QUEUE_EMPTIER_RATE 500
 // #define SNR_TOPIC              "ground_based/snr"
-#define COMM_FROM_BS_TOPIC_LBL "commands"
+// #define COMM_FROM_BS_TOPIC_LBL "commands"
 #define ENV_BS_ADDR            "BS_ADDR"
 #define ENV_BS_PORT            "BS_PORT"
 #define ENV_QUEUE_PATH         "QUEUE_PATH"
@@ -37,7 +37,7 @@
 #define LOG_SNR_FILE          "log_snr.dat"
 
 
-namespace ytcg_snr {
+namespace ytcg {
     enum struct CommProtocol { 
         _80211 = COMM_80211,   // communication happens via std. wifi protocols (e.g., 802.11g or
                                // the wide range 802.11ah comm. protocol)
