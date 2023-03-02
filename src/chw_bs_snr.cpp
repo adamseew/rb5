@@ -115,14 +115,18 @@ void SnrLogger::snr_callback(void) {
 
             output_ = utility_serial_read(fd_, "radio get snr\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
             RCLCPP_WARN(this->get_logger(), "snr command output %s", output_.c_str());
+
+            char buffer_[10];
+            string output__ = read(fd_, &buffer_, sizeof(buffer_));
+            
             try {
-                snr = atof(output_.c_str());
+                snr = atof(output__.c_str());
             } catch (...) {
                 RCLCPP_ERROR(this->get_logger(), "Unable to read SNR");
             }
 
             RCLCPP_WARN(this->get_logger(), "SNR f: %f", snr); 
-            RCLCPP_WARN(this->get_logger(), "SNR str: %f", output_.c_str()); 
+            RCLCPP_WARN(this->get_logger(), "SNR str: %f", output__.c_str()); 
                 
             micro_se = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
