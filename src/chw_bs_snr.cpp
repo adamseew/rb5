@@ -21,6 +21,8 @@
 #include <memory>
 // #include <thread>
 // #include <cmath>
+#include <unistd.h>
+
 
 // #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
 
@@ -118,7 +120,7 @@ void SnrLogger::snr_callback(void) {
 
             char buffer_[10];
             string output__ = read(fd_, &buffer_, sizeof(buffer_));
-            
+
             try {
                 snr = atof(output__.c_str());
             } catch (...) {
