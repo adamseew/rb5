@@ -119,13 +119,20 @@ void SnrLogger::snr_callback(void) {
             RCLCPP_WARN(this->get_logger(), "snr command output %s", output_.c_str());
 
             char buffer_[10];
-            string output__ = read(fd_, &buffer_, sizeof(buffer_));
+            int size_bytes = read(fd_, &buffer_, sizeof(buffer_));
 
-            try {
-                snr = atof(output__.c_str());
-            } catch (...) {
-                RCLCPP_ERROR(this->get_logger(), "Unable to read SNR");
+            if (size_bytes < 0) {
+                RCLSPP_WARM(this->get_logger(), "No bytes returned in output!");
+            } else {
+                try {
+                    snr = atof(buffer_.c_str());
+                    // snr = atof(output__.c_str());
+                } catch (...) {
+                    RCLCPP_ERROR(this->get_logger(), "Unable to read SNR");
+                }
             }
+
+            
 
             RCLCPP_WARN(this->get_logger(), "SNR f: %f", snr); 
             RCLCPP_WARN(this->get_logger(), "SNR str: %f", output__.c_str()); 
