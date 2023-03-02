@@ -125,7 +125,7 @@ void SnrLogger::snr_callback(void) {
                 RCLSPP_WARM(this->get_logger(), "No bytes returned in output!");
             } else {
                 try {
-                    snr = atof(buffer_.c_str());
+                    snr = atof(buffer_);
                     // snr = atof(output__.c_str());
                 } catch (...) {
                     RCLCPP_ERROR(this->get_logger(), "Unable to read SNR");
@@ -135,7 +135,7 @@ void SnrLogger::snr_callback(void) {
             
 
             RCLCPP_WARN(this->get_logger(), "SNR f: %f", snr); 
-            RCLCPP_WARN(this->get_logger(), "SNR str: %f", output__.c_str()); 
+            RCLCPP_WARN(this->get_logger(), "SNR str: %s", buffer_); 
                 
             micro_se = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
