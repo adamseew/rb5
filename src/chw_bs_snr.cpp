@@ -122,7 +122,7 @@ void SnrLogger::snr_callback(void) {
             int size_bytes = read(fd_, &buffer_, sizeof(buffer_));
 
             if (size_bytes < 0) {
-                RCLSPP_WARM(this->get_logger(), "No bytes returned in output!");
+                RCLCPP_WARN(this->get_logger(), "No bytes returned in output!");
             } else {
                 try {
                     snr = atof(buffer_);
