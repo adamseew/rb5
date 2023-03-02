@@ -121,7 +121,8 @@ void SnrLogger::snr_callback(void) {
                 RCLCPP_ERROR(this->get_logger(), "Unable to read SNR");
             }
 
-            RCLCPP_WARN(this->get_logger(), "SNR: %f", snr); 
+            RCLCPP_WARN(this->get_logger(), "SNR f: %f", snr); 
+            RCLCPP_WARN(this->get_logger(), "SNR str: %f", output_.c_str()); 
                 
             micro_se = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 
