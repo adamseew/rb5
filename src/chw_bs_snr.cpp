@@ -115,7 +115,7 @@ void SnrLogger::snr_callback(void) {
 
             snr = -128.0;
 
-            output_ = utility_serial_read(fd_, "radio get snr\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
+            output_ = utility_serial_read(fd_, "radio get rssi\r\n", DEF_PORT_READ, DEF_BITRATE_57600);
             RCLCPP_WARN(this->get_logger(), "snr command output %s", output_.c_str());
 
             char buffer_[10];
