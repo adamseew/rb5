@@ -1,0 +1,6 @@
+[submodule "rb5-ground-navigation"]
+	path = rb5-ground-navigation
+	url = git@github.com:adamseew/rb5-ground-navigation.git
+[submodule "rb5-base-server"]
+	path = rb5-base-server
+	url = git@github.com:adamseew/rb5-base-server.git
