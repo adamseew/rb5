@@ -9,6 +9,7 @@ It constitutes the supplementary material to the paper "A low-cost energy-effici
 
 [![Watch the video](./rb5_video_gif.gif)](https://youtu.be/Vflmh6LTo6A)
 
+---
 
 ## Installation
 
@@ -16,22 +17,24 @@ Install all the ROS2 and ROS packages in your local workspace. Use an external d
 
 In this repository, you can find the **ground robot**: `rb5-ground-robot` ROS2 package, which contains the code that runs on the companion computer onboard RB5, i.e., an <a rel="jetson" href="https://www.seeedstudio.com/reComputer-J2021-p-5438.html?">NVIDIA (R) Jetson NX (TM)</a>.
 
-There is additionally the **ground navigation**: `rb5-ground-nav` ROS package, which contains the code that collects point clouds from an RGB-D camera and other data from the SLAM algorithm and ports them into ROS2 [here](rb5-ground-navigation).
+There is additionally the **ground navigation**: `rb5-ground-nav` ROS package, which contains the code that collects point clouds from an RGB-D camera and other data from the SLAM algorithm and ports them into ROS2 [here](https://github.com/adamseew/rb5-ground-navigation).
 
-Finally, there is also the **base server** PHP- and JavaScript-based remote control base station that implements the necessary functionality for remote human intervention [here](rb5-base-server).
+Finally, there is also the **base server** PHP- and JavaScript-based remote control base station that implements the necessary functionality for remote human intervention [here](https://github.com/adamseew/rb5-base-server).
+
 
 ## Usage
 
-Clone the repository in your local ROS2 workspace and compile the workspace. Rember to move the directory [`rb5-ground-navigation`](rb5-ground-navigation) in a ROS1 workspace and compile accordingly, and to use the directory [`rb5-base-server`](rb5-base-server) in a PHP compatible web server, e.g., [Apache](https://httpd.apache.org/).
+Clone the repository in your local ROS2 workspace and compile the workspace. Rember to move the directory [`rb5-ground-navigation`](https://github.com/adamseew/rb5-ground-navigation) in a ROS1 workspace and compile accordingly, and to use the directory [`rb5-base-server`](https://github.com/adamseew/rb5-base-server) in a PHP compatible web server, e.g., [Apache](https://httpd.apache.org/).
 
-For instance, to run the remote control via LoRa long-range low-power communication technology from the internet-of-things domain, you will need the `chw_bs_comm` node (communication with a remotely located base station) and the `chw_ctl_comm` node (communication with the microcontroller) run from bash:
+For instance, to run the remote control via LoRa long-range low-power communication technology from the internet-of-things domain, you will need the `chw_bs_comm` node (communication with a remotely located base station) and the `chw_ctl_comm` node (communication with the microcontroller). From bash, run:
 ```bash
 ros2 run rb5-ground-robot chw_bs_comm
 ```
-and in another instance:
+and from another instance:
 ```bash
 ros2 run rb5-ground-robot chw_bs_bs
 ```
+
 
 ## Hardware
 
