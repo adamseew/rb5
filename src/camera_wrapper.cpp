@@ -1,4 +1,20 @@
 
+//
+// ██████╗ ██████╗ ███████╗
+// ██╔══██╗██╔══██╗██╔════╝
+// ██████╔╝██████╔╝███████╗
+// ██╔══██╗██╔══██╗╚════██║
+// ██║  ██║██████╔╝███████║
+// ╚═╝  ╚═╝╚═════╝ ╚══════
+//  RB5 Ground Robot ROS2 package, camera wrapper node source code
+//
+//  Supplementary material to the paper "A low-cost energy-efficient approach for long-term autonomous exploration": https://adamseewald.cc/short/rb52023
+//
+//  Copyright (c) Adam Seewald, GRAB Lab at Yale University, Department of Mechanical Engineering and Materials Science 
+//  Distributed under CC BY-NC-SA licence, details: https://creativecommons.org/licenses/by-nc-sa/4.0/
+//
+
+
 #include "../include/camera_wrapper.hpp"
 #include "../include/utility.hpp"
 

@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ytcg_ground_based</name>
-  <version>0.0.0</version>
-  <description>YTCG ground-based mobile robot ROS2 package</description>
+  <name>rb5-ground-robot</name>
+  <version>1.0.0</version>
+  <description>RB5 ground-based mobile robot ROS2 package that implements the communication with a base station using either the IEEE 802.11 wireless communication or long-range LoRa technology. The package further contains serial communication with the microcontroller implemented in Arduino and the vertices detection.</description>
   <maintainer email="adam.seewald@yale.edu">Adam Seewald</maintainer>
-  <license>MIT</license>
+  <license>CC BY-NC-SA</license>
 
   <depend>rclcpp</depend>
   <depend>std_msgs</depend>

@@ -1,4 +1,20 @@
 
+//
+// ██████╗ ██████╗ ███████╗
+// ██╔══██╗██╔══██╗██╔════╝
+// ██████╔╝██████╔╝███████╗
+// ██╔══██╗██╔══██╗╚════██║
+// ██║  ██║██████╔╝███████║
+// ╚═╝  ╚═╝╚═════╝ ╚══════
+//  RB5 Ground Robot ROS2 package, static planner node source code
+//
+//  Supplementary material to the paper "A low-cost energy-efficient approach for long-term autonomous exploration": https://adamseewald.cc/short/rb52023
+//
+//  Copyright (c) Adam Seewald, GRAB Lab at Yale University, Department of Mechanical Engineering and Materials Science 
+//  Distributed under CC BY-NC-SA licence, details: https://creativecommons.org/licenses/by-nc-sa/4.0/
+//
+
+
 #include "../include/chw_plan_static.hpp"
 #include "../include/pos_estimator.hpp"
 #include "../include/chw_ctl_comm.hpp"
@@ -60,7 +76,7 @@ void StaticPlan::topic_callback(const std_msgs::msg::Float32MultiArray::SharedPt
 
     Function* f_ = new Line(1.0, 5.0);        // y = x+5
     // Function* f_ = new Circle(10.0, 10.0, 5);
-                                              // (x-10)^2+(y-10)^2-2.5^2
+                                              // (x-10)^2+(y-10)^2-5^2
     float ke = KE;                            // gain determined empirically
     float dir, diff; 
     int x_, y_;
