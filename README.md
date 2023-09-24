@@ -5,11 +5,8 @@
 
 In this git repo, you can find the source code of the ROS2 and ROS packages for the RB5 experimental robotic platform. 
 
-It constitutes the supplementary material to the paper "A low-cost energy-efficient approach for long-term autonomous exploration": https://adamseewald.cc/short/rb52023
+It constitutes the supplementary material to the paper "RB5 Low-cost explorer: Implementing autonomous long-term exploration on low-cost robotic hardware": https://adamseewald.cc/short/rb52023
 
-[![Watch the video](./rb5_video_gif.gif)](https://youtu.be/Vflmh6LTo6A)
-
----
 
 ## Installation
 
